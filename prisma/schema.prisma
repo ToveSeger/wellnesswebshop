@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Product{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(50) @unique
+  category Category @relation(fields: [category_id], references: [id])
+  category_id Int 
+  stock Int @db.SmallInt
+  on_sale Boolean
+  img Image @relation(fields: [img_id], references: [id])
+  img_id Int 
+  order Order[] 
+  price Decimal 
+}
+
+model Image{
+   id Int @id @default(autoincrement())
+   name String @db.VarChar(50) @unique
+   name_big String @db.VarChar(50) @unique
+   alt_text String @db.VarChar(50) @unique
+   product Product[]
+}
+
+model Category{
+   id Int @id @default(autoincrement())
+   name String @db.VarChar(50) @unique
+   products Product[]
+}
+
+model Order{
+  id Int @id @default(autoincrement())
+  customer Customer[] @relation( fields: [customer_id], references: [id])
+  customer_id Int 
+  products Product[] @relation( fields: [product_id], references: [id])
+  product_id Int
+  product_cost Decimal
+  order_sum Decimal
+}
+
+model Customer{
+  id Int @id @default(autoincrement())
+  first_name String 
+  last_name String
+  phone Int @db.TinyInt
+  email String @db.VarChar(255) @unique
+  road String @db.VarChar(50) @unique
+  zip_code Int @db.TinyInt
+  order Order[]
+}
