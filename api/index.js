@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 
 //Creates a category
-app.post(`/Category`, async(req, res) =>{
+app.post('/category', async(req, res) =>{
   const result = await prisma.category.create({
       data:{
           name: req.body.name,        
@@ -19,7 +19,7 @@ app.post(`/Category`, async(req, res) =>{
 
 
 //Creates an image
-app.post(`/Image`, async(req, res) =>{
+app.post('/image', async(req, res) =>{
   const result = await prisma.image.create({
       data:{
           name: req.body.name,  
@@ -31,7 +31,7 @@ app.post(`/Image`, async(req, res) =>{
 })
 
 //Creates a product
-app.post(`/Product`, async(req, res) =>{
+app.post('/product', async(req, res) =>{
     const result = await prisma.product.create({
         data:{
             name: req.body.name,
@@ -46,18 +46,34 @@ app.post(`/Product`, async(req, res) =>{
 })
 
 //Gets a specific product by id
-app.get(`/Product`, async(req, res) =>{
-    const {id} = req.params 
-    const product = await prisma.product.findUnique({
-        where: {
-            id: Number(id),
-        },     
+app.get('/product/:id', async(req, res) =>{
+  const {id} = req.params
+    const product = await prisma.product.findUnique({         
+        where:{
+          id: Number(id) 
+        }
     })
     res.json(product)
 })
 
+//Gets a specific category by id
+app.get('/category/:id', async(req, res) =>{
+  const {id} = req.params
+  const category = await prisma.category.findUnique({         
+      where:{
+        id: Number(id) 
+      }
+  })
+  res.json(category)
+})
+
+app.get('/test', async(req, res)=>{
+      const result =  "hej"
+      res.json(result)
+})
+
 /* //Searches for a specific product by search string
-app.get(`/Product`, async(req, res) =>{
+app.get('/filterProducts', async(req, res) =>{
     const {searchString} = req.query
     const products = await prisma.product.findMany({
         where: {
@@ -75,8 +91,8 @@ app.get(`/Product`, async(req, res) =>{
             ],
           },
         })
-        res.send(products)
-}) */
+        res.json(products)//res.send?
+}) */ 
 
 export default {
   path: '/api', // specifies the route for where the middleware will be accessible 
