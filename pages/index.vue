@@ -5,7 +5,7 @@
     <ul v-else>
         <h1>Product</h1>
       <li v-for="product in products" :key="product.id">         
-       name: {{product.name}}  id:{{product.id}}     
+       id:{{product.id}} name: {{product.name}}       
       </li>
     </ul>
   </div>
@@ -16,15 +16,14 @@
       return {
         products: []
       }
-    },
-      async fetch () {
-        try {               
-          this.products = await this.$axios.get('/api/product/1')//fetch('/api/product/1').then((res) => res.json())
-          console.log(response.data)
-        } catch (err) {
-          console.log(err)
-        }
 
-    }
- }
+    },
+      async fetch () {                      
+          this.products = await this.$axios.get('/api/product/2').then(function (response) {
+          console.log(response);
+          return response.data;     
+          }).catch(function (error) {
+          console.log(error);
+      });  
+ }}
 </script>
