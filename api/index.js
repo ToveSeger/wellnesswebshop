@@ -67,12 +67,8 @@ app.get('/category/:id', async(req, res) =>{
   res.json(category)
 })
 
-app.get('/test', async(req, res)=>{
-      const result =  "hej"
-      res.json(result)
-})
 
-/* //Searches for a specific product by search string
+ //Searches for a specific product by search string
 app.get('/filterProducts', async(req, res) =>{
     const {searchString} = req.query
     const products = await prisma.product.findMany({
@@ -91,8 +87,8 @@ app.get('/filterProducts', async(req, res) =>{
             ],
           },
         })
-        res.json(products)//res.send?
-}) */ 
+        res.send(products)//res.json?
+}) 
 
 export default {
   path: '/api', // specifies the route for where the middleware will be accessible 
