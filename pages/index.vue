@@ -1,29 +1,43 @@
 <template>
-  <div>
+  <!-- <div>
     <p v-if="$fetchState.pending">Loading....</p>
     <p v-else-if="$fetchState.error">Error while fetching products</p>   
     <ul v-else>
         <h1>Product</h1>
-      <li v-for="product in products" :key="product.id">         
-       id:{{product.id}} name: {{product.name}}       
-      </li>
+       <li v-for="product in products" :key="product.id">         
+        name: {{product.name}}      
+      </li> 
+      
     </ul>
+  </div> -->
+  
+<div> 
+  <h1>Product two</h1>
+  {{products}}
+
+  <h1>All products</h1>
+  {{allProducts}}
   </div>
+  
 </template>
 <script>
  export default {
     data() {
       return {
-        products: []
+        products: [],
+        allProducts: []
       }
 
     },
-      async fetch () {                      
-          this.products = await this.$axios.get('/api/product/2').then(function (response) {
+    async fetch () {       
+      this.allProducts = await fetch(
+        'http://localhost:3000/api/product/all'
+      ).then(res=>res.json()) }              
+          /* this.products = await this.$axios.get('/api/product/2').then(function (response) {
           console.log(response);
-          return response.data;     
+          return response;     
           }).catch(function (error) {
-          console.log(error);
-      });  
- }}
+          console.log(error); */
+      // });
+ }
 </script>
