@@ -12,8 +12,6 @@
   </div> -->
   
 <div> 
-  <h1>Product two</h1>
-  {{products}}
 
   <h1>All products</h1>
   {{allProducts}}
@@ -31,7 +29,7 @@
     },
     async fetch () {       
       this.allProducts = await fetch(
-        'http://localhost:3000/api/product/all'
+        'api/allproducts'
       ).then(res=>res.json()) }              
           /* this.products = await this.$axios.get('/api/product/2').then(function (response) {
           console.log(response);

@@ -35,7 +35,7 @@ app.get('/filterProducts/:query', async(req, res) =>{
 }) 
 
 //Gets all products 
-app.get('/product/all', async(req, res) =>{
+app.get('/allproducts', async(req, res) =>{
   const products = await prisma.product.findMany()
   res.json(products)
 })
