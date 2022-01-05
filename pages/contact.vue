@@ -1,6 +1,6 @@
 <template>
     <div>
-Yoga and meditation
+        contact
     </div>
 </template>
 

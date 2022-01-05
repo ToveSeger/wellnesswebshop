@@ -25,7 +25,7 @@ export default {
   ],  */
 
   serverMiddleware: {
-    '/api': '~/api'
+    '/api': '~/src/api'
   },
  
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -47,7 +47,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios', 
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -1,7 +1,7 @@
 <template>
     <div class="nav-bg">
             <div class="flex">
-                <img class="logo" src="~assets/Img/logotype_small.png" alt="">      
+                <NuxtLink to=""><img class="logo" src="../../src/assets/img/logotype_small.png" alt="wellnesswebshop logo"> </NuxtLink>    
                 <div class="links">
                 <NuxtLink to="/outlet" class="nav-link">Outlet</NuxtLink> 
                 <div class="divider"> | </div>
@@ -14,16 +14,19 @@
                 <NuxtLink to="/music" class="nav-link">Music</NuxtLink> 
                 <div class="divider"> | </div>
                 <NuxtLink to="/aromaLamps" class="nav-link">Aroma Lamps</NuxtLink> 
+                <div class="cart"><Cart/></div>
                 </div>              
-            </div>  
-                        
+            </div>                        
     </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import Cart from './Cart.vue'
+
+  export default {
+  components: { Cart },
+
+}
 </script>
 
 <style scoped>
@@ -39,6 +42,11 @@
         margin-left:0.5em;     
     }
 
+    .cart{
+        position:fixed;
+        right:1em;
+    }
+
     .flex{
         display:flex;
     }
@@ -47,9 +55,9 @@
         width:70vw;
         display:flex;
         margin-top:2.5em;
+        margin-left: 2.5em;
         justify-content: space-evenly;
         font-family: 'Source Sans Pro', sans-serif;
-        font-weight: bold;
     }
 
     .nav-link{
