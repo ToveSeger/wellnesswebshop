@@ -58,7 +58,6 @@ import Cart from './Cart.vue'
         margin-left: 2.5em;
         justify-content: space-evenly;
         font-family: 'Source Sans Pro', sans-serif;
-        font-weight: bold;
     }
 
     .nav-link{
