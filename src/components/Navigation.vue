@@ -9,11 +9,13 @@
                 <div class="divider"> | </div>
                 <NuxtLink to="/books" class="nav-link">Books</NuxtLink>
                 <div class="divider"> | </div> 
+                 <NuxtLink to="/movies" class="nav-link">Movies</NuxtLink> 
+                <div class="divider"> | </div> 
                 <NuxtLink to="/yogaAndMeditation" class="nav-link">Yoga & Meditation</NuxtLink> 
                 <div class="divider"> | </div>
                 <NuxtLink to="/music" class="nav-link">Music</NuxtLink> 
                 <div class="divider"> | </div>
-                <NuxtLink to="/aromaLamps" class="nav-link">Aroma Lamps</NuxtLink> 
+                <NuxtLink to="/aromalamps" class="nav-link">Aroma Lamps</NuxtLink> 
                 <div class="cart"><Cart/></div>
                 </div>              
             </div>                        
@@ -42,9 +44,8 @@ import Cart from './Cart.vue'
         margin-left:0.5em;     
     }
 
-    .cart{
-        position:fixed;
-        right:1em;
+    .cart{ 
+        margin-right:1em;
     }
 
     .flex{
@@ -52,7 +53,7 @@ import Cart from './Cart.vue'
     }
 
     .links{
-        width:70vw;
+        width:90vw;
         display:flex;
         margin-top:2.5em;
         margin-left: 2.5em;
