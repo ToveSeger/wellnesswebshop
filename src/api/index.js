@@ -80,6 +80,19 @@ app.get('/category/:id', async(req, res) =>{
   res.json(category)
 })
 
+//IMAGES
+
+//Gets a specific image by id
+app.get('/image/:id', async(req, res) =>{
+  const {id} = req.params
+  const image = await prisma.image.findUnique({         
+    where:{
+      id: Number(id) 
+    }
+  })
+  res.json(image)
+})
+
 // CREATE 
 
 //Creates a category
