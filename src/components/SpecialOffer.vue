@@ -29,7 +29,7 @@
 h2{
     font-family: 'Signika', sans-serif;
     text-align:center;
-    padding:0.5em;
+    padding:0.3em;
     color: #177585;
     text-decoration:underline;
 }
@@ -49,23 +49,24 @@ h3{
 }
 
 .button{
-    height:5em;
-    width:12em;
+    height:3.2em;
+    width:13em;
     margin-left:auto;
     margin-right: auto;
-    margin-bottom:1em;
-    border:0.2em solid black;
-    border-radius: 5%;
+    border:0.15em solid black;
+    background-color:#84CBD5;
+    border-radius: 1em; 
     text-align: center;  
 }
 
 h4{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 900;
+    text-align:center;
     color:white;
-    background-color:#84CBD5;
-    padding:0;
+    padding:0.3em;
     margin:0;
+    border-radius: 1em;
 }
 
 
