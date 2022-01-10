@@ -1,23 +1,25 @@
 <template>
-  <div id="app">
+  <div>
+    <Navigation/> 
     <p v-if="$fetchState.pending">Loading....</p>
     <p v-else-if="$fetchState.error">Error while fetching products</p>   
     <ul v-else>
-        <h1>Product</h1>
        <div v-for="product in allProducts" :key="product.id" class="flex">    
+         <GetImage v-bind:image="product.img_id" category="insence"></GetImage>
            <div class="productCardInCategory">           
-             name: {{product.name}}   
-             stock: {{product.stock}}    
-             img_id: {{product.img_id}}            
+             <h4>{{product.name}}</h4>
+             stock: {{product.stock}}             
            </div>    
-         <GetImage v-bind:image="product.img_id"></GetImage>
         </div>
     </ul>
+    <Footer/>
   </div>
 </template>
 <script>
+import Navigation from "../src/components/Navigation.vue"
 import LoadImages from "../plugins/loadImages/loadImages.vue"
 import GetImage from "../src/components/GetImage.vue";
+import Footer from "../src/components/Footer.vue";
 
  export default {
     data() {
@@ -39,8 +41,8 @@ import GetImage from "../src/components/GetImage.vue";
     async fetch() {
         this.allProducts = await fetch("http://localhost:3000/api/productbycategory/1").then(res => res.json());
     },
-    beforeMount() {
-    },
+   /*  beforeMount() {
+    }, */
     methods: {
         GetProdImg: async function (img) {
             this.prodImg = await fetch(`http://localhost:3000/api/image/${img}`).then(res => res.json());
@@ -55,7 +57,7 @@ import GetImage from "../src/components/GetImage.vue";
             })
         }
     },
-    components: { LoadImages, GetImage },
+    components: { LoadImages, GetImage, Footer, Navigation },
     
 }     
 
@@ -65,10 +67,12 @@ import GetImage from "../src/components/GetImage.vue";
 
 .productCardInCategory{
     width:50vw;
-   height:10em;
+    height:10em;
+    margin-left:15em;
 }
 
 .flex{
     display:flex;
+    margin:4em;
 }
 </style>
