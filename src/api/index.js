@@ -93,6 +93,12 @@ app.get('/image/:id', async(req, res) =>{
   res.json(image)
 })
 
+//Gets all images - doesnt work
+app.get('/image/all', async(req, res) =>{
+  const images = await prisma.image.findMany()
+  res.json(images)
+})
+
 // CREATE 
 
 //Creates a category

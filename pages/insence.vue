@@ -1,65 +1,64 @@
 <template>
-  <div>
+  <div id="app">
     <p v-if="$fetchState.pending">Loading....</p>
     <p v-else-if="$fetchState.error">Error while fetching products</p>   
     <ul v-else>
         <h1>Product</h1>
-       <li v-for="product in allProducts" :key="product.id">    
+       <div v-for="product in allProducts" :key="product.id" class="flex">    
            <div class="productCardInCategory">           
              name: {{product.name}}   
-             stock: {{product.stock}}  
-             {{GetProdImg(product.id)}}
-           <div v-for="img in prodImg" :key="img.id"> 
-                {{prodImg.name}}
-            </div>                 
+             stock: {{product.stock}}    
+             img_id: {{product.img_id}}            
            </div>    
-      </li>      
+         <GetImage v-bind:image="product.img_id"></GetImage>
+        </div>
     </ul>
   </div>
-  
-<!-- <div> 
-
-  <h1>All products</h1>
-  {{allProducts}}
-  </div>
-   -->
 </template>
 <script>
+import LoadImages from "../plugins/loadImages/loadImages.vue"
+import GetImage from "../src/components/GetImage.vue";
+
  export default {
     data() {
-      return {
-        products: [],
-        allProducts: [],
-        prodImg: [{
-            id:9999,
-            name: "dummy", 
-            category_id: 0,
-            stock: 1000,
-            on_sale: true,
-            img_id: 1,
-            price:2.2
-
-        }
-
-        ],
-      }
-
+        return {
+            allProducts: [],
+            counter: 0,
+            prodImg: [{
+                    id: 9999,
+                    name: "dummy",
+                    category_id: 0,
+                    stock: 1000,
+                    on_sale: true,
+                    img_id: 1,
+                    price: 2.2
+                }
+            ],
+        };
     },
-    async fetch () {       
-      this.allProducts = await fetch(
-        'http://localhost:3000/api/productbycategory/1'
-      ).then(res=>res.json())
-      },   
+    async fetch() {
+        this.allProducts = await fetch("http://localhost:3000/api/productbycategory/1").then(res => res.json());
+    },
+    beforeMount() {
+    },
+    methods: {
+        GetProdImg: async function (img) {
+            this.prodImg = await fetch(`http://localhost:3000/api/image/${img}`).then(res => res.json());
+            console.log(this.prodImg.name);
+            return this.prodImg.name;
+        },
 
-      methods:{
-          GetProdImg: async function(img){
-               this.prodImg= await fetch(`http://localhost:3000/api/image/${img}`
-              ).then(res=>res.json())
-              console.log(this.prodImg.name)   
-              return this.prodImg.name
-          },          
-      }
- }     
+         LoadImages:function (productImgId){
+            this.$LoadImages.show({
+                prodImgId: productImgId,
+                closeWait: 3000,
+            })
+        }
+    },
+    components: { LoadImages, GetImage },
+    
+}     
+
 </script>
 
 <style scoped>
@@ -67,5 +66,9 @@
 .productCardInCategory{
     width:50vw;
    height:10em;
+}
+
+.flex{
+    display:flex;
 }
 </style>
