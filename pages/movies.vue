@@ -1,15 +1,21 @@
 <template>
-    <div>
-movies
+    <div>       
+        <GetProduct categoryId="7" pictureFolderName="movies_pic"></GetProduct>
     </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import GetProduct from "../src/components/GetProduct.vue";
+import GetImage from "../src/components/GetImage.vue"
+    export default {     
+    props:['categoryId', 'pictureFolderName'],
+
+    components: { GetProduct, GetImage }
+}
+
+
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
-</style>   
+</style>

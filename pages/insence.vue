@@ -1,15 +1,21 @@
 <template>
-    <div>
-        insence
+    <div>       
+        <GetProduct categoryId="1" pictureFolderName="insence"></GetProduct>
     </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import GetProduct from "../src/components/GetProduct.vue";
+import GetImage from "../src/components/GetImage.vue"
+    export default {     
+    props:['categoryId', 'pictureFolderName'],
+
+    components: { GetProduct, GetImage }
+}
+
+
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

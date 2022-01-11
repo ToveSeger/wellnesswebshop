@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import Navigation from "../src/components/Navigation.vue"
 import Cart from "../src/components/Cart.vue"
-import Footer from "../src/components/Footer.vue"
 import SpecialOffer from "../src/components/SpecialOffer.vue"
+import Navigation from "../src/components/Navigation.vue"
+import Footer from "../src/components/Footer.vue"
   export default {
     components: { Navigation, Cart, Footer, SpecialOffer }
 }
