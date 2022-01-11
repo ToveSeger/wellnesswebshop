@@ -1,10 +1,14 @@
 <template>
     <div>
         <Navigation/>
-         <p v-if="$fetchState.pending">Loading....</p>
+        productpage
+        <!-- {{productId}} -->
+        {{"params" + this.$route.params.productId}}
+      <!--   {{product}} -->
+         <!-- <p v-if="$fetchState.pending">Loading....</p>
          <p v-else-if="$fetchState.error">Error while fetching products</p>   
             <ul v-else>
-            <div v-for="product in allProducts" :key="product.id" class="flex"> 
+            <div class="flex"> 
                 <GetImage
                 :image="product.img_id"
                 :pictureFolderName= pictureFolderName
@@ -13,9 +17,8 @@
                     <h4>{{product.name}}</h4>
                     stock: {{product.stock}}             
                 </div>    
-                <NuxtLink :to="product.slug">Read more</NuxtLink>
                 </div>
-            </ul>
+            </ul> -->
         <Footer/>
     </div>
 </template>
@@ -28,15 +31,15 @@ import ProductButton from "./ProductButton.vue";
 
     export default {
  
-        props: ['categoryId', 'pictureFolderName'],
+        props: ['productId'],
   
     data() {
         return {
-            allProducts: [],         
+            product: []        
         };
     },
     async fetch() {
-        this.allProducts = await fetch(`http://localhost:3000/api/productbycategory/${this.categoryId}`).then(res => res.json());
+        this.product = await fetch(`http://localhost:3000/api/product/${this.productId}`).then(res => res.json());
     },
     components: { Navigation, Footer, GetImage, ProductButton }
 }

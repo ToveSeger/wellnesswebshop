@@ -1,7 +1,7 @@
 <template>
     <div class="nav-bg">
             <div class="flex">
-                <NuxtLink to=""><img class="logo" src="../../src/assets/img/logotype_small.png" alt="wellnesswebshop logo"> </NuxtLink>    
+                <NuxtLink to="/"><img class="logo" src="../../src/assets/img/logotype_small.png" alt="wellnesswebshop logo"> </NuxtLink>    
                 <div class="links">
                 <NuxtLink to="/outlet" class="nav-link">Outlet</NuxtLink> 
                 <div class="divider"> | </div>
