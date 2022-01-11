@@ -1,16 +1,19 @@
 <template>
 <div class="image">
-<img :src="require(`../assets/img/${category}/${prodImg.name || prodImg.alt_text}`)" >
+    <img  :src="require(`../assets/img/${pictureFolderName}/${prodImg.name || prodImg.alt_text}`)" alt=""> 
 </div>
 </template>
 
 <script>
+import GetProduct from "./GetProduct.vue";
+import books from "../../pages/books.vue";
+
     export default {  
-        props:['image', 'category'],     
+        props:['image', 'pictureFolderName'],     
+        
         data(){
             return{
                 prodImg:[],
-                categories:[],
             }
         },
 
@@ -20,7 +23,7 @@
             return this.prodImg.name;
         },
 
-      
+      components:{GetProduct, books}
         
     
     }

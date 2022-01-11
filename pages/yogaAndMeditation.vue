@@ -1,18 +1,20 @@
 <template>
     <div>       
-        <GetProduct
-        :product=2
-         category="yoga_meditation"
-        />
+        <GetProduct categoryId="2" pictureFolderName="yoga_meditation"></GetProduct>
     </div>
 </template>
 
 <script>
 import GetProduct from "../src/components/GetProduct.vue";
 import GetImage from "../src/components/GetImage.vue"
-    export default {
+
+    export default {     
+    props:['categoryId', 'pictureFolderName'],
+
     components: { GetProduct, GetImage }
 }
+
+
 </script>
 
 <style scoped>
