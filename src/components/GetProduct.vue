@@ -32,14 +32,14 @@ import _details from "../../pages/productdetails/_details.vue";
  
         props: ['categoryId', 'pictureFolderName', 'productId'],
   
-         data() {
-            return {
-                allProducts: [],     
-            };
-    }, 
+         data:()=> ({
+             allProducts:[]
+    }), 
+
     async fetch() {
-        this.allProducts = await fetch(`http://localhost:3000/api/productbycategory/${this.categoryId}`).then(res => res.json());    
+        this.allProducts = await this.$axios.$get(`http://localhost:3000/api/productbycategory/${this.categoryId}`)     
     },
+
     components: { Navigation, Footer, GetImage }
 }
 </script>  

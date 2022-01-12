@@ -2,8 +2,8 @@
     <div class="footer-bg">
         <div class="flex">
             <NuxtLink to="/contact" class="nav-link">Contact</NuxtLink>
-            <NuxtLink to="" class="nav-link">Wellnesswebshop &copy;</NuxtLink>
-            <NuxtLink to="termsandconditions" class="nav-link">Terms & Conditions</NuxtLink>
+            <NuxtLink to="/" class="nav-link">Wellnesswebshop &copy;</NuxtLink>
+            <NuxtLink to="/termsandconditions" class="nav-link">Terms & Conditions</NuxtLink>
         </div>
     </div>
 </template>

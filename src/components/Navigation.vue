@@ -25,7 +25,9 @@
 <script>
 import Cart from './Cart.vue'
 
-  export default {
+  export default {     
+    
+    
   components: { Cart },
 
 }
