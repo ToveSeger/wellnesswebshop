@@ -13,8 +13,10 @@
                     <h4>{{product.name}}</h4>
                     stock: {{product.stock}}             
                 </div>    
-                <NuxtLink :to="product.slug">Read more</NuxtLink>
-                </div>
+                <NuxtLink :productId="product.id" :to="`productdetails/${product.id}`" >
+                    <li>{{ product.name }}</li>
+                </NuxtLink>                 
+            </div>
             </ul>
         <Footer/>
     </div>
@@ -24,21 +26,21 @@
 import Navigation from "./Navigation.vue";
 import Footer from "./Footer.vue";
 import GetImage from './GetImage.vue';
-import ProductButton from "./ProductButton.vue";
+import _details from "../../pages/productdetails/_details.vue";
 
     export default {
  
-        props: ['categoryId', 'pictureFolderName'],
+        props: ['categoryId', 'pictureFolderName', 'productId'],
   
-    data() {
-        return {
-            allProducts: [],         
-        };
-    },
+         data() {
+            return {
+                allProducts: [],     
+            };
+    }, 
     async fetch() {
-        this.allProducts = await fetch(`http://localhost:3000/api/productbycategory/${this.categoryId}`).then(res => res.json());
+        this.allProducts = await fetch(`http://localhost:3000/api/productbycategory/${this.categoryId}`).then(res => res.json());    
     },
-    components: { Navigation, Footer, GetImage, ProductButton }
+    components: { Navigation, Footer, GetImage }
 }
 </script>  
 
