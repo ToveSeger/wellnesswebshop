@@ -39,6 +39,9 @@ import Cart from './Cart.vue'
         height: 7em;
         width: 100vw;
         background-color: #EAF4F7;
+        position:fixed;
+        top:0;
+        z-index:9999;
     }
 
     .logo{

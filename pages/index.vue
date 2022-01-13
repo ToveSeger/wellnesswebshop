@@ -1,18 +1,20 @@
 <template>
-  <div class="index-bg">   
-    <Navigation/>    
+  <div class="index-bg"> 
+    <div class="flex">
     <SpecialOffer/>
-    <Footer/>
+    <Search/>     
+    </div>
   </div>
 </template>
 
 <script>
-import Cart from "../src/components/Cart.vue"
+
 import SpecialOffer from "../src/components/SpecialOffer.vue"
-import Navigation from "../src/components/Navigation.vue"
-import Footer from "../src/components/Footer.vue"
+import Search from "../src/components/Search.vue"
+
+
   export default {
-    components: { Navigation, Cart, Footer, SpecialOffer }
+    components: { SpecialOffer, Search }
 }
 </script>
 
@@ -21,7 +23,16 @@ import Footer from "../src/components/Footer.vue"
   background-image: url("../src/assets/img/buddhaBeige.jpg");
   height: 100vh;
   background-position: center;
+  position:fixed;
+  top:7;
+  left:0;
+  right:0;
   background-size: cover;
+}
+
+.flex{
+  display:flex;
+  margin-top:10em;
 }
 
 </style>

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Navigation/>
          <p v-if="$fetchState.pending">Loading....</p>
          <p v-else-if="$fetchState.error">Error while fetching products</p>   
             <ul v-else>
@@ -18,7 +17,6 @@
                 </NuxtLink>                 
             </div>
             </ul>
-        <Footer/>
     </div>
 </template>
 
@@ -45,5 +43,11 @@ import _details from "../../pages/productdetails/_details.vue";
 </script>  
 
 <style scoped>
+
+.flex{
+    display:flex;
+    margin-top:10em;
+    margin-bottom:10em;
+}
 
 </style>

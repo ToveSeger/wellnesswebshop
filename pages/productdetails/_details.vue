@@ -1,6 +1,6 @@
 <template>
     <div>        
-            <Navigation/>
+            <div v-if="this.product">
             <div class="wrapper">
                 <div class="productImg">           
                     <GetImage
@@ -19,15 +19,16 @@
                         neque, deserunt incidunt reiciendis.</p>
                </div>
             </div>
-       
-        <Footer/>    
-    </div>
+       </div>
+        <div v-else class="container padding">
+        <PageNotFound/>
+        </div> 
+    </div> 
 </template>
 
 <script>
 import GetImage from '../../src/components/GetImage.vue'
-import Navigation from '../../src/components/Navigation.vue'
-import Footer from '../../src/components/Footer.vue'
+import PageNotFound from '../../src/components/PageNotFound.vue'
 import ProductCard from '../../src/components/ProductCard.vue'
     export default {
      
@@ -36,20 +37,19 @@ import ProductCard from '../../src/components/ProductCard.vue'
         }), 
 
         async fetch() {
-            this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.details}`)     
+            this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
 
-    asyncData ({ params }) {
+      /*   asyncData ({ params }) {
         return {
             details: params.details
         }
-    },
+    }, */
 
-     components: { GetImage, Navigation, Footer, ProductCard },
+     components: { GetImage, ProductCard, PageNotFound },
 
     methods:{
-
-      GetFolderName: function(){
+             GetFolderName: function(){
             if(this.product.category_id==1) return "insence"
             if(this.product.category_id==2) return "yoga_meditation"
             if(this.product.category_id==3) return "books"
