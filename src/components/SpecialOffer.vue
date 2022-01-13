@@ -22,7 +22,6 @@
     border-radius:5%;
     height:30em;
     width: 25em; 
-    margin-top:5em;
     margin-left:10em;
 }
 

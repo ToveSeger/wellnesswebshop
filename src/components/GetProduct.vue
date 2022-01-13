@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Navigation/>
          <p v-if="$fetchState.pending">Loading....</p>
          <p v-else-if="$fetchState.error">Error while fetching products</p>   
             <ul v-else>
@@ -8,15 +7,16 @@
                 <GetImage
                 :image="product.img_id"
                 :pictureFolderName= pictureFolderName
-                /> 
-                
+                />                
                 <div class="productCardInCategory">           
                     <h4>{{product.name}}</h4>
                     stock: {{product.stock}}             
                 </div>    
-                </div>
+                <NuxtLink :productId="product.id" :to="`productdetails/${product.id}`" >
+                    <li>{{ product.name }}</li>
+                </NuxtLink>                 
+            </div>
             </ul>
-        <Footer/>
     </div>
 </template>
 
@@ -24,23 +24,30 @@
 import Navigation from "./Navigation.vue";
 import Footer from "./Footer.vue";
 import GetImage from './GetImage.vue';
+import _details from "../../pages/productdetails/_details.vue";
 
     export default {
  
-        props: ['categoryId', 'pictureFolderName'],
+        props: ['categoryId', 'pictureFolderName', 'productId'],
   
-    data() {
-        return {
-            allProducts: [],         
-        };
-    },
+         data:()=> ({
+             allProducts:[]
+    }), 
+
     async fetch() {
-        this.allProducts = await fetch(`http://localhost:3000/api/productbycategory/${this.categoryId}`).then(res => res.json());
+        this.allProducts = await this.$axios.$get(`http://localhost:3000/api/productbycategory/${this.categoryId}`)     
     },
+
     components: { Navigation, Footer, GetImage }
 }
 </script>  
 
 <style scoped>
+
+.flex{
+    display:flex;
+    margin-top:10em;
+    margin-bottom:10em;
+}
 
 </style>

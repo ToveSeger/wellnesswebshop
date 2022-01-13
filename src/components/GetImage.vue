@@ -11,16 +11,12 @@ import books from "../../pages/books.vue";
     export default {  
         props:['image', 'pictureFolderName'],     
         
-        data(){
-            return{
-                prodImg:[],
-            }
-        },
+           data:()=> ({
+             prodImg:[]
+        }), 
 
-        async fetch(){
-            this.prodImg = await fetch(`http://localhost:3000/api/image/${this.image}`).then(res => res.json());
-           // console.log(this.prodImg.name);
-            return this.prodImg.name;
+        async fetch() {
+            this.prodImg = await this.$axios.$get(`http://localhost:3000/api/image/${this.image}`)     
         },
 
       components:{GetProduct, books}
