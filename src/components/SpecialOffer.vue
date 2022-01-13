@@ -22,7 +22,6 @@
     border-radius:5%;
     height:30em;
     width: 25em; 
-    margin-left:10em;
 }
 
 h2{

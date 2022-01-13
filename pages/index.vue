@@ -2,7 +2,9 @@
   <div class="index-bg"> 
     <div class="flex">
     <SpecialOffer/>
-    <Search/>     
+    <div class="search">
+     <Search/>     
+    </div>
     </div>
   </div>
 </template>
@@ -32,7 +34,11 @@ import Search from "../src/components/Search.vue"
 
 .flex{
   display:flex;
+  margin-left:10em;
   margin-top:10em;
 }
 
+.search{
+  margin-left:10em;
+}
 </style>
