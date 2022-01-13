@@ -41,7 +41,7 @@ app.get('/allproducts', async(req, res) =>{
 })
 
 //Gets all products that are on sale 
-app.get('/product/sale', async(req, res) =>{
+app.get('/outlet', async(req, res) =>{
   const products = await prisma.product.findMany({
     where: {
       on_sale: true

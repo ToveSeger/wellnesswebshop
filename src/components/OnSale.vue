@@ -7,7 +7,7 @@
                 <GetImage
                 :image="product.img_id"
                 :pictureFolderName= pictureFolderName
-                />                 
+                />                
                 <div class="productCardInCategory">           
                     <h4>{{product.name}}</h4>
                     stock: {{product.stock}}             
@@ -25,14 +25,14 @@
 import GetImage from './GetImage.vue';
     export default {
  
-        props: ['categoryId', 'pictureFolderName'],
+        props: ['pictureFolderName'],
   
          data:()=> ({
-             allProducts:[],
+             allProducts:[]
     }), 
 
     async fetch() {
-        this.allProducts = await this.$axios.$get(`http://localhost:3000/api/productbycategory/${this.categoryId}`)     
+        this.allProducts = await this.$axios.$get(`http://localhost:3000/api/outlet`)     
     },
 
    components: { GetImage } 

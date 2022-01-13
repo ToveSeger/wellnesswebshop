@@ -2,9 +2,6 @@
   <div class="index-bg"> 
     <div class="flex">
     <SpecialOffer/>
-    <div class="search">
-     <Search/>     
-    </div>
     </div>
   </div>
 </template>

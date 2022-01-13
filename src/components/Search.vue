@@ -1,51 +1,48 @@
 <template>
     <div class="container">
-        <div class="searchBar">
+        <div class="innerContainer">
         <input v-model="query" type="text" class="form-control" placeholder="Search product">
+        <NuxtLink :to="`/results/${query}`" type="button" class="btn btn-info" >
+            Search
+        </NuxtLink> 
         </div>
-       <!--  <NuxtLink to="/results" type="button" class="btn btn-light" @click=GetProduct(query)>Search</NuxtLink>       
-        <div class="response">{{products}}</div> -->
-        <NuxtLink :to="`results/${query}`" >
-                    search
-                </NuxtLink> 
     </div>
 </template>
 
 <script>
-import {mapMutations} from "vuex"
+
     export default {
-         ...mapMutations(['GetProduct']),
+
         data:()=> ({
-     /*    products:[], */
+
         query: null,
        }),  
-
-      /*   computed:{
-            products(){
-                return this.$store.getters.GetProduct(this.query);
-            }
-        }, */
-/* 
-            methods:{
-                GetProduct: async function(){
-                    this.products = await this.$axios.$get(`http://localhost:3000/api/filterproducts/${this.query}`) 
-                }
-            }  */
-
     
     }
 </script>
 
 <style scoped>
     .container{
-        display:flex;
+        margin-top:7em;
+        background-color: #EAF4F7; 
+        width:40em;
+        height:3.5em;
+        position:fixed;
+        margin-left:33vw;
+        top:0em;
+        z-index:9999;
     }
 
-    .response{
-        height:20em;
-        width:20em;
-        background-color:white;
-        border:2em;
+    .innerContainer{
+        width:25em;
+        display:flex;
+        gap:1em;
+        margin-left:auto;
+        margin-right:auto;
+        padding:0.5em;
     }
+    
+
+
   
 </style>

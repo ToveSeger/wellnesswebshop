@@ -11,7 +11,8 @@ import GetImage from "../src/components/GetImage.vue"
        
     props:['categoryId', 'pictureFolderName'],
 
-    components: { GetProduct, GetImage }
+    components:{GetProduct, GetImage}
+    /* components: {GetProduct: ()=> import ('../src/components/GetProduct.vue'), GetImage: ()=> import ('../src/components/GetImage.vue') } */
 }
 
 
