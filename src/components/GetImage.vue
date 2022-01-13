@@ -1,12 +1,11 @@
 <template>
 <div class="image">
-    <img  :src="require(`../assets/img/${pictureFolderName}/${prodImg.name || prodImg.alt_text}`)" alt=""> 
+ <!--    <img  :src="require(`../assets/img/${pictureFolderName}/${prodImg.name || prodImg.alt_text}`)" alt=""> --> 
+ <img :src="imageFromApi.image" alt="">
 </div>
 </template>
 
 <script>
-import GetProduct from "./GetProduct.vue";
-import books from "../../pages/books.vue";
 
     export default {  
         props:['image', 'pictureFolderName'],     
@@ -15,12 +14,21 @@ import books from "../../pages/books.vue";
              prodImg:[]
         }), 
 
-        async fetch() {
-            this.prodImg = await this.$axios.$get(`http://localhost:3000/api/image/${this.image}`)     
+        computed:{
+            imageFromApi(){
+                return{
+                   image: this.prodImg.name && require((`../assets/img/${this.pictureFolderName}/${this.prodImg.name || this.prodImg.alt_text}`))
+                }
+            }
         },
 
-      components:{GetProduct, books}
-        
+        async fetch() {
+            try{
+                this.prodImg = await this.$axios.$get(`http://localhost:3000/api/image/${this.image}`)     
+            }catch(err){
+                console.log(err)
+            }
+        },   
     
     }
 
@@ -34,7 +42,7 @@ import books from "../../pages/books.vue";
 }
 
 img{
-    height:8em;
+    height:12em;
 }
 
 

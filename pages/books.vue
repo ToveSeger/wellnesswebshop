@@ -7,12 +7,10 @@
 <script>
 import GetProduct from "../src/components/GetProduct.vue";
 import GetImage from "../src/components/GetImage.vue"
-    export default {    
-       
+    export default {     
     props:['categoryId', 'pictureFolderName'],
 
-    components:{GetProduct, GetImage}
-    /* components: {GetProduct: ()=> import ('../src/components/GetProduct.vue'), GetImage: ()=> import ('../src/components/GetImage.vue') } */
+    components: { GetProduct, GetImage }
 }
 
 

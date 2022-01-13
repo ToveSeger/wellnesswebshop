@@ -1,7 +1,7 @@
 <template>
     <div>        
-            <div v-if="this.product">
-            <div class="wrapper">
+            <div v-if="this.product" class="container">
+            
                 <div class="productImg">           
                     <GetImage
                         :image="product.img_id"
@@ -18,7 +18,6 @@
                         neque, deserunt incidunt reiciendis.</p>
                </div>
             </div>
-       </div>
         <div v-else class="container padding">
         <PageNotFound/>
         </div> 
@@ -66,7 +65,7 @@ import PageNotFound from '../../src/components/PageNotFound.vue'
 <style scoped>
 
 .productImg{
-    width:25em;
+    width:25vw;
     height: 30em;
     border: 0.3em solid #84CBD5;
     border-radius: 5%;
@@ -74,17 +73,17 @@ import PageNotFound from '../../src/components/PageNotFound.vue'
     background-color: #FFFFF9;
 }
 
-.wrapper{
+.container{
+    width:90vw;
     display:flex;
     justify-content:space-around;
-    width:90vw;
     margin-left:auto;
     margin-right:auto;
-    margin:5em;
+    margin-top:15em; 
 }
 
 .productInformation{
-    width:50em;
+    width:50vw;
     height: 28em;
     border: 0.1em solid #84CBD5;
     border-radius: 5%;

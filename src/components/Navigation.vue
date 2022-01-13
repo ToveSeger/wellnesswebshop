@@ -3,7 +3,6 @@
             <div class="flex">
                 <NuxtLink to="/"><img class="logo" src="../../src/assets/img/logotype_small.png" alt="wellnesswebshop logo"> </NuxtLink>    
                 <div class="links">
-                 <a href="/music">test</a>  
                 <NuxtLink to="/outlet" class="nav-link">Outlet</NuxtLink> 
                 <div class="divider"> | </div>
                 <NuxtLink to="/insence" class="nav-link">Insence</NuxtLink> 
