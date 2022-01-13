@@ -12,7 +12,7 @@
                     <h4>{{product.name}}</h4>
                     stock: {{product.stock}}             
                 </div>    
-                <NuxtLink :productId="product.id" :to="`productdetails/${product.id}`" >
+                <NuxtLink :to="`productdetails/${product.id}`" >
                     <li>{{ product.name }}</li>
                 </NuxtLink>                 
             </div>
@@ -21,14 +21,11 @@
 </template>
 
  <script>
-import Navigation from "./Navigation.vue";
-import Footer from "./Footer.vue";
-import GetImage from './GetImage.vue';
-import _details from "../../pages/productdetails/_details.vue";
 
+import GetImage from './GetImage.vue';
     export default {
  
-        props: ['categoryId', 'pictureFolderName', 'productId'],
+        props: ['categoryId', 'pictureFolderName'],
   
          data:()=> ({
              allProducts:[]
@@ -38,7 +35,7 @@ import _details from "../../pages/productdetails/_details.vue";
         this.allProducts = await this.$axios.$get(`http://localhost:3000/api/productbycategory/${this.categoryId}`)     
     },
 
-    components: { Navigation, Footer, GetImage }
+   components: { GetImage } 
 }
 </script>  
 

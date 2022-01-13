@@ -7,7 +7,6 @@
                         :image="product.img_id"
                         :pictureFolderName= GetFolderName()
                     />     
-
                     <h1>{{"$" + product.price}}</h1>   
                     <button class="button"><h4>Buy it now!</h4></button>
                 </div>
@@ -29,7 +28,6 @@
 <script>
 import GetImage from '../../src/components/GetImage.vue'
 import PageNotFound from '../../src/components/PageNotFound.vue'
-import ProductCard from '../../src/components/ProductCard.vue'
     export default {
      
           data:()=> ({
@@ -46,7 +44,7 @@ import ProductCard from '../../src/components/ProductCard.vue'
         }
     }, */
 
-     components: { GetImage, ProductCard, PageNotFound },
+     components: { GetImage, PageNotFound },
 
     methods:{
              GetFolderName: function(){

@@ -12,13 +12,12 @@
 
 <script>
     export default {
+        props: ['product'],
+
            data:()=> ({
             product:[]
         }), 
       
-        async fetch() {
-            this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.details}`)     
-        },
     }
 </script>
 
