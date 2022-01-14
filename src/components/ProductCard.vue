@@ -9,6 +9,13 @@
             <div class="productInformation">
                         <h1>{{product.name}}</h1>
                         <p>{{"Stock:" + " " + product.stock}}</p>
+                         <div v-if="product.on_sale==true" class="sale">
+                        <h3>Sale!</h3> 
+                        <h3>{{"$" + product.price}}</h3> 
+                        </div>
+                        <div v-else>
+                        <h3>{{"$" + product.price}}</h3>   
+                        </div>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                         Blanditiis assumenda dolorem ullam? Dolore alias cum earum nesciunt. 
                         Perferendis voluptatibus doloribus necessitatibus sed a ut, 
@@ -23,12 +30,10 @@
 
 <script>
 import GetImage from "./GetImage.vue";
+
     export default {
     props: ["product"],
 
-   /*  data: () => ({
-        product: []
-    }), */
     components: { GetImage }
 }
 </script>
@@ -42,7 +47,6 @@ import GetImage from "./GetImage.vue";
 
     .productImg{
      margin-top:4em;
-        
     }
 
 
@@ -53,9 +57,13 @@ import GetImage from "./GetImage.vue";
     }
 
     .btn{
-    height:2.5em;
-    margin-top:8em;
-    text-align:center;
+        height:2.5em;
+        margin-top:8em;
+        text-align:center;
+    }
+
+    .sale{
+        color:red;
     }
 
 

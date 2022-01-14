@@ -1,27 +1,41 @@
 <template>
     <div class="card">
         <h2>This weeks special offer</h2>
-        <img src="../assets/img/7/secret_400px.jpg" alt="">
-        <h3>Only $39.99 </h3>
-        <NuxtLink to="/products/55" class="button"><h4>Buy it now!</h4></NuxtLink>
+        <GetLargeImage :product="product"/>
+        <h3 class="sale">Now: {{GetDiscount(product.price, 20)}}</h3>
+        <h3 class="ordPrice">{{(product.price)}}</h3>
+        <NuxtLink :to="`/productdetails/${product.id}`" class="button"><h4>Buy it now!</h4></NuxtLink>
     </div>
 </template>
 
 <script>
+import GetLargeImage from "./GetLargeImage.vue";
     export default {
-        
-    }
+    props: ["product"],
+   
+    methods:{
+        GetDiscount: function (ordinaryPrice, discountInPercentage){
+            let percentage = (100 - discountInPercentage)/100 
+            let price=ordinaryPrice*percentage
+            return price.toFixed(2)
+        }
+    },
+
+    components: { GetLargeImage }
+}
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Signika:wght@600&family=Source+Sans+Pro:wght@200;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
 .card{
+    display:flex;
+    justify-content:row;
     border: 0.3em solid #84CBD5;
     background-color: rgba(255, 255, 249, 0.7);
     border-radius:5%;
     height:30em;
-    width: 25em; 
+    width: 50em; 
 }
 
 h2{
@@ -40,12 +54,18 @@ img{
 }
 
 h3{
-    color: #177585;
     font-family: 'Signika', sans-serif;
     text-align:center;
     padding:0.5em;
 }
+.sale{
+    color:red;
+    
+}
 
+.ordPrice{
+     color: #177585;
+}
 .button{
     height:3.2em;
     width:13em;

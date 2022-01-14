@@ -1,7 +1,7 @@
 <template>
   <div class="index-bg"> 
     <div class="flex">
-    <SpecialOffer/>
+    <SpecialOffer :product=productOffer />
     </div>
   </div>
 </template>
@@ -10,10 +10,25 @@
 
 import SpecialOffer from "../src/components/SpecialOffer.vue"
 import Search from "../src/components/Search.vue"
+import ProductCard from "../src/components/ProductCard.vue";
 
 
   export default {
-    components: { SpecialOffer, Search }
+    components: { SpecialOffer, Search, ProductCard },
+
+     props:['product'],
+         data:()=> ({
+             productOffer:[],
+             productId: 55,
+    }), 
+
+    async fetch() {
+        try{
+            this.productOffer = await this.$axios.$get(`http://localhost:3000/api/product/${this.productId}`)     
+            }catch(err){
+            console.log(err);
+        }
+    },
 }
 </script>
 
@@ -31,8 +46,8 @@ import Search from "../src/components/Search.vue"
 
 .flex{
   display:flex;
-  margin-left:10em;
-  margin-top:10em;
+  justify-content: center;
+  margin-top:15em;
 }
 
 .search{
