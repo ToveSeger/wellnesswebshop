@@ -1,11 +1,15 @@
 <template>
     <div class="container">
-      <h1>Results for: "{{this.$route.params.query}}"</h1>
-        <ProductCard
-            v-for="product in products"
-            :key="product.id"
-            :product="product"
-        />
+        <p v-if="$fetchState.pending">Loading....</p>
+        <p v-else-if="$fetchState.error">Error while fetching products</p>   
+        <ul v-else>
+        <h1>Results for: "{{this.$route.params.query}}"</h1>
+            <ProductCard
+                v-for="product in products"
+                :key="product.id"
+                :product="product"
+            />
+        </ul>
     </div>
 </template>
 

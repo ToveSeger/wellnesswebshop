@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <h2>This weeks special offer</h2>
-        <img src="../assets/img/movies_pic/secret_400px.jpg" alt="">
+        <img src="../assets/img/7/secret_400px.jpg" alt="">
         <h3>Only $39.99 </h3>
         <NuxtLink to="/products/55" class="button"><h4>Buy it now!</h4></NuxtLink>
     </div>

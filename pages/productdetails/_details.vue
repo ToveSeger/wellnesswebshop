@@ -1,12 +1,17 @@
 <template>
-    <div>        
-            <div v-if="this.product" class="container">
-            
+    <div class="container">
+        <p v-if="$fetchState.pending">Loading....</p>
+        <p v-else-if="$fetchState.error">Error while fetching products</p>   
+        <div v-else>
+         <div>        
+            <div v-if="this.product">
+            <div class="wrapper">
                 <div class="productImg">           
-                    <GetImage
-                        :image="product.img_id"
-                        :pictureFolderName= GetFolderName()
-                    />     
+                    <div class="productImg">
+                        <GetImage
+                        :product="product"
+                        />
+                    </div>   
                     <h1>{{"$" + product.price}}</h1>   
                     <button class="button"><h4>Buy it now!</h4></button>
                 </div>
@@ -18,90 +23,33 @@
                         neque, deserunt incidunt reiciendis.</p>
                </div>
             </div>
+       </div>
         <div v-else class="container padding">
         <PageNotFound/>
         </div> 
     </div> 
+        </div>
+    </div>
 </template>
 
 <script>
-import GetImage from '../../src/components/GetImage.vue'
-import PageNotFound from '../../src/components/PageNotFound.vue'
+import GetImage from "../../src/components/GetImage.vue"
+import ProductCard from "../../src/components/ProductCard.vue"
     export default {
-     
-          data:()=> ({
+
+    data:()=> ({
             product:[]
         }), 
-
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
-
-      /*   asyncData ({ params }) {
-        return {
-            details: params.details
-        }
-    }, */
-
-     components: { GetImage, PageNotFound },
-
-    methods:{
-             GetFolderName: function(){
-            if(this.product.category_id==1) return "insence"
-            if(this.product.category_id==2) return "yoga_meditation"
-            if(this.product.category_id==3) return "books"
-            if(this.product.category_id==4) return "CD"
-            if(this.product.category_id==5) return "other_category"
-            if(this.product.category_id==6) return "aromalamps"
-            if(this.product.category_id==7) return "movies_pic"
-            else return "folderNotFound"
-        },
-    },
-
-    
+    components: { ProductCard, GetImage }
 }
 </script>
 
-<style scoped>
-
-.productImg{
-    width:25vw;
-    height: 30em;
-    border: 0.3em solid #84CBD5;
-    border-radius: 5%;
-    padding:4em;
-    background-color: #FFFFF9;
-}
+<style  scoped>
 
 .container{
-    width:90vw;
-    display:flex;
-    justify-content:space-around;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:15em; 
+    margin-top:10em;
 }
-
-.productInformation{
-    width:50vw;
-    height: 28em;
-    border: 0.1em solid #84CBD5;
-    border-radius: 5%;
-    padding:4em;
-}
-
-.button{
-    height:3.2em;
-    width:13em;
-    margin-left:auto;
-    margin-right: auto;
-    border:none;
-    background-color:#84CBD5;
-    border-radius: 1em; 
-    text-align: center;  
-}
-
-
-
 </style>
-    
