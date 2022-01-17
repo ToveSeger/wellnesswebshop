@@ -1,19 +1,24 @@
 <template>
     <div class="cartContainer">
-        <img class="cart" src="../../src/assets/img/cart.jpg" alt="Cart">
+       <h1>CART</h1>
+       {{item.id}}
+       {{item.name}}
+       {{item.price}}
     </div>
 </template>
 
 <script>
     export default {
-        name: "Cart"          
+        props:['item'],
+
+        data:()=> ({
+             cart:[]
+        }), 
 }
 
 </script>
 
 <style scoped>
-    .cart{
-        height:2em;    
-    }
+   
 
 </style>

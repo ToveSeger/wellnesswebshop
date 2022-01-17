@@ -24,7 +24,7 @@
 <style scoped>
     .container{
         margin-top:7em;
-        background-color: #EAF4F7; 
+        /* background-color: #EAF4F7;  */
         width:40em;
         height:3.5em;
         position:fixed;

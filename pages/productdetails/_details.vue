@@ -1,108 +1,103 @@
 <template>
-    <div>        
-            <div v-if="this.product">
-            <div class="wrapper">
-                <div class="productImg">           
-                    <GetImage
-                        :image="product.img_id"
-                        :pictureFolderName= GetFolderName()
-                    />     
-                    <h1>{{"$" + product.price}}</h1>   
-                    <button class="button"><h4>Buy it now!</h4></button>
-                </div>
+    <div>
+        <p v-if="$fetchState.pending">Loading....</p>
+        <p v-else-if="$fetchState.error">Error while fetching products</p>   
+        <div v-else>
+         <div>        
+            <div v-if="this.product" class="flex">
+            <div class="card">           
+                    <div class="productImg">
+                        <GetLargeImage
+                        :product="product"
+                        />
+                    </div>   
                <div class="productInformation">
                     <h1>{{product.name}}</h1>
+                    <div v-if="product.on_sale==true" class="sale">
+                        <h3>Sale!</h3> 
+                        <h3>{{"$" + product.price}}</h3> 
+                    </div>
+                    <div v-else>
+                    <h3>{{"$" + product.price}}</h3>   
+                    </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Excepturi repellendus porro aperiam placeat optio illum explicabo?
                         Assumenda unde voluptatem alias fuga tenetur qui sunt nesciunt enim, 
-                        neque, deserunt incidunt reiciendis.</p>
-               </div>
+                        neque, deserunt incidunt reiciendis.
+                    </p> 
+                     <div class="stock">{{"Stock:" + " " + product.stock}}</div>          
+                    <button class="btn btn-info" @click="()=>{
+                        ADD_PRODUCT_TO_CART(product)
+                        }">
+                        <h5>Add to cart</h5></button>
+                </div>
             </div>
        </div>
-        <div v-else class="container padding">
+        <div v-else>
         <PageNotFound/>
         </div> 
     </div> 
+        </div>
+    </div>
 </template>
 
 <script>
-import GetImage from '../../src/components/GetImage.vue'
-import PageNotFound from '../../src/components/PageNotFound.vue'
-    export default {
-     
-          data:()=> ({
-            product:[]
+import GetLargeImage from "../../src/components/GetLargeImage.vue"
+import ProductCard from "../../src/components/ProductCard.vue"
+import {mapMutations} from "vuex"
+    export default {    
+    data:()=> ({
+            product:[],
+            /* productId: 1  */
+            
         }), 
-
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
 
-      /*   asyncData ({ params }) {
-        return {
-            details: params.details
-        }
-    }, */
 
-     components: { GetImage, PageNotFound },
-
-    methods:{
-             GetFolderName: function(){
-            if(this.product.category_id==1) return "insence"
-            if(this.product.category_id==2) return "yoga_meditation"
-            if(this.product.category_id==3) return "books"
-            if(this.product.category_id==4) return "CD"
-            if(this.product.category_id==5) return "other_category"
-            if(this.product.category_id==6) return "aromalamps"
-            if(this.product.category_id==7) return "movies_pic"
-            else return "folderNotFound"
+         methods:{             
+        ...mapMutations(['ADD_PRODUCT_TO_CART']),  
         },
-    },
-
-    
+ 
+    components: { ProductCard, GetLargeImage },
+   
 }
 </script>
 
-<style scoped>
+<style  scoped>
+    .flex{
+        margin:auto;
+        width:80vw;
+        height:60vh;
+        margin-top:13em;
+    }
 
-.productImg{
-    width:25em;
-    height: 30em;
-    border: 0.3em solid #84CBD5;
-    border-radius: 5%;
-    padding:4em;
-    background-color: #FFFFF9;
-}
+    .card{
+        width:80em;
+        height:30em;
+        margin:2em;
+        margin:auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
-.wrapper{
-    display:flex;
-    justify-content:space-around;
-    width:90vw;
-    margin-left:auto;
-    margin-right:auto;
-    margin:5em;
-}
+    .productImg{
+        margin-top:2em;
+        margin-left:4em;
+    }
 
-.productInformation{
-    width:50em;
-    height: 28em;
-    border: 0.1em solid #84CBD5;
-    border-radius: 5%;
-    padding:4em;
-}
+    .productInformation{
+        padding:5em;
+        width:50%;
+    }
 
-.button{
-    height:3.2em;
-    width:13em;
-    margin-left:auto;
-    margin-right: auto;
-    border:none;
-    background-color:#84CBD5;
-    border-radius: 1em; 
-    text-align: center;  
-}
+    .sale{
+        color:red;
+    }
 
-
-
+    .stock{
+        margin-bottom:1em;
+    }
 </style>
-    

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
     export default {  
         props:['product'],
         
@@ -16,7 +15,7 @@
         computed:{
             imageFromApi(){
                 return{
-                   image: this.prodImg.name && require((`../assets/img/${this.product.category_id}/${this.prodImg.name || this.prodImg.alt_text}`))
+                   image: this.prodImg.name && require((`../assets/img/${this.product.category_id}/${this.prodImg.name_big || this.prodImg.alt_text}`))
                 }
             }
         },
@@ -36,12 +35,16 @@
 
 <style scoped>
  .image{
-    height: 10em;
-    width: 15em;
+    height: 24em;
+    width:20em;
+    display: flex;
+    justify-content: center;
+    padding:2em;
 }
 
 img{
-    height:12em;
+    height:20em;
+    border:0.1em solid rgb(233, 231, 231);
 }
 
 
