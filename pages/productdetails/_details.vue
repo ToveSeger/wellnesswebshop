@@ -5,14 +5,12 @@
         <div v-else>
          <div>        
             <div v-if="this.product" class="flex">
-            <div class="card">
-                <div class="productImg">           
+            <div class="card">           
                     <div class="productImg">
                         <GetLargeImage
                         :product="product"
                         />
                     </div>   
-                </div>
                <div class="productInformation">
                     <h1>{{product.name}}</h1>
                     <div v-if="product.on_sale==true" class="sale">
@@ -28,7 +26,10 @@
                         neque, deserunt incidunt reiciendis.
                     </p> 
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div>          
-                    <button class="btn btn-info"><h5>Add to cart</h5></button>
+                    <button class="btn btn-info" @click="()=>{
+                        ADD_PRODUCT_TO_CART(product)
+                        }">
+                        <h5>Add to cart</h5></button>
                 </div>
             </div>
        </div>
@@ -43,15 +44,24 @@
 <script>
 import GetLargeImage from "../../src/components/GetLargeImage.vue"
 import ProductCard from "../../src/components/ProductCard.vue"
-    export default {
-
+import {mapMutations} from "vuex"
+    export default {    
     data:()=> ({
-            product:[]
+            product:[],
+            /* productId: 1  */
+            
         }), 
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
-    components: { ProductCard, GetLargeImage }
+
+
+         methods:{             
+        ...mapMutations(['ADD_PRODUCT_TO_CART']),  
+        },
+ 
+    components: { ProductCard, GetLargeImage },
+   
 }
 </script>
 

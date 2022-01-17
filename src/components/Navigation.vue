@@ -17,7 +17,7 @@
                 <div class="divider"> | </div>
                 <NuxtLink to="/aromalamps" class="nav-link">Aroma Lamps</NuxtLink>                  
                  <div class="divider"> | </div>
-                <div class="cart"><Cart/></div>
+                <NuxtLink to="/cart"> <img class="cart" src="../assets/img/cart.jpg"/></NuxtLink>
                 </div>              
             </div>                        
     </div>
@@ -51,12 +51,12 @@ import Search from './Search.vue'
         margin-left:0.5em;     
     }
 
-    .cart{ 
-        margin-right:1em;
-    }
-
     .flex{
         display:flex;
+    }
+
+     .cart{
+        height:2em;    
     }
 
     .links{

@@ -1,7 +1,7 @@
 <template>
   <div class="index-bg"> 
     <div class="flex">
-    <SpecialOffer :product=productOffer />
+        <SpecialOffer :product="productOffer"/>
     </div>
   </div>
 </template>
@@ -11,10 +11,11 @@
 import SpecialOffer from "../src/components/SpecialOffer.vue"
 import Search from "../src/components/Search.vue"
 import ProductCard from "../src/components/ProductCard.vue";
+import GetLargeImage from "../src/components/GetLargeImage.vue";
 
 
   export default {
-    components: { SpecialOffer, Search, ProductCard },
+    components: { SpecialOffer, Search, ProductCard, GetLargeImage },
 
      props:['product'],
          data:()=> ({
@@ -49,6 +50,7 @@ import ProductCard from "../src/components/ProductCard.vue";
   justify-content: center;
   margin-top:15em;
 }
+
 
 .search{
   margin-left:10em;

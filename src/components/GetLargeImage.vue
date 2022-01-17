@@ -1,8 +1,6 @@
 <template>
 <div class="image">
-
  <img :src="imageFromApi.image" alt="">
-
 </div>
 </template>
 
@@ -17,7 +15,6 @@
         computed:{
             imageFromApi(){
                 return{
-                   /* image: this.prodImg.name && require((`../assets/img/${this.pictureFolderName}/${this.prodImg.name || this.prodImg.alt_text}`)) */
                    image: this.prodImg.name && require((`../assets/img/${this.product.category_id}/${this.prodImg.name_big || this.prodImg.alt_text}`))
                 }
             }

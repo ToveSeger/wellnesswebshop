@@ -1,10 +1,18 @@
 <template>
     <div class="card">
         <h2>This weeks special offer</h2>
-        <GetLargeImage :product="product"/>
-        <h3 class="sale">Now: {{GetDiscount(product.price, 20)}}</h3>
-        <h3 class="ordPrice">{{(product.price)}}</h3>
-        <NuxtLink :to="`/productdetails/${product.id}`" class="button"><h4>Buy it now!</h4></NuxtLink>
+        <div class="cardContent">
+                    <div class="productImg">
+                        <GetLargeImage
+                        :product="product"
+                        />
+                    </div>   
+                <div class="price">
+                    <h3 class="sale">Now: {{GetDiscount(product.price, 20)}}</h3>
+                    <h3 class="ordPrice">Ord: {{(product.price)}}</h3>
+                </div>
+                <NuxtLink :to="`/productdetails/${product.id}`" class="button"><h4>Buy it now!</h4></NuxtLink>
+        </div>
     </div>
 </template>
 
@@ -28,15 +36,18 @@ import GetLargeImage from "./GetLargeImage.vue";
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Signika:wght@600&family=Source+Sans+Pro:wght@200;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
-.card{
-    display:flex;
-    justify-content:row;
+.card{   
     border: 0.3em solid #84CBD5;
     background-color: rgba(255, 255, 249, 0.7);
     border-radius:5%;
     height:30em;
     width: 50em; 
 }
+
+.cardContent{
+    display:flex;
+}
+
 
 h2{
     font-family: 'Signika', sans-serif;
@@ -46,11 +57,9 @@ h2{
     text-decoration:underline;
 }
 
-img{
-    height:17em;
-    width:12em;
-    margin-left:auto;
-    margin-right: auto;
+.productImg{
+    width:18em;
+    height:20em;
 }
 
 h3{
@@ -58,19 +67,22 @@ h3{
     text-align:center;
     padding:0.5em;
 }
+
+.price{
+    margin:auto;
+}
 .sale{
     color:red;
-    
 }
 
 .ordPrice{
      color: #177585;
+     text-decoration: line-through;
 }
 .button{
     height:3.2em;
     width:13em;
-    margin-left:auto;
-    margin-right: auto;
+    margin-top:21em;
     border:0.15em solid black;
     background-color:#84CBD5;
     border-radius: 1em; 
