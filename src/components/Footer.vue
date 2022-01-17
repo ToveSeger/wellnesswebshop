@@ -1,0 +1,42 @@
+<template>
+    <div class="footer-bg">
+        <div class="flex">
+            <NuxtLink to="/contact" class="nav-link">Contact</NuxtLink>
+            <NuxtLink to="/" class="nav-link">Wellnesswebshop &copy;</NuxtLink>
+            <NuxtLink to="/termsandconditions" class="nav-link">Terms & Conditions</NuxtLink>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        
+    }
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap');
+
+ .footer-bg{
+        height: 7em;
+        width: 100vw;
+        background-color: #EAF4F7;
+        position:fixed;
+        bottom:0;
+    }
+
+.flex{
+    width:30em;
+    display: flex;
+    font-weight: 900;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:2em;
+    }
+
+    .nav-link{
+        color:#177585;      
+    }
+
+</style>
