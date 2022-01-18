@@ -27,7 +27,7 @@
                     </p> 
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div>          
                     <button class="btn btn-info" @click="()=>{
-                        ADD_PRODUCT_TO_CART(product)                                        
+                        ADD_PRODUCT_TO_CART(product)                                                        
                         }">
                         <h5>Add to cart</h5></button>
                 </div>

@@ -10,8 +10,10 @@
         :key="item.id"
         :item="item"/>
         </div>
-          <button type="button" class="btn btn-info" @click="EMPTY_CART()">Empty cart</button>
+          <button type="button" class="btn btn-dark" @click="EMPTY_CART()">Empty cart</button>
+          <NuxtLink to="/checkout" type="button" class="btn btn-info">Checkout</NuxtLink>
     </div>
+
 </template>
 
 <script>
@@ -28,7 +30,7 @@ import Cart from '../src/components/Cart.vue';
     },
 
      methods:{             
-        ...mapMutations(['REMOVE_PRODUCT_FROM_CART', 'EMPTY_CART']),   
+        ...mapMutations(['EMPTY_CART']),   
         },
 
     components: { Cart }
@@ -65,11 +67,20 @@ h1{
     margin-left:50em;
 }
 
-.btn-info{
+.btn-dark{
     position:absolute;
     right:0em;
     bottom:0em;
 }
+.btn-info{
+    height:2.5em;
+    width:10em;
+    position:absolute;
+    top:30em;
+    right:30em;
+    bottom:0em;
+}
+
 .nav-link :hover{
    color:#84CBD5; 
 }

@@ -8,7 +8,7 @@
                         <p>Article id: {{item.id}}</p>
                         <p>Article name: {{ item.name}}</p>
                         <p>Price: ${{item.price}}</p>
-                        <p>Amount: 1</p>
+                        <p>Amount: {{this.$store.state.count}}</p>
                     </div>
                 <button @click="REMOVE_PRODUCT_FROM_CART(item)" type="button" class="btn btn-danger">Remove item</button>        
             </div>

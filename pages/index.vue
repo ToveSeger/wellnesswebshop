@@ -1,7 +1,7 @@
 <template>
   <div class="index-bg"> 
     <div class="flex">
-        <SpecialOffer :product="productOffer"/>
+        <!-- <SpecialOffer :product="productOffer"/> -->
     </div>
   </div>
 </template>
