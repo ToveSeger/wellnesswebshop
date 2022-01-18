@@ -8,9 +8,9 @@
                         <p>Article id: {{item.id}}</p>
                         <p>Article name: {{ item.name}}</p>
                         <p>Price: ${{item.price}}</p>
-                        <p>Amount: {{counter += 1}}</p>
+                        <p>Amount: 1</p>
                     </div>
-                <button @click="REMOVE_PRODUCT_FROM_CART(item)" class="button btn-danger">Remove item</button>        
+                <button @click="REMOVE_PRODUCT_FROM_CART(item)" type="button" class="btn btn-danger">Remove item</button>        
             </div>
     </div>
 </template>
@@ -25,11 +25,11 @@ import GetImage from "./GetImage.vue";
              currentArticles:[]
     }), 
 
-    computed:{
+    /* computed:{
         counter(){
             return 0;
         },
-    },
+    }, */
 
       methods:{             
         ...mapMutations(['REMOVE_PRODUCT_FROM_CART']),   
@@ -41,7 +41,6 @@ import GetImage from "./GetImage.vue";
 </script>
 
 <style scoped>
-
     .cartContainer{
         margin-top:2em; 
     }
@@ -57,14 +56,16 @@ import GetImage from "./GetImage.vue";
        gap:2em;
    }
 
-   button{
+   .btn-danger{
        position: absolute;
        bottom: 1em;
        right: 1em;
-       height:2em;
+       height:2.3em;
        border-radius:5%;
        margin-top:10em;
        margin-left:5em;
+       text-align:center;
    }
+
 
 </style>

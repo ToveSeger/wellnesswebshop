@@ -1,3 +1,5 @@
+
+
 export const state=()=>({
      itemsInCart: [{
         
@@ -13,8 +15,21 @@ export const mutations={
     },
 
     REMOVE_PRODUCT_FROM_CART(state, product){
-        state.itemsInCart.pop(product)
-        console.log(product)
-    }
+        var id = product.id
+        var data =  state.itemsInCart
+
+        for(var i = 0; i < data.length; i++) {
+            if(data[i].id == id) {
+                data.splice(i, 1);
+                break;
+            }
+        }
+    },
+ 
+    EMPTY_CART(state){
+      while (state.itemsInCart.length) {
+        state.itemsInCart.pop();
+      }
+    } 
 }
 

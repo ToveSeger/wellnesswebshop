@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="container">
+    <div class="container">
+        <div class="innerContainer">
             <h1>My Shopping Cart</h1>
             <div class="topSection">
             <NuxtLink to="/" class="nav-link"><h4>Back to store</h4></NuxtLink> 
@@ -10,12 +10,14 @@
         :key="item.id"
         :item="item"/>
         </div>
+          <button type="button" class="btn btn-info" @click="EMPTY_CART()">Empty cart</button>
     </div>
 </template>
 
 <script>
 
 import { mapState } from 'vuex';
+import {mapMutations} from "vuex"
 import Cart from '../src/components/Cart.vue';
     export default {
          layout: "no_navigation",
@@ -24,6 +26,11 @@ import Cart from '../src/components/Cart.vue';
             "itemsInCart"
         ])
     },
+
+     methods:{             
+        ...mapMutations(['REMOVE_PRODUCT_FROM_CART', 'EMPTY_CART']),   
+        },
+
     components: { Cart }
 }
 </script>
@@ -31,8 +38,11 @@ import Cart from '../src/components/Cart.vue';
 <style scoped>
 
 .container{
+    position:relative;
+}
+.innerContainer{
     margin-top:10em;
-    width:80em;
+    width:70em;
     margin-bottom:10em;
 }
 
@@ -55,6 +65,11 @@ h1{
     margin-left:50em;
 }
 
+.btn-info{
+    position:absolute;
+    right:0em;
+    bottom:0em;
+}
 .nav-link :hover{
    color:#84CBD5; 
 }
