@@ -53,7 +53,7 @@ import GetImage from "./GetImage.vue";
        width:50em;
        display:flex;
        flex-direction: row;
-       gap:2em;
+       gap:6.5em;
    }
 
    .btn-danger{
@@ -66,6 +66,7 @@ import GetImage from "./GetImage.vue";
        margin-left:5em;
        text-align:center;
    }
+
 
 
 </style>

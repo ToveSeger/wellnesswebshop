@@ -26,8 +26,8 @@
                         neque, deserunt incidunt reiciendis.
                     </p> 
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div>          
-                    <button class="btn btn-info" @click="()=>{
-                        ADD_PRODUCT_TO_CART(product)                                                        
+                    <button class="btn btn-info" @click="()=>{                       
+                        ADD_PRODUCT_TO_CART(product)                                                                   
                         }">
                         <h5>Add to cart</h5></button>
                 </div>
@@ -47,7 +47,7 @@ import ProductCard from "../../src/components/ProductCard.vue"
 import {mapMutations} from "vuex"
     export default {    
     data:()=> ({
-            product:[]
+            product:[],       
         }), 
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     

@@ -4,17 +4,29 @@ export const state=()=>({
 
      }],
 
-     count: 2
+     addedProductIds: [],
+
 
 })
 
 export const mutations={
     ADD_PRODUCT_TO_CART(state, product){
-            state.itemsInCart.push(product)
-            console.log(product)     
-           
+        var data = state.addedProductIds
+        if(data.length > 0){
 
-            
+            console.log("product id" + product.id)
+            var contains=data.includes(product.id)
+            if(!contains){
+                state.itemsInCart.push(product)
+                state.addedProductIds.push(product.id)
+                console.log(product) 
+            }
+        }
+        else{
+            console.log("first one in cart")
+            state.itemsInCart.push(product)
+            state.addedProductIds.push(product.id)
+        }
     },
 
     REMOVE_PRODUCT_FROM_CART(state, product){
