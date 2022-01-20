@@ -34,6 +34,7 @@
                     <div v-else> 
                         <button class="btn btn-info" @click="()=>{                       
                             ADD_PRODUCT_TO_CART(product)  
+                            inCart=true
                             }">
                         <h5>Add to cart</h5></button>
                   </div>  
@@ -74,34 +75,35 @@ import {mapMutations, mapActions} from "vuex"
             }
         },
 
-            evaluator(){
-                return{
-                    /* inCart: inCartEvaluator(this.$route.params.details) */
-                   /*  inCart: this.$store.getters.getInCart      */   
-                    
-                }
-            }           
+                      
     },    
         mounted(){
             this.addedProducts = this.$store.getters.getAddedProductIds,   
             
             this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
-            
+
             function inCartEvaluator(productId, data){   
             var keepGoing=true
+            var found = 0
+
            
             if(data.length > 0){
-                for(var i=0;i<data.length && keepGoing ;i++){
-                    if(data[i].id==productId){
-                        keepGoing=false
-                     // this.inCart=true
-                     console.log("I WAS RUN ")
-                     return true
-                    }
-                    else return false       
+              
+                for(var i=0;i<data.length && keepGoing ;i++){ 
+                        if(data[i].id==productId){
+                         console.log("I WAS FOUND ")
+                         found=1
+                        }
+                        else {
+                            console.log("I WAS NOT FOUND")    
+                        } 
                 }
+                    if (found>0)return true
+                    else return false
             }
-        }
+        } 
+           
+            
                    
                    
         },
