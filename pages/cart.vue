@@ -20,8 +20,8 @@
 import { mapState } from 'vuex';
 import {mapMutations} from "vuex"
 import Cart from '../src/components/Cart.vue';
-    export default {
-         layout: "no_navigation",
+    export default {    
+         layout: "no_navigation",     
     computed: {
         ...mapState([
             "itemsInCart"
@@ -31,6 +31,8 @@ import Cart from '../src/components/Cart.vue';
      methods:{             
         ...mapMutations(['EMPTY_CART']),   
         },
+
+      
 
     components: { Cart }
 }

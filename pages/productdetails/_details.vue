@@ -25,11 +25,18 @@
                         Assumenda unde voluptatem alias fuga tenetur qui sunt nesciunt enim, 
                         neque, deserunt incidunt reiciendis.
                     </p> 
-                     <div class="stock">{{"Stock:" + " " + product.stock}}</div>          
-                    <button class="btn btn-info" @click="()=>{                       
-                        ADD_PRODUCT_TO_CART(product)                                                                   
-                        }">
+                     <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
+                     <div v-if="inCart">
+                         <button @click="()=>{if(counter>0)counter -= 1}">-</button> 
+                         <input type="number" v-model="counter"> 
+                         <button  @click="()=>{counter += 1}">+</button>
+                    </div> 
+                    <div v-else> 
+                        <button class="btn btn-info" @click="()=>{                       
+                            ADD_PRODUCT_TO_CART(product)  
+                            }">
                         <h5>Add to cart</h5></button>
+                  </div>  
                 </div>
             </div>
        </div>
@@ -44,23 +51,74 @@
 <script>
 import GetLargeImage from "../../src/components/GetLargeImage.vue"
 import ProductCard from "../../src/components/ProductCard.vue"
-import {mapMutations} from "vuex"
+import {mapMutations, mapActions} from "vuex"
     export default {    
     data:()=> ({
-            product:[],       
+            product:[],    
+            counter: 1, 
+            addedProducts: [],
+            inCart: false
         }), 
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
 
-
-         methods:{             
-        ...mapMutations(['ADD_PRODUCT_TO_CART']),   
+        computed:{
+            productAmount(){
+                return{
+                    amount: {
+                    id: this.product.id,
+                    value: this.counter,
+                    addedProducts: []
+                }           
+            }
         },
+
+            evaluator(){
+                return{
+                    /* inCart: inCartEvaluator(this.$route.params.details) */
+                   /*  inCart: this.$store.getters.getInCart      */   
+                    
+                }
+            }           
+    },    
+        mounted(){
+            this.addedProducts = this.$store.getters.getAddedProductIds,   
+            
+            this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
+            
+            function inCartEvaluator(productId, data){   
+            var keepGoing=true
+           
+            if(data.length > 0){
+                for(var i=0;i<data.length && keepGoing ;i++){
+                    if(data[i].id==productId){
+                        keepGoing=false
+                     // this.inCart=true
+                     console.log("I WAS RUN ")
+                     return true
+                    }
+                    else return false       
+                }
+            }
+        }
+                   
+                   
+        },
+
+    methods:{             
+        ...mapMutations(['ADD_PRODUCT_TO_CART', 'ADD_PRODUCT_AMOUNT']),   
+
+        ...mapActions(['CHECK_IF_ADDED']),
+
+         
+
+    },
  
     components: { ProductCard, GetLargeImage },
    
 }
+
 </script>
 
 <style  scoped>
