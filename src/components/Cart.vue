@@ -8,7 +8,7 @@
                         <p>Article id: {{item.id}}</p>
                         <p>Article name: {{ item.name}}</p>
                         <p>Price: ${{item.price}}</p>
-                        <p>Amount: {{this.$store.state.count}}</p>
+                        <p>Amount: {{getProductById(item.id).amount}}</p>
                     </div>
                 <button @click="REMOVE_PRODUCT_FROM_CART(item)" type="button" class="btn btn-danger">Remove item</button>        
             </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {mapMutations} from "vuex"
+import {mapMutations, mapGetters} from "vuex"
 import GetImage from "./GetImage.vue";
     export default {
     props: ["item"],
@@ -25,11 +25,9 @@ import GetImage from "./GetImage.vue";
              currentArticles:[]
     }), 
 
-    /* computed:{
-        counter(){
-            return 0;
-        },
-    }, */
+     computed:{
+        ...mapGetters(['getProductById']),
+    }, 
 
       methods:{             
         ...mapMutations(['REMOVE_PRODUCT_FROM_CART']),   

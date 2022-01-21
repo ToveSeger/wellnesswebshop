@@ -19,7 +19,7 @@
                     </div>
                     <div v-else>
                     <h3>{{"$" + product.price}}</h3>   
-                    <p>Article id: {{activeProduct}}</p>
+                    <p>Article id: {{product.id}}</p>  
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Excepturi repellendus porro aperiam placeat optio illum explicabo?
@@ -28,6 +28,7 @@
                     </p> 
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
                      <div v-if="inCart">
+                         {{"In cart already: " + getProductAmountById(product.id)}}
                          <button @click="()=>{
                              if(counter>0)
                                setAmount(counter - 1)
@@ -64,7 +65,7 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
     export default {    
     data:()=> ({
             product:[],    
-            counter: 1, 
+            counter: 1,
             addedProducts: [],
             inCart: false,
             activeProduct: 0
@@ -73,11 +74,21 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
 
-    computed:{
-        
-        ...mapGetters(['getProductById']),
+        computed:{
 
+            /* getCounterValue(){
+                return{
+                    counter:this.getProductAmountById(this.$route.params.details)
+                }
+            },  */
+          
+             ...mapGetters(['getProductById','getProductAmountById']),
+        },
+
+  /*   beforeMount(){
+        this.count = this.getProductAmountById(this.$route.params.details)   
     },
+     */
                                  
     mounted(){
         this.addedProducts = this.$store.getters.getAddedProductIds      
@@ -105,7 +116,8 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
         }
     },
 
-    methods:{             
+    methods:{            
+
         ...mapMutations(['ADD_PRODUCT_TO_CART']) ,  
         ...mapActions(['setAmount', 'setActiveProduct' ])
     },

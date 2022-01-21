@@ -151,8 +151,11 @@ export const getters={
 
     getActiveProductId: state =>{
         return state.activeProductId
-    }
+    },
 
+    getProductAmountById:state=>id=>{
+        return state.addedProductIds.find((addedProductIds=>addedProductIds.id===id)).amount
+    }
 
     
 

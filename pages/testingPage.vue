@@ -2,7 +2,7 @@
     <div class="testing">
 {{addedProductIdAndAmount}}
 {{"There are " + prodListLength +  "articles in your cart"}}
-{{ getProductById(51) }}
+{{"GET PRODUCT BY ID: " + getProductById(55).amount }}
      <button @click="()=>{
     setAmount(value)
     }">Increase amount</button>
