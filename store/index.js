@@ -60,6 +60,7 @@ export const mutations={
    REMOVE_PRODUCT_FROM_CART(state, product){
        var id = product.id
        var data =  state.itemsInCart
+       var amountData = state.addedProductIds
 
        for(var i = 0; i < data.length; i++) {
            if(data[i].id == id) {
@@ -67,6 +68,15 @@ export const mutations={
                break;
            }
        }
+
+       for(var i = 0; i < amountData.length; i++) {
+        if(amountData[i].id == id) {
+            amountData.splice(i, 1);
+            break;
+        }
+    }
+
+       
    },
 
    EMPTY_CART(state){
@@ -79,11 +89,14 @@ export const mutations={
    }, 
 
    SET_ACTIVE_PRODUCT:(state, product)=>{
-        state.activeProduct=product
+        state.activeProductId=product
    },
 
    SET_AMOUNT:(state, newValue)=>{      
-       var product = state.addedProductIds.find((addedProductIds=>addedProductIds.id===state.activeProduct))
+       console.log("active prod: " + state.activeProductId)
+       console.log(state.addedProductIds)
+       var product = state.addedProductIds.find((addedProductIds=>addedProductIds.id===state.activeProductId))
+       console.log("FOUND PRODUCT: " + product)
        product.amount=newValue
        console.log("product id: " + product)
        console.log("product amount: " + product.amount)
@@ -109,7 +122,7 @@ export const actions={
 
     setActiveProduct({commit, state}, product){
         commit('SET_ACTIVE_PRODUCT', product)
-        return state.activeProduct
+        return state.activeProductId
     }
 
 }
@@ -137,7 +150,7 @@ export const getters={
     },
 
     getActiveProductId: state =>{
-        return state.activeProduct
+        return state.activeProductId
     }
 
 

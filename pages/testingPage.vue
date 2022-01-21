@@ -1,6 +1,6 @@
 <template>
     <div class="testing">
-{{addedProducts}}
+{{addedProductIdAndAmount}}
 {{"There are " + prodListLength +  "articles in your cart"}}
 {{ getProductById(51) }}
      <button @click="()=>{
@@ -24,7 +24,7 @@
 import {mapGetters, mapMutations, mapActions } from 'vuex';
     export default {
          data:()=> ({
-             addedProducts: [{}],
+             addedProductIdAndAmount: [{}],
              inCart: false,
              testParameter: "hola",
              testId:3,
@@ -32,7 +32,7 @@ import {mapGetters, mapMutations, mapActions } from 'vuex';
         }), 
 
     mounted(){
-        this.addedProducts = this.$store.getters.getAddedProductIds
+        this.addedProductIdAndAmount = this.$store.getters.getAddedProductIds
         this.inCart = this.$store.getters.getInCart
     },
 

@@ -19,6 +19,7 @@
                     </div>
                     <div v-else>
                     <h3>{{"$" + product.price}}</h3>   
+                    <p>Article id: {{activeProduct}}</p>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Excepturi repellendus porro aperiam placeat optio illum explicabo?
@@ -28,13 +29,14 @@
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
                      <div v-if="inCart">
                          <button @click="()=>{
-                             if(counter>0)counter -= 1
-                              amount.set
+                             if(counter>0)
+                               setAmount(counter - 1)
+                               counter -= 1
                              }">-</button> 
                          <input type="number" v-model="counter"> 
                          <button  @click="()=>{
-                             counter += 1 
-                              amount.set
+                              setAmount(counter + 1)
+                              counter += 1 
                              }">+</button>
                     </div> 
                     <div v-else> 
@@ -58,46 +60,31 @@
 <script>
 import GetLargeImage from "../../src/components/GetLargeImage.vue"
 import ProductCard from "../../src/components/ProductCard.vue"
-import {mapMutations, mapActions} from "vuex"
+import {mapMutations, mapActions, mapGetters} from "vuex"
     export default {    
     data:()=> ({
             product:[],    
             counter: 1, 
             addedProducts: [],
-            inCart: false
+            inCart: false,
+            activeProduct: 0
         }), 
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
 
-        computed:{
-            productAmount(){
-                return{
-                    amount: {
-                    id: this.product.id,
-                    value: this.counter,
-                    addedProducts: []
-                }           
-            }
+    computed:{
+        
+        ...mapGetters(['getProductById']),
 
-        },
+    },
+                                 
+    mounted(){
+        this.addedProducts = this.$store.getters.getAddedProductIds      
+        this.activeProduct =  this.$route.params.details  
+        this.setActiveProduct(parseInt(this.activeProduct))
 
-            amount:{
-                 get(){
-                    return this.$store.getters.getAddedProductIds
-                }, 
-                set(){
-                    return this.$store.dispatch("setAmount", this.counter)
-                }
-            }
-
-                      
-    }, 
-
-        mounted(){
-            this.addedProducts = this.$store.getters.getAddedProductIds,   
-            
-            this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
+         this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
 
             function inCartEvaluator(productId, data){   
             var found = 0
@@ -115,28 +102,18 @@ import {mapMutations, mapActions} from "vuex"
                     if (found>0)return true
                     else return false
             }
-        } 
-           
-            
-                   
-                   
-        },
+        }
+    },
 
     methods:{             
-        ...mapMutations(['ADD_PRODUCT_TO_CART', 'ADD_PRODUCT_AMOUNT']),   
-
-        ...mapActions(['CHECK_IF_ADDED']),
-
-      /*   setCounter(productId){
-          
-        } */
-         
-
+        ...mapMutations(['ADD_PRODUCT_TO_CART']) ,  
+        ...mapActions(['setAmount', 'setActiveProduct' ])
     },
  
-    components: { ProductCard, GetLargeImage },
-   
+    components: { ProductCard, GetLargeImage }
 }
+    
+
 
 </script>
 
