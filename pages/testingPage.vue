@@ -1,20 +1,35 @@
 <template>
     <div class="testing">
 {{addedProducts}}
-{{inCart}}
-<div>
-    <button @click="inCartEvaluator(1)"></button>
-</div>
-    </div>
-</template>
+{{"There are " + prodListLength +  "articles in your cart"}}
+{{ getProductById(51) }}
+     <button @click="()=>{
+    setAmount(value)
+    }">Increase amount</button>
+   <button @click="
+    setTest(testParameter)
+    ">Change test</button> 
+    {{getTest}}
 
+       <button @click="
+    setActiveProduct(testId)
+    ">Change active product</button> 
+    {{"ID OF ACTIVE PRODUCT: " + getActiveProductId}}
+
+ 
+
+</div>
+</template>
 <script>
-import { mapState } from 'vuex';
+import {mapGetters, mapMutations, mapActions } from 'vuex';
     export default {
          data:()=> ({
              addedProducts: [{}],
              inCart: false,
-    }), 
+             testParameter: "hola",
+             testId:3,
+             value: 55000
+        }), 
 
     mounted(){
         this.addedProducts = this.$store.getters.getAddedProductIds
@@ -22,27 +37,34 @@ import { mapState } from 'vuex';
     },
 
     methods:{
-        inCartEvaluator(productId){
+      
+
+
+        ...mapMutations(['SET_AMOUNT', 'TEST', 'SET_ACTIVE_PRODUCT']),
+        ...mapActions(['setAmount', 'setTest', 'setActiveProduct' ])
+    },
+    computed:{
+        prodListLength(){
+            return this.$store.getters.getLengthOfAddedProductIds
+        },
+
+
+        amount:{
+            get(id){
+                return this.$store.getters.getProductById(id)
+            },
             
-            var data = this.addedProducts
-            for(var i=0;i<data.length;i++){
-                if(data[i].id==productId){
-                   this.inCart=true
-                }
-                else{
-                    this.inCart=false
-                }
-            }
-        }
-    }
-    /* computed:{
-        getAddedProducts(){
-            return {
-               listOfProds: this.$store.getters.getAddedProductIds
-            }
-        }
-    } */
-    }
+            set(newValue){
+                return this.$store.dispatch(getProductById.amount, newValue)
+            },
+           
+        },
+
+        ...mapGetters(['getProductById', 'getTest', 'getActiveProductId']),
+    },
+
+   
+}   
 </script>
 
 <style  scoped>

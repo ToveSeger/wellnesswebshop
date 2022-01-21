@@ -27,9 +27,15 @@
                     </p> 
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
                      <div v-if="inCart">
-                         <button @click="()=>{if(counter>0)counter -= 1}">-</button> 
+                         <button @click="()=>{
+                             if(counter>0)counter -= 1
+                              amount.set
+                             }">-</button> 
                          <input type="number" v-model="counter"> 
-                         <button  @click="()=>{counter += 1}">+</button>
+                         <button  @click="()=>{
+                             counter += 1 
+                              amount.set
+                             }">+</button>
                     </div> 
                     <div v-else> 
                         <button class="btn btn-info" @click="()=>{                       
@@ -73,23 +79,31 @@ import {mapMutations, mapActions} from "vuex"
                     addedProducts: []
                 }           
             }
+
         },
 
+            amount:{
+                 get(){
+                    return this.$store.getters.getAddedProductIds
+                }, 
+                set(){
+                    return this.$store.dispatch("setAmount", this.counter)
+                }
+            }
+
                       
-    },    
+    }, 
+
         mounted(){
             this.addedProducts = this.$store.getters.getAddedProductIds,   
             
             this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
 
             function inCartEvaluator(productId, data){   
-            var keepGoing=true
             var found = 0
-
-           
             if(data.length > 0){
               
-                for(var i=0;i<data.length && keepGoing ;i++){ 
+                for(var i=0;i<data.length ;i++){ 
                         if(data[i].id==productId){
                          console.log("I WAS FOUND ")
                          found=1
@@ -113,6 +127,9 @@ import {mapMutations, mapActions} from "vuex"
 
         ...mapActions(['CHECK_IF_ADDED']),
 
+      /*   setCounter(productId){
+          
+        } */
          
 
     },

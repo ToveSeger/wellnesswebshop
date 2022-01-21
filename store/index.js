@@ -6,8 +6,11 @@ export const state=()=>({
 
     addedProductIds: [{}],
 
-    inCart: false 
+    inCart: false, 
 
+    test: "blö",
+
+    activeProductId: 0
 
 })
 
@@ -73,42 +76,74 @@ export const mutations={
      while (state.addedProductIds.length) {
         state.addedProductIds.pop();
       }
-   } 
+   }, 
+
+   SET_ACTIVE_PRODUCT:(state, product)=>{
+        state.activeProduct=product
+   },
+
+   SET_AMOUNT:(state, newValue)=>{      
+       var product = state.addedProductIds.find((addedProductIds=>addedProductIds.id===state.activeProduct))
+       product.amount=newValue
+       console.log("product id: " + product)
+       console.log("product amount: " + product.amount)
+   },
+
+   TEST(state, newValue){
+       state.test=newValue
+       console.log(state.test)
+   }
 }
 
 export const actions={
-    
-    CHECK_IF_ADDED(state, productId){   
-        console.log("registered id: " + productId)
+    setAmount({commit, state}, newValue){
+        commit("SET_AMOUNT", newValue)
+        //return getters.getProductById(state.activeProduct)
+        return state.addedProductIds
+    }, 
 
-        var data = state.addedProductIds
+    setTest({commit, state}, payload){
+        commit('TEST', payload)
+        return state.test
+    },
 
-        if(data.length>0){
-            for(var i = 0; i < data.length; i++) {
-                if(data[i].id == productId) {
-                    console.log("this item was already in cart")
-                  inCart= true
-                  
-                }          
-                else {
-                    console.log("this item was not in cart")
-                    inCart= false
-                }
-            }
-        }
-        else{
-            console.log("cart length of zero")
-            return
-        }
+    setActiveProduct({commit, state}, product){
+        commit('SET_ACTIVE_PRODUCT', product)
+        return state.activeProduct
     }
+
 }
 
-export const getters= {
-    getAddedProductIds(state){
+
+export const getters={
+    getAddedProductIds: state=>{
         return state.addedProductIds
     },
 
-    getInCart(state){
+    getLengthOfAddedProductIds: state=>{
+        return state.addedProductIds.length
+    },
+
+    getInCart: state=>{
         return state.inCart
+    },
+
+    getProductById: state => id =>{
+        return state.addedProductIds.find((addedProductIds=>addedProductIds.id===id))
+    },
+
+    getTest: state=> {
+        return state.test
+    },
+
+    getActiveProductId: state =>{
+        return state.activeProduct
     }
+
+
+    
+
+    
+
+
 }
