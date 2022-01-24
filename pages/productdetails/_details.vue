@@ -19,17 +19,33 @@
                     </div>
                     <div v-else>
                     <h3>{{"$" + product.price}}</h3>   
+                    <p>Article id: {{product.id}}</p>  
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Excepturi repellendus porro aperiam placeat optio illum explicabo?
                         Assumenda unde voluptatem alias fuga tenetur qui sunt nesciunt enim, 
                         neque, deserunt incidunt reiciendis.
                     </p> 
-                     <div class="stock">{{"Stock:" + " " + product.stock}}</div>          
-                    <button class="btn btn-info" @click="()=>{
-                        ADD_PRODUCT_TO_CART(product)                                        
-                        }">
+                     <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
+                     <div v-if="inCart">
+                         <button @click="()=>{
+                             if(counter>0)
+                               setAmount(counter - 1)
+                               counter -= 1
+                             }">-</button> 
+                         <input type="number" :value="getProductAmountById(product.id)"> 
+                         <button  @click="()=>{
+                              setAmount(counter + 1)
+                              counter += 1 
+                             }">+</button>
+                    </div> 
+                    <div v-else> 
+                        <button class="btn btn-info" @click="()=>{                       
+                            ADD_PRODUCT_TO_CART(product)  
+                            inCart=true
+                            }">
                         <h5>Add to cart</h5></button>
+                  </div>  
                 </div>
             </div>
        </div>
@@ -44,23 +60,82 @@
 <script>
 import GetLargeImage from "../../src/components/GetLargeImage.vue"
 import ProductCard from "../../src/components/ProductCard.vue"
-import {mapMutations} from "vuex"
+import {mapMutations, mapActions, mapGetters} from "vuex"
     export default {    
     data:()=> ({
-            product:[]
+            product:[],    
+            counter: 1,
+            addedProducts: [],
+            inCart: false,
+            activeProduct: 0
         }), 
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
 
+        computed:{
 
-         methods:{             
-        ...mapMutations(['ADD_PRODUCT_TO_CART']),   
+             getCounterValue(){
+                return{
+                    counter:this.getProductAmountById(this.activeProduct)
+                }
+            },  
+          
+             ...mapGetters(['getProductById','getProductAmountById']),
         },
+
+   /*   beforeMount(){
+        this.count = this.getProductAmountById(this.activeProduct)   
+    }, */
+     
+                                 
+    mounted(){
+        this.addedProducts = this.$store.getters.getAddedProductIds      
+        this.activeProduct =  this.$route.params.details  
+        this.setActiveProduct(parseInt(this.activeProduct))
+      
+
+         this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
+
+            function inCartEvaluator(productId, data){   
+            var found = 0
+            if(data.length > 0){
+              
+                for(var i=0;i<data.length ;i++){ 
+                        if(data[i].id==productId){
+                         console.log("I WAS FOUND ")
+                         found=1
+                        }
+                        else {
+                            console.log("I WAS NOT FOUND")    
+                        } 
+                }
+                    if (found>0)return true
+                    else return false
+            }
+        }
+
+       /*  this.counter=()=>{
+            if(this.inCart){
+                return getProductAmountById(this.activeProduct)
+            }
+        } */
+        
+
+
+    },
+
+    methods:{            
+
+        ...mapMutations(['ADD_PRODUCT_TO_CART']) ,  
+        ...mapActions(['setAmount', 'setActiveProduct' ])
+    },
  
-    components: { ProductCard, GetLargeImage },
-   
+    components: { ProductCard, GetLargeImage }
 }
+    
+
+
 </script>
 
 <style  scoped>

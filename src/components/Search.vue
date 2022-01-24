@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="innerContainer">
-        <input v-model="query" type="text" class="form-control" placeholder="Search product">
-        <NuxtLink :to="`/results/${query}`" type="button" class="btn btn-info" >
+        <input v-model="query" type="text" class="form-control" placeholder="Search product" @keyup="Search">
+        <NuxtLink :to="`/results/${query}`" type="button" class="btn btn-info">
             Search
         </NuxtLink> 
         </div>
@@ -17,8 +17,17 @@
 
         query: null,
        }),  
+
+       methods:{
+           Search(e){
+                if (e.key=== 'Enter' && this.query)
+                this.$router.push(`/results/${this.query}`)
+                console.log(e)                
+           }
+       }
     
     }
+
 </script>
 
 <style scoped>
