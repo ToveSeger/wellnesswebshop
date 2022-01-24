@@ -16,7 +16,7 @@
             <label>Last name: </label>
             <input type="text" v-model="lastName" required>
             <label>Street & house number: </label>
-            <input type="text" v-model="streetAndHouseNumber" required>
+            <input type="text" v-model="road" required>
             <label>Zip code: </label>
             <input type="text" pattern="[0-9]*" v-model="zipCode" required>
             <label>Email: </label>
@@ -25,25 +25,39 @@
             <input type="tel" v-model="phone" required>
             <label>I accept the terms</label>
             <input type="checkbox" required>
-            <button type="submit">Confirm order</button>
+            <div v-if="!pressed">
+                <button type="submit">Confirm order</button>
+            </div>
+            <div v-else>
+                <p>Thanks for your order  {{firstName}}!</p>
+                <OrderConfirmation
+                :customer="customer"
+                :order="order"
+                />
+            </div>
+
+
         </form>
     </div>
 </template>
 
 <script>
 import Cart from "../src/components/Cart.vue";
+import OrderConfirmation from "../src/components/OrderConfirmation.vue";
 import { mapState } from 'vuex';
     export default {
-
+    
         data:()=>{
             return{
                 firstName: " ",
                 lastName: " ",
                 email: " ",
-                phone: " ",
-                streetAndHouseNumber: " ",
-                zipCode: " ",
-                orderUser: {}
+                phone: null,
+                road: " ",
+                zipCode: null,
+                pressed: false,
+                customer: {},
+                order: {}
             }
 
         },
@@ -55,22 +69,42 @@ import { mapState } from 'vuex';
     },
 
     methods:{
-         submitForm(){
-             this.orderUser={
-                firstName: this.firstName,
-                lastName: this.lastName,
-                email: this.email,
-                phone: this.phone,
-                streetAndHouseNumber: this.streetAndHouseNumber,
-                zipCode: this.zipCode
-             }
+        async  submitForm(){
+//creates a new instance in customer table
+        const customer = await this.$axios.$post('http://localhost:3000/api/postcustomer',{
+                    first_name: this.firstName,
+                    last_name: this.lastName,
+                    phone: parseInt(this.phone),
+                    email: this.email,
+                    road: this.road,
+                    zip_code: parseInt(this.zipCode)
+            })   
 
-            console.log(this.orderUser)
+             console.log("customer: " + customer)
+            this.customer=customer
+       //creates a new instance in order table     
+        const order = await this.$axios.$post('http://localhost:3000/api/postorder',{
+            customer_id: customer.id,
+            product_id: this.getProductIds(), //foreach prod in itemsincart samla id i en array
+            order_sum: 1000//formel för att räkna ut ordersumman 
+            }) 
+
+            console.log("order: " + order)
+            this.order=order
+            this.pressed=true
+        },
+
+        getProductIds(){
+            const productIds = []
+            this.itemsInCart.forEach(item => {
+                productIds.push(item.id)
+            });
+
+            return productIds
+        }       
             
-           this.$router.push('orderconfirmation') 
-        }
     },
-            components: { Cart }
+            components: { Cart, OrderConfirmation }
 }
 </script>
 

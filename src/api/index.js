@@ -125,7 +125,7 @@ app.post('/image', async(req, res) =>{
 })
 
 //Creates a product
-app.post('/product', async(req, res) =>{
+app.post('/postproduct', async(req, res) =>{
     const result = await prisma.product.create({
         data:{
             name: req.body.name,
@@ -137,6 +137,21 @@ app.post('/product', async(req, res) =>{
         },
     })
     res.json(result)
+})
+
+//creates a customer
+app.post('/postcustomer', async(req, res) =>{
+  const result = await prisma.customer.create({
+      data:{
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          phone: req.body.phone,
+          email: req.body.email,
+          road: req.body.road,
+          zip_code: req.body.zip_code
+      },
+  })
+  res.json(result)
 })
 
 export default {

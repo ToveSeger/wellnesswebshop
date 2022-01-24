@@ -10,6 +10,7 @@
         :key="item.id"
         :item="item"/>
         </div>
+        {{"Total sum: "}}
           <button type="button" class="btn btn-dark" @click="EMPTY_CART()">Empty cart</button>
           <NuxtLink to="/checkout" type="button" class="btn btn-info">Checkout</NuxtLink>
     </div>
@@ -25,7 +26,20 @@ import Cart from '../src/components/Cart.vue';
     computed: {
         ...mapState([
             "itemsInCart"
-        ])
+        ]),
+    },
+
+     data:()=>({
+         cartSum: 0
+     }),
+
+    mounted(){
+
+        this.cartSum=getCartSum()
+
+        getCartSum(){
+            //summera alla produktvärden i korgen
+        }
     },
 
      methods:{             
