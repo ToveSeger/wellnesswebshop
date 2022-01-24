@@ -28,13 +28,12 @@
                     </p> 
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
                      <div v-if="inCart">
-                         {{"In cart already: " + getProductAmountById(product.id)}}
                          <button @click="()=>{
                              if(counter>0)
                                setAmount(counter - 1)
                                counter -= 1
                              }">-</button> 
-                         <input type="number" v-model="counter"> 
+                         <input type="number" :value="getProductAmountById(product.id)"> 
                          <button  @click="()=>{
                               setAmount(counter + 1)
                               counter += 1 
@@ -76,24 +75,25 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
 
         computed:{
 
-            /* getCounterValue(){
+             getCounterValue(){
                 return{
-                    counter:this.getProductAmountById(this.$route.params.details)
+                    counter:this.getProductAmountById(this.activeProduct)
                 }
-            },  */
+            },  
           
              ...mapGetters(['getProductById','getProductAmountById']),
         },
 
-  /*   beforeMount(){
-        this.count = this.getProductAmountById(this.$route.params.details)   
-    },
-     */
+   /*   beforeMount(){
+        this.count = this.getProductAmountById(this.activeProduct)   
+    }, */
+     
                                  
     mounted(){
         this.addedProducts = this.$store.getters.getAddedProductIds      
         this.activeProduct =  this.$route.params.details  
         this.setActiveProduct(parseInt(this.activeProduct))
+      
 
          this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
 
@@ -114,6 +114,15 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
                     else return false
             }
         }
+
+       /*  this.counter=()=>{
+            if(this.inCart){
+                return getProductAmountById(this.activeProduct)
+            }
+        } */
+        
+
+
     },
 
     methods:{            
