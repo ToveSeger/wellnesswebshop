@@ -28,6 +28,7 @@
             <input type="checkbox" required>
             <div v-if="!pressed">
                 <button type="submit">Confirm order</button>
+                <button @click="placeOrder(customer.id)">place order</button>
             </div>
             <div v-else>
                 <p>Thanks for your order  {{firstName}}!</p>
@@ -88,10 +89,28 @@ import { mapState } from 'vuex';
 
              console.log("customer: " + customer)
             this.customer=customer
+       
        //creates a new instance in order table     
-        const order = await this.$axios.$post('http://localhost:3000/api/postorder',{
-            customer_id: customer.id,
-            product_id: this.getProductIds(), //foreach prod in itemsincart samla id i en array
+       
+
+       /*  getProductIds(){
+            const productIds = []
+            this.itemsInCart.forEach(item => {
+                productIds.push(item.id)
+            });
+
+            return productIds
+        }    */    
+            
+    },
+
+    async placeOrder(customerId){
+        console.log("customer id sent: " + customerId)
+        console.log(this.itemsInCart)
+        console.log(this.cartSum)
+         const order = await this.$axios.$post('http://localhost:3000/api/postorder',{
+            customer_id: customerId,
+            products: this.itemsInCart,// this.getProductIds(), //foreach prod in itemsincart samla id i en array
             order_sum: this.cartSum
             }) 
 
@@ -99,16 +118,6 @@ import { mapState } from 'vuex';
             this.order=order
             this.pressed=true
         },
-
-        getProductIds(){
-            const productIds = []
-            this.itemsInCart.forEach(item => {
-                productIds.push(item.id)
-            });
-
-            return productIds
-        }       
-            
     },
             components: { Cart, OrderConfirmation }
 }

@@ -19,7 +19,8 @@ model Product{
   on_sale Boolean
   img Image @relation(fields: [img_id], references: [id])
   img_id Int 
-  order Order[] 
+  order Order[] @relation(fields: [order_id], references: [id])
+  order_id Int?
   price Decimal 
 }
 
@@ -41,8 +42,8 @@ model Order{
   id Int @id @default(autoincrement())
   customer Customer @relation( fields: [customer_id], references: [id])
   customer_id Int 
-  products Product[] @relation( fields: [product_id], references: [id])
-  product_id Int 
+  products Product[] //@relation( fields: [product_id], references: [id])
+  //product_id Int
   order_sum Decimal
 }
 

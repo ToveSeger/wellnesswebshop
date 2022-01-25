@@ -158,13 +158,20 @@ app.post('/postcustomer', async(req, res) =>{
 app.post('/postorder', async(req, res) =>{
   const result = await prisma.order.create({
       data:{
-          customer_id: req.body.customer_id,
-          product_id: req.body.product_id,
+          customer_id: req.body.customer_id,   
+          /* products:{
+            create: req.body.products
+          },  */     
           order_sum: req.body.order_sum
       },
   })
   res.json(result)
 })
+
+//UPDATE
+//Updates an order
+
+
 
 export default {
   path: '/api', // specifies the route for where the middleware will be accessible 
