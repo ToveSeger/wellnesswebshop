@@ -42,7 +42,7 @@ model Order{
   customer Customer @relation( fields: [customer_id], references: [id])
   customer_id Int 
   products Product[] @relation( fields: [product_id], references: [id])
-  product_id Int
+  product_id Int 
   order_sum Decimal
 }
 

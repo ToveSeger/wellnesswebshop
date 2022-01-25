@@ -10,7 +10,7 @@
         :key="item.id"
         :item="item"/>
         </div>
-        {{"Total sum: "}}
+        {{"Total sum: " + cartSum}}
           <button type="button" class="btn btn-dark" @click="EMPTY_CART()">Empty cart</button>
           <NuxtLink to="/checkout" type="button" class="btn btn-info">Checkout</NuxtLink>
     </div>
@@ -18,35 +18,33 @@
 
 <script>
 
-import { mapState } from 'vuex';
-import {mapMutations} from "vuex"
+import { mapState, mapMutations, mapGetters } from 'vuex';
+
 import Cart from '../src/components/Cart.vue';
     export default {    
-         layout: "no_navigation",     
+         layout: "no_navigation",
+         
+         
     computed: {
-        ...mapState([
-            "itemsInCart"
-        ]),
+
+        ...mapState(["itemsInCart"]),
+        
+        ...mapGetters(["getItemsInCart"]),
     },
 
      data:()=>({
-         cartSum: 0
+         cartSum: 0,
+         cartItems: [{}],
+         addedProductIds: [{}]
      }),
-
+ 
     mounted(){
-
-        this.cartSum=getCartSum()
-
-        getCartSum(){
-            //summera alla produktvärden i korgen
-        }
+       this.cartSum = this.$store.getters.getCartSum
     },
-
+ 
      methods:{             
-        ...mapMutations(['EMPTY_CART']),   
+        ...mapMutations(['EMPTY_CART']),  
         },
-
-      
 
     components: { Cart }
 }

@@ -10,6 +10,7 @@
                 </div>
         </div>
         <h1>Shipping information</h1>
+        {{"cart sum: " + cartSum}}
         <form @submit.prevent="submitForm">
             <label>First name: </label>
             <input type="text" v-model="firstName" required>
@@ -57,7 +58,8 @@ import { mapState } from 'vuex';
                 zipCode: null,
                 pressed: false,
                 customer: {},
-                order: {}
+                order: {},
+                cartSum: 0
             }
 
         },
@@ -66,6 +68,10 @@ import { mapState } from 'vuex';
             ...mapState([
                 "itemsInCart"
         ])
+    },
+
+    mounted(){
+        this.cartSum = this.$store.getters.getCartSum
     },
 
     methods:{
@@ -86,7 +92,7 @@ import { mapState } from 'vuex';
         const order = await this.$axios.$post('http://localhost:3000/api/postorder',{
             customer_id: customer.id,
             product_id: this.getProductIds(), //foreach prod in itemsincart samla id i en array
-            order_sum: 1000//formel för att räkna ut ordersumman 
+            order_sum: this.cartSum
             }) 
 
             console.log("order: " + order)
