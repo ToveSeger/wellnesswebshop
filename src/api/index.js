@@ -158,20 +158,42 @@ app.post('/postcustomer', async(req, res) =>{
 app.post('/postorder', async(req, res) =>{
   const result = await prisma.order.create({
       data:{
-          customer_id: req.body.customer_id,   
-          /* products:{
-            create: req.body.products
-          },  */     
+          customer_id: req.body.customer_id,       
           order_sum: req.body.order_sum
       },
   })
   res.json(result)
 })
 
-//UPDATE
+//UPDATE **DELETE UPDATE SECTION IF NOT USED
+//Updates a product
+app.put('/updateproduct/:productId', async(req, res) =>{
+  const {productId} = req.params
+  const result = await prisma.product.update({
+  where:{
+    id:parseInt(productId)
+  },
+      data:{
+          order_id:req.body.order_id
+      },
+  })
+  res.json(result)
+})
+
+
 //Updates an order
-
-
+app.put('/updateorder/:orderId', async(req, res) =>{
+  const {orderId} = req.params
+  const result = await prisma.order.update({
+  where:{
+    id:parseInt(orderId)
+  },
+      data:{
+          products: req.body.products
+      },
+  })
+  res.json(result)
+})
 
 export default {
   path: '/api', // specifies the route for where the middleware will be accessible 

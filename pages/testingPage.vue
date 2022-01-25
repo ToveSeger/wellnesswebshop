@@ -2,6 +2,8 @@
     <div class="container">
 {{itemsInCart}}
 <button @click="placeOrder(44)">place order</button>
+<button @click="updateProduct()">update product</button>
+<button @click="updateOrder()">update order</button>
     </div>
 </template>
 
@@ -34,6 +36,30 @@ import { mapState } from 'vuex';
 
             console.log("order: " + order)      
         },
+
+        async updateProduct(){
+        
+     
+         const product = await this.$axios.$put('http://localhost:3000/api/updateproduct/120',{
+           
+            order_id: 11,// this.getProductIds(), //foreach prod in itemsincart samla id i en array
+          
+            }) 
+
+            console.log("product: " + product) 
+        },
+
+          async updateOrder(){
+        
+     
+         const order = await this.$axios.$put('http://localhost:3000/api/updateorder/13',{
+           
+            products: this.itemsInCart,// this.getProductIds(), //foreach prod in itemsincart samla id i en array
+          
+            }) 
+
+            console.log("Order: " + order) 
+        }
     }
 }
 

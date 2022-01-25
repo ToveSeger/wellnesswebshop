@@ -2,33 +2,43 @@
     <div class="container">
         <div class="innerContainer">
                 <div>
-                    Your products:
+                    <h2>Your Products</h2>
                      <Cart
                     v-for="item in itemsInCart"
                     :key="item.id"
                     :item="item"/>              
                 </div>
+                <div class="cartTotal">
+                  <h5>{{"Total sum: " + cartSum}}</h5>
+                </div>
         </div>
-        <h1>Shipping information</h1>
-        {{"cart sum: " + cartSum}}
+        <div class="shippingInformation">
+        <h2>Shipping information</h2>
         <form @submit.prevent="submitForm">
             <label>First name: </label>
-            <input type="text" v-model="firstName" required>
+            <input type="text" class="form-control" v-model="firstName" required>
             <label>Last name: </label>
-            <input type="text" v-model="lastName" required>
+            <input type="text" class="form-control" v-model="lastName" required>
             <label>Street & house number: </label>
-            <input type="text" v-model="road" required>
+            <input type="text" class="form-control" v-model="road" required>
             <label>Zip code: </label>
-            <input type="text" pattern="[0-9]*" v-model="zipCode" required>
+            <input type="text" pattern="[0-9]*" class="form-control" v-model="zipCode" required>
             <label>Email: </label>
-            <input type="email" v-model="email" required>
+            <input type="email" class="form-control" v-model="email" required>
+            <small class="form-text text-muted">Your email stays with us</small>
             <label>Phone: </label>
-            <input type="tel" v-model="phone" required>
-            <label>I accept the terms</label>
-            <input type="checkbox" required>
+            <input type="tel" class="form-control" v-model="phone" required>
+            <div class="checkboxContainer">
+                <div class="checkbox">
+                    <input type="checkbox" class="form-check-input" value="" id="flexCheckDefault" required>
+                </div>
+                <div class="checkboxLabel">
+                    <label>I accept the terms</label>
+                </div>
+            </div>
             <div v-if="!pressed">
-                <button type="submit">Confirm order</button>
-                <button @click="placeOrder(customer.id)">place order</button>
+            <button type="submit" class="btn btn-info">Confirm order</button>
+                <!-- <button @click="placeOrder(customer.id)">place order</button> -->
             </div>
             <div v-else>
                 <p>Thanks for your order  {{firstName}}!</p>
@@ -40,13 +50,14 @@
 
 
         </form>
+        </div>
     </div>
 </template>
 
 <script>
 import Cart from "../src/components/Cart.vue";
 import OrderConfirmation from "../src/components/OrderConfirmation.vue";
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
     export default {
     
         data:()=>{
@@ -90,20 +101,11 @@ import { mapState } from 'vuex';
              console.log("customer: " + customer)
             this.customer=customer
        
-       //creates a new instance in order table     
-       
-
-       /*  getProductIds(){
-            const productIds = []
-            this.itemsInCart.forEach(item => {
-                productIds.push(item.id)
-            });
-
-            return productIds
-        }    */    
-            
+        this.placeOrder(customer.id)     
+      
     },
 
+  //creates a new instance in order table   
     async placeOrder(customerId){
         console.log("customer id sent: " + customerId)
         console.log(this.itemsInCart)
@@ -114,11 +116,14 @@ import { mapState } from 'vuex';
             order_sum: this.cartSum
             }) 
 
-            console.log("order: " + order)
+            console.log("order id: " + order.id)
             this.order=order
-            this.pressed=true
+            this.pressed=true  
+            this.$store.commit('EMPTY_CART')
         },
     },
+
+   
             components: { Cart, OrderConfirmation }
 }
 </script>
@@ -130,15 +135,65 @@ import { mapState } from 'vuex';
 }
 .innerContainer{
     margin-top:12em;
+    position:relative;
+}
+
+h2{
+    font-family: 'Signika', sans-serif;
+    color: #177585;
+    text-decoration:underline;
+    width:10em;
+    margin:auto;
+}
+
+.cartTotal{
+    font-family: 'Signika', sans-serif;
+    margin:auto;
+    position: absolute;
+    margin:auto;
+    width:10em;
+    left:30em;
+    padding:0.5em;
+}
+
+.shippingInformation{
+    margin-top:5em;
+}
+.shippingInformation h2{
+  margin-bottom:1em;
 }
 
 form{
     display:flex;
     flex-direction: column;
+    width:25em;
+    margin-top:2em;
+    margin:auto;
+    position:relative;
+}
+
+.checkboxContainer{
+    display:flex;
+}
+.checkbox{
+    margin-top:1.2em;
+    width:2.5em;
+}
+
+.checkboxLabel{
+    padding-top:1em;
+    height:2em;
+    margin-bottom:1.5em;
+}
+
+.btn-info{
+    width:10em;
+    position:absolute;
+    left:7.5em;
 }
 
 input{
-    width:15em;
+    width:25em;
 }
 
 </style>

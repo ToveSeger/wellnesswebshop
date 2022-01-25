@@ -10,9 +10,17 @@
         :key="item.id"
         :item="item"/>
         </div>
-        {{"Total sum: " + cartSum}}
+        <div class="cartTotal">
+        <h5>{{"Total sum: " + "$"+cartSum}}</h5>
+        </div>
           <button type="button" class="btn btn-dark" @click="EMPTY_CART()">Empty cart</button>
+            <div v-if="itemsInCart.length>0">
           <NuxtLink to="/checkout" type="button" class="btn btn-info">Checkout</NuxtLink>
+            </div>
+            <div v-else class="emptyCart">
+                <h3>You have no items in your cart yet</h3>
+            </div>
+          
     </div>
 </template>
 
@@ -73,8 +81,27 @@ h1{
     margin:auto;
 }
 
+.emptyCart{
+    font-family: 'Signika', sans-serif;
+    color: #177585;
+    width:30em;
+    margin:auto;
+    position: relative;
+    bottom:8em;
+}
+
+.cartTotal{
+    font-family: 'Signika', sans-serif;
+    margin:auto;
+    position: relative;
+    margin:auto;
+    width:10em;
+    bottom:8em;
+}
 .topSection{
-    display:flex;
+    position:absolute;
+    right:0.5em;
+    top:0.5em;  
 }
 
 .nav-link{
@@ -93,7 +120,7 @@ h1{
     height:2.5em;
     width:15em;
     position:absolute;
-    right:30em;
+    right:28em;
     bottom:1em;
 }
 
