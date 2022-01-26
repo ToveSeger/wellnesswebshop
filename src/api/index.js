@@ -196,6 +196,199 @@ app.put('/updateorder/:orderId', async(req, res) =>{
   res.json(result)
 })
 
+//SORT
+
+//OUTLET
+app.get('/outlet/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      on_sale: true
+    },
+    orderBy:{
+      price: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+app.get('/outlet&sortbyname/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      on_sale: true
+    },
+    orderBy:{
+      name: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+//BOOKS
+app.get('/books/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 3
+    },
+    orderBy:{
+      price: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+app.get('/books&sortbyname/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 3
+    },
+    orderBy:{
+      name: 'asc'
+    }
+  })
+  res.json(products)
+}) 
+
+//MOVIES
+app.get('/movies/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 7
+    },
+    orderBy:{
+      price: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+app.get('/movies&sortbyname/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 7
+    },
+    orderBy:{
+      name: 'asc'
+    }
+  })
+  res.json(products)
+}) 
+
+//YOGA&MEDITATION
+app.get('/yogaandmeditation/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 2
+    },
+    orderBy:{
+      price: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+app.get('/yogaandmeditation&sortbyname/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 2
+    },
+    orderBy:{
+      name: 'asc'
+    }
+  })
+  res.json(products)
+}) 
+
+//MUSIC
+app.get('/music/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 4
+    },
+    orderBy:{
+      price: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+app.get('/music&sortbyname/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 4
+    },
+    orderBy:{
+      name: 'asc'
+    }
+  })
+  res.json(products)
+}) 
+
+//AROMA LAMPS
+app.get('/aromalamps/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 6
+    },
+    orderBy:{
+      price: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+app.get('/aromalamps&sortbyname/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 6
+    },
+    orderBy:{
+      name: 'asc'
+    }
+  })
+  res.json(products)
+}) 
+
+//INSENCE
+app.get('/insence/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 1
+    },
+    orderBy:{
+      price: requestedOrder
+    }
+  })
+  res.json(products)
+}) 
+
+app.get('/insence&sortbyname/:requestedOrder', async(req, res) =>{
+  const {requestedOrder} = req.params
+  const products = await prisma.product.findMany({
+    where: {
+      category_id: 1
+    },
+    orderBy:{
+      name: 'asc'
+    }
+  })
+  res.json(products)
+}) 
+
+
+
 export default {
   path: '/api', // specifies the route for where the middleware will be accessible 
   handler: app // specifies the function executed when invoked
