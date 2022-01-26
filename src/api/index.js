@@ -246,7 +246,7 @@ app.get('/books&sortbyname/:requestedOrder', async(req, res) =>{
       category_id: 3
     },
     orderBy:{
-      name: 'asc'
+      name: requestedOrder
     }
   })
   res.json(products)
@@ -273,7 +273,7 @@ app.get('/movies&sortbyname/:requestedOrder', async(req, res) =>{
       category_id: 7
     },
     orderBy:{
-      name: 'asc'
+      name: requestedOrder
     }
   })
   res.json(products)
@@ -300,7 +300,7 @@ app.get('/yogaandmeditation&sortbyname/:requestedOrder', async(req, res) =>{
       category_id: 2
     },
     orderBy:{
-      name: 'asc'
+      name: requestedOrder
     }
   })
   res.json(products)
@@ -327,7 +327,7 @@ app.get('/music&sortbyname/:requestedOrder', async(req, res) =>{
       category_id: 4
     },
     orderBy:{
-      name: 'asc'
+      name: requestedOrder
     }
   })
   res.json(products)
@@ -354,7 +354,7 @@ app.get('/aromalamps&sortbyname/:requestedOrder', async(req, res) =>{
       category_id: 6
     },
     orderBy:{
-      name: 'asc'
+      name: requestedOrder
     }
   })
   res.json(products)
@@ -381,7 +381,7 @@ app.get('/insence&sortbyname/:requestedOrder', async(req, res) =>{
       category_id: 1
     },
     orderBy:{
-      name: 'asc'
+      name: requestedOrder
     }
   })
   res.json(products)
