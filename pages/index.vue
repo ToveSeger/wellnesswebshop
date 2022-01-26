@@ -34,7 +34,7 @@ import GetLargeImage from "../src/components/GetLargeImage.vue";
 </script>
 
 <style scoped>
-.index-bg{
+/* .index-bg{
   background-image: url("../src/assets/img/buddhaBeige.jpg");
   height: 100vh;
   background-position: center;
@@ -43,6 +43,17 @@ import GetLargeImage from "../src/components/GetLargeImage.vue";
   left:0;
   right:0;
   background-size: cover;
+} */
+
+.index-bg{
+  background-image: url("../src/assets/img/buddha_orderConfirmation.jpg");
+  height: 80vh;
+  background-repeat: no-repeat;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  
 }
 
 .flex{

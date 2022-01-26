@@ -47,7 +47,7 @@ import Search from './Search.vue'
     }
 
     .logo{
-        height: 6em;
+        height: 7em;
         margin-left:0.5em;     
     }
 
@@ -70,6 +70,7 @@ import Search from './Search.vue'
 
     .nav-link{
         color:#177585;      
+        font-size:1.3em;
     }
 
     .divider{

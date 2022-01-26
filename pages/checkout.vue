@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <div v-if="!pressed">
         <div class="innerContainer">
                 <div>
                     <h2>Your Products</h2>
@@ -23,6 +24,8 @@
             <input type="text" class="form-control" v-model="road" required>
             <label>Zip code: </label>
             <input type="text" pattern="[0-9]*" class="form-control" v-model="zipCode" required>
+             <label>City: </label>
+            <input type="text"  class="form-control" v-model="city" required>
             <label>Email: </label>
             <input type="email" class="form-control" v-model="email" required>
             <small class="form-text text-muted">Your email stays with us</small>
@@ -36,21 +39,21 @@
                     <label>I accept the terms</label>
                 </div>
             </div>
-            <div v-if="!pressed">
+          
             <button type="submit" class="btn btn-info">Confirm order</button>
                 <!-- <button @click="placeOrder(customer.id)">place order</button> -->
+            </form>
             </div>
-            <div v-else>
-                <p>Thanks for your order  {{firstName}}!</p>
+            </div>
+            <div v-else class="orderConfirmation">
+                <!-- <p>Thanks for your order  {{firstName}}!</p> -->
                 <OrderConfirmation
                 :customer="customer"
                 :order="order"
                 />
             </div>
-
-
-        </form>
         </div>
+
     </div>
 </template>
 
@@ -68,6 +71,7 @@ import { mapState, mapMutations } from 'vuex';
                 phone: null,
                 road: " ",
                 zipCode: null,
+                city: " ",
                 pressed: false,
                 customer: {},
                 order: {},
@@ -95,7 +99,8 @@ import { mapState, mapMutations } from 'vuex';
                     phone: parseInt(this.phone),
                     email: this.email,
                     road: this.road,
-                    zip_code: parseInt(this.zipCode)
+                    zip_code: parseInt(this.zipCode),
+                    city: this.city
             })   
 
              console.log("customer: " + customer)
@@ -170,6 +175,11 @@ form{
     margin-top:2em;
     margin:auto;
     position:relative;
+    padding:2em;
+}
+
+input{
+    width:25em;
 }
 
 .checkboxContainer{
@@ -190,10 +200,13 @@ form{
     width:10em;
     position:absolute;
     left:7.5em;
+    bottom:0;
 }
 
-input{
-    width:25em;
+
+.orderConfirmation{
+    margin-top:12em;
 }
+
 
 </style>

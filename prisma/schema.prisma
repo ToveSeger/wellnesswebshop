@@ -55,5 +55,6 @@ model Customer{
   email String @db.VarChar(255) @unique
   road String @db.VarChar(100)
   zip_code Int 
+  city String
   order Order[]
 }

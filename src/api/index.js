@@ -148,7 +148,8 @@ app.post('/postcustomer', async(req, res) =>{
           phone: req.body.phone,
           email: req.body.email,
           road: req.body.road,
-          zip_code: req.body.zip_code
+          zip_code: req.body.zip_code,
+          city: req.body.city
       },
   })
   res.json(result)
