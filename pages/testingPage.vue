@@ -1,74 +1,72 @@
 <template>
-    <div class="testing">
-{{addedProductIdAndAmount}}
-{{"There are " + prodListLength +  "articles in your cart"}}
-{{"GET PRODUCT BY ID: " + getProductById(55).amount }}
-     <button @click="()=>{
-    setAmount(value)
-    }">Increase amount</button>
-   <button @click="
-    setTest(testParameter)
-    ">Change test</button> 
-    {{getTest}}
-
-       <button @click="
-    setActiveProduct(testId)
-    ">Change active product</button> 
-    {{"ID OF ACTIVE PRODUCT: " + getActiveProductId}}
-
- 
-
-</div>
+    <div class="container">
+{{itemsInCart}}
+<button @click="placeOrder(44)">place order</button>
+<button @click="updateProduct()">update product</button>
+<button @click="updateOrder()">update order</button>
+    </div>
 </template>
+
 <script>
-import {mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapState } from 'vuex';
     export default {
-         data:()=> ({
-             addedProductIdAndAmount: [{}],
-             inCart: false,
-             testParameter: "hola",
-             testId:3,
-             value: 55000
-        }), 
+        computed: {
+            ...mapState([
+                "itemsInCart"
+        ])
+      },
 
-    mounted(){
-        this.addedProductIdAndAmount = this.$store.getters.getAddedProductIds
-        this.inCart = this.$store.getters.getInCart
-    },
+        data:()=>{
+            return{             
+                cartSum: 0
+            }
 
-    methods:{
-      
-
-
-        ...mapMutations(['SET_AMOUNT', 'TEST', 'SET_ACTIVE_PRODUCT']),
-        ...mapActions(['setAmount', 'setTest', 'setActiveProduct' ])
-    },
-    computed:{
-        prodListLength(){
-            return this.$store.getters.getLengthOfAddedProductIds
         },
 
+      methods: {
+          async placeOrder(customerId){
+        console.log("customer id sent: " + customerId)
+        console.log(this.itemsInCart)
+        console.log(this.cartSum)
+         const order = await this.$axios.$post('http://localhost:3000/api/postorder',{
+            customer_id: customerId,
+            products: this.itemsInCart,// this.getProductIds(), //foreach prod in itemsincart samla id i en array
+            order_sum: this.cartSum
+            }) 
 
-        amount:{
-            get(id){
-                return this.$store.getters.getProductById(id)
-            },
-            
-            set(newValue){
-                return this.$store.dispatch(getProductById.amount, newValue)
-            },
+            console.log("order: " + order)      
+        },
+
+        async updateProduct(){
+        
+     
+         const product = await this.$axios.$put('http://localhost:3000/api/updateproduct/120',{
            
+            order_id: 11,// this.getProductIds(), //foreach prod in itemsincart samla id i en array
+          
+            }) 
+
+            console.log("product: " + product) 
         },
 
-        ...mapGetters(['getProductById', 'getTest', 'getActiveProductId']),
-    },
+          async updateOrder(){
+        
+     
+         const order = await this.$axios.$put('http://localhost:3000/api/updateorder/13',{
+           
+            products: this.itemsInCart,// this.getProductIds(), //foreach prod in itemsincart samla id i en array
+          
+            }) 
 
-   
-}   
+            console.log("Order: " + order) 
+        }
+    }
+}
+
 </script>
 
-<style  scoped>
-.testing{
+<style scoped>
+.container{
     margin-top:12em;
 }
 </style>

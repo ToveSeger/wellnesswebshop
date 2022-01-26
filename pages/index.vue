@@ -1,8 +1,15 @@
 <template>
   <div class="index-bg"> 
-    <div class="flex">
-        <!-- <SpecialOffer :product="productOffer"/> -->
-    </div>
+      <div>       
+        <p v-if="$fetchState.pending">Loading....</p>
+        <p v-else-if="$fetchState.error">Error while fetching products</p>   
+          <ul v-else class="grid" >
+            <div v-for="product in outletProducts.slice(0,3)" :key="product.id" class="card" >         
+                    <ProductCard :product="product"/>              
+            </div>
+            <button class="btn btn-info">Show me everything in the outlet!</button>
+          </ul>
+    </div>  
   </div>
 </template>
 
@@ -19,38 +26,46 @@ import GetLargeImage from "../src/components/GetLargeImage.vue";
 
      props:['product'],
          data:()=> ({
-             productOffer:[],
+
              productId: 55,
+             outletProducts:[]
     }), 
 
-    async fetch() {
+      async fetch() {
         try{
-            this.productOffer = await this.$axios.$get(`http://localhost:3000/api/product/${this.productId}`)     
-            }catch(err){
-            console.log(err);
+            this.outletProducts = await this.$axios.$get(`http://localhost:3000/api/outlet`)     
+        }catch(err){
+            console.log(err)
         }
     },
+      components: { ProductCard }
 }
 </script>
 
 <style scoped>
+
 .index-bg{
-  background-image: url("../src/assets/img/buddhaBeige.jpg");
-  height: 100vh;
-  background-position: center;
+  background-image: url("../src/assets/img/buddha_orderConfirmation.jpg");
+  height: 80vh;
+  background-repeat: no-repeat;
   position:fixed;
-  top:7;
   left:0;
   right:0;
-  background-size: cover;
+  bottom:0;
 }
 
-.flex{
-  display:flex;
-  justify-content: center;
-  margin-top:15em;
+.grid{
+  width:73vw;
+  display:grid;
+  grid-template-columns: 50% 50%;
+  margin-left:21vw;
 }
 
+.btn-info{
+  height:5em;
+  width:25em;
+  margin:auto;
+}
 
 .search{
   margin-left:10em;

@@ -52,7 +52,7 @@ import GetImage from "./GetImage.vue";
 
     .productInformation{
         width:30em;
-        padding:1em;
+        padding:1.2em;
       
     }
 

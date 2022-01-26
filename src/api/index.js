@@ -125,7 +125,7 @@ app.post('/image', async(req, res) =>{
 })
 
 //Creates a product
-app.post('/product', async(req, res) =>{
+app.post('/postproduct', async(req, res) =>{
     const result = await prisma.product.create({
         data:{
             name: req.body.name,
@@ -137,6 +137,63 @@ app.post('/product', async(req, res) =>{
         },
     })
     res.json(result)
+})
+
+//creates a customer
+app.post('/postcustomer', async(req, res) =>{
+  const result = await prisma.customer.create({
+      data:{
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          phone: req.body.phone,
+          email: req.body.email,
+          road: req.body.road,
+          zip_code: req.body.zip_code,
+          city: req.body.city
+      },
+  })
+  res.json(result)
+})
+
+//creates an order
+app.post('/postorder', async(req, res) =>{
+  const result = await prisma.order.create({
+      data:{
+          customer_id: req.body.customer_id,       
+          order_sum: req.body.order_sum
+      },
+  })
+  res.json(result)
+})
+
+//UPDATE **DELETE UPDATE SECTION IF NOT USED
+//Updates a product
+app.put('/updateproduct/:productId', async(req, res) =>{
+  const {productId} = req.params
+  const result = await prisma.product.update({
+  where:{
+    id:parseInt(productId)
+  },
+      data:{
+          order_id:req.body.order_id
+      },
+  })
+  res.json(result)
+})
+
+
+//Updates an order
+app.put('/updateorder/:orderId', async(req, res) =>{
+  const {orderId} = req.params
+  const result = await prisma.order.update({
+  where:{
+    id:parseInt(orderId)
+  },
+      data:{
+          products: req.body.products
+      },
+  })
+  res.json(result)
 })
 
 export default {

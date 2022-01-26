@@ -19,7 +19,8 @@ model Product{
   on_sale Boolean
   img Image @relation(fields: [img_id], references: [id])
   img_id Int 
-  order Order[] 
+  order Order[] @relation(fields: [order_id], references: [id])
+  order_id Int?
   price Decimal 
 }
 
@@ -39,11 +40,10 @@ model Category{
 
 model Order{
   id Int @id @default(autoincrement())
-  customer Customer[] @relation( fields: [customer_id], references: [id])
+  customer Customer @relation( fields: [customer_id], references: [id])
   customer_id Int 
-  products Product[] @relation( fields: [product_id], references: [id])
-  product_id Int
-  product_cost Decimal
+  products Product[] //@relation( fields: [product_id], references: [id])
+  //product_id Int
   order_sum Decimal
 }
 
@@ -51,9 +51,10 @@ model Customer{
   id Int @id @default(autoincrement())
   first_name String 
   last_name String
-  phone Int @db.TinyInt
+  phone Int
   email String @db.VarChar(255) @unique
-  road String @db.VarChar(50) @unique
-  zip_code Int @db.TinyInt
+  road String @db.VarChar(100)
+  zip_code Int 
+  city String
   order Order[]
 }

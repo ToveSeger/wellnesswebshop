@@ -129,6 +129,10 @@ export const actions={
 
 
 export const getters={
+    getItemsInCart: state=>{
+        return state.itemsInCart
+    },
+
     getAddedProductIds: state=>{
         return state.addedProductIds
     },
@@ -155,6 +159,30 @@ export const getters={
 
     getProductAmountById:state=>id=>{
         return state.addedProductIds.find((addedProductIds=>addedProductIds.id===id)).amount
+    },
+
+    getCartSum:state=>{
+          const sumArray = []
+          var sum = 0
+          var total = 0
+          state.itemsInCart.forEach(item => {
+             state.addedProductIds.forEach(product => {
+                 if(item.id == product.id)
+                var amountToAdd = item.price * product.amount
+                if(amountToAdd!=undefined){
+                    sumArray.push(amountToAdd)
+                }
+             });
+          })
+
+          sumArray.forEach(item => {
+              sum+=parseFloat(item)
+          });
+
+            return parseFloat(sum).toFixed(2)
+        
+
+
     }
 
     
