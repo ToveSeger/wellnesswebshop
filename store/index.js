@@ -133,6 +133,10 @@ export const getters={
         return state.itemsInCart
     },
 
+    getItemsInCartById: state=> id =>{
+        return state.itemsInCart.find((itemsInCart=>itemsInCart.id===id))
+    },
+
     getAddedProductIds: state=>{
         return state.addedProductIds
     },
