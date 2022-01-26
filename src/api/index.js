@@ -168,14 +168,14 @@ app.post('/postorder', async(req, res) =>{
 
 //UPDATE **DELETE UPDATE SECTION IF NOT USED
 //Updates a product
-app.put('/updateproduct/:productId', async(req, res) =>{
+app.put('/updateproductstock/:productId', async(req, res) =>{
   const {productId} = req.params
   const result = await prisma.product.update({
   where:{
     id:parseInt(productId)
   },
       data:{
-          order_id:req.body.order_id
+          stock:req.body.stock
       },
   })
   res.json(result)

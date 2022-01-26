@@ -58,7 +58,7 @@
 <script>
 import Cart from "../src/components/Cart.vue";
 import OrderConfirmation from "../src/components/OrderConfirmation.vue";
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
     export default {
     
         data:()=>{
@@ -89,6 +89,7 @@ import { mapState, mapMutations } from 'vuex';
     },
 
     methods:{
+        //Triggers when "comfirm order" is pressed
         async  submitForm(){
 //creates a new instance in customer table
         const customer = await this.$axios.$post('http://localhost:3000/api/postcustomer',{
@@ -122,8 +123,32 @@ import { mapState, mapMutations } from 'vuex';
             console.log("order id: " + order.id)
             this.order=order
             this.pressed=true  
-            this.$store.commit('EMPTY_CART')
+            this.stockCorrection()
+           
+           
         },
+        //Looks for which products stock correction is to be done at
+         stockCorrection(){
+            console.log(this.$store.getters.getAddedProductIds)
+            const productsAndAmounts=this.$store.getters.getAddedProductIds 
+            productsAndAmounts.forEach(product => {
+                this.correctStock(product)
+            });
+
+            console.log(updatedProduct)
+        },
+
+        //Carries out the stock correction
+        async correctStock(product){
+           var updatedAmount= (this.$store.getters.getItemsInCartById(product.id).stock) - product.amount
+           console.log("updated amount: " + updatedAmount)
+            const updatedProduct = await this.$axios.$put(`http://localhost:3000/api/updateproductstock/${product.id}`,{
+              
+                   stock: updatedAmount
+               }) 
+            //Empties the cart
+                this.$store.commit('EMPTY_CART')
+        }
     },
 
    
