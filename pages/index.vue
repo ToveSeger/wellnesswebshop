@@ -7,7 +7,7 @@
             <div v-for="product in outletProducts.slice(0,3)" :key="product.id" class="card" >         
                     <ProductCard :product="product"/>              
             </div>
-            <button class="btn btn-info">Show me everything in the outlet!</button>
+            <NuxtLink type="button" to="/outlet" class="btn btn-light">Show me everything in the outlet!</NuxtLink>
           </ul>
     </div>  
   </div>
@@ -61,10 +61,15 @@ import GetLargeImage from "../src/components/GetLargeImage.vue";
   margin-left:21vw;
 }
 
-.btn-info{
+.btn-light{
+  color: #177585;
   height:5em;
   width:25em;
   margin:auto;
+  font-weight: bold;
+  font-size:1.2em;
+  border: 0.5em solid  #177585;
+  padding:1em;
 }
 
 .search{
