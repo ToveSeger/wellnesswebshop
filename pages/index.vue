@@ -3,7 +3,7 @@
       <div>       
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
-          <ul v-else class="grid" >
+          <ul v-else class="grid">
             <div v-for="product in outletProducts.slice(0,3)" :key="product.id" class="card" >         
                     <ProductCard :product="product"/>              
             </div>
@@ -71,6 +71,8 @@ import GetLargeImage from "../src/components/GetLargeImage.vue";
   border: 0.5em solid  #177585;
   padding:1em;
 }
+
+
 
 .search{
   margin-left:10em;
