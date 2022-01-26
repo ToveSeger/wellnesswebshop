@@ -52,8 +52,6 @@
                 :order="order"
                 />
             </div>
-        </div>
-
     </div>
 </template>
 
