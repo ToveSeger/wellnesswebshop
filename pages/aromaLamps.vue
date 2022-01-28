@@ -44,7 +44,7 @@ import ProductCard from "../src/components/ProductCard.vue";
 
     export default {     
 
-    props:['product'],
+  //  props:['product'],
          data:()=> ({
              allProducts:[],
              categoryId: 6,

@@ -116,17 +116,38 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
         console.log(this.cartSum)
          const order = await this.$axios.$post('http://localhost:3000/api/postorder',{
             customer_id: customerId,
-            products: this.itemsInCart,// this.getProductIds(), //foreach prod in itemsincart samla id i en array
+            products: this.itemsInCart,
             order_sum: this.cartSum
             }) 
 
             console.log("order id: " + order.id)
             this.order=order
             this.pressed=true  
-            this.stockCorrection()
-           
+            
+            this.productTracking(order)
            
         },
+
+        //Collects information and looks for which products to track
+        productTracking(order){
+            const productsAndAmounts=this.$store.getters.getAddedProductIds 
+            productsAndAmounts.forEach(product => {
+                this.addProductTrackInstance(product, order)
+            });         
+        },
+
+        //Creates instance in product tracking table
+       async addProductTrackInstance(product, order){
+            const instance = await this.$axios.$post(`http://localhost:3000/api/producttracking`,{      
+                   product_id: product.id,
+                   order_id: order.id,
+                   amount: product.amount
+               }) 
+
+               console.log("ORDER INSTANCE:" + instance)
+            this.stockCorrection()
+        },
+
         //Looks for which products stock correction is to be done at
          stockCorrection(){
             console.log(this.$store.getters.getAddedProductIds)
@@ -135,7 +156,6 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
                 this.correctStock(product)
             });
 
-            console.log(updatedProduct)
         },
 
         //Carries out the stock correction

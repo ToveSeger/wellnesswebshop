@@ -52,9 +52,16 @@ model Customer{
   first_name String 
   last_name String
   phone Int
-  email String @db.VarChar(255) @unique
+  email String @db.VarChar(255)
   road String @db.VarChar(100)
   zip_code Int 
   city String
   order Order[]
+}
+
+model ProductTracking{
+   id Int @id @default(autoincrement())
+   product_id Int
+   order_id Int
+   amount Int
 }

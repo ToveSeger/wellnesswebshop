@@ -15,16 +15,15 @@
 
 <script>
 
-import SpecialOffer from "../src/components/SpecialOffer.vue"
 import Search from "../src/components/Search.vue"
 import ProductCard from "../src/components/ProductCard.vue";
 import GetLargeImage from "../src/components/GetLargeImage.vue";
 
 
   export default {
-    components: { SpecialOffer, Search, ProductCard, GetLargeImage },
+    components: {Search, ProductCard, GetLargeImage },
 
-     props:['product'],
+     //props:['product'],
          data:()=> ({
 
              productId: 55,

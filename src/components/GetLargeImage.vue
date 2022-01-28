@@ -9,7 +9,7 @@
         props:['product'],
         
            data:()=> ({
-             prodImg:[]
+             prodImg:{}
         }), 
 
         computed:{
