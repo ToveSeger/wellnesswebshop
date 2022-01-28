@@ -21,10 +21,6 @@ import GetImage from "./GetImage.vue";
     export default {
     props: ["item"],
 
-    data:()=> ({
-             currentArticles:[]
-    }), 
-
      computed:{
         ...mapGetters(['getProductById']),
     }, 

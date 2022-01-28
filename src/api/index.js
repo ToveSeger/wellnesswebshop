@@ -94,10 +94,10 @@ app.get('/image/:id', async(req, res) =>{
 })
 
 //Gets all images - doesnt work
-app.get('/image/all', async(req, res) =>{
+/* app.get('/image/all', async(req, res) =>{
   const images = await prisma.image.findMany()
   res.json(images)
-})
+}) */
 
 // CREATE 
 
@@ -166,8 +166,20 @@ app.post('/postorder', async(req, res) =>{
   res.json(result)
 })
 
-//UPDATE **DELETE UPDATE SECTION IF NOT USED
-//Updates a product
+//creates an instance in product tracking
+app.post('/producttracking', async(req, res) =>{
+  const result = await prisma.productTracking.create({
+      data:{
+         product_id: req.body.product_id,     
+         order_id: req.body.order_id,
+         amount: req.body.amount
+      },
+  })
+  res.json(result)
+})
+
+//UPDATE
+//Updates a product's stock
 app.put('/updateproductstock/:productId', async(req, res) =>{
   const {productId} = req.params
   const result = await prisma.product.update({
@@ -183,7 +195,7 @@ app.put('/updateproductstock/:productId', async(req, res) =>{
 
 
 //Updates an order
-app.put('/updateorder/:orderId', async(req, res) =>{
+/* app.put('/updateorder/:orderId', async(req, res) =>{
   const {orderId} = req.params
   const result = await prisma.order.update({
   where:{
@@ -194,7 +206,7 @@ app.put('/updateorder/:orderId', async(req, res) =>{
       },
   })
   res.json(result)
-})
+}) */
 
 //SORT
 
