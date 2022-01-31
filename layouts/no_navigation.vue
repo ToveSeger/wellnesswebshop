@@ -16,6 +16,6 @@ import Cart_top from "../src/components/Cart_top.vue"
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>   
