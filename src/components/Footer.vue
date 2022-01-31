@@ -39,4 +39,19 @@
         color:#177585;      
     }
 
+    @media all and (max-width: 750px){
+
+         .footer-bg{
+        height: 8em;
+      
+    }
+     .flex{
+         flex-direction: column;
+         margin-top:0.7em;
+         margin-left: 28vw;
+     }
+
+
+}
+
 </style>
