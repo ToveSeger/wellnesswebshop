@@ -6,9 +6,7 @@ export const state=()=>({
 
     addedProductIds: [{}],
 
-    inCart: false, 
-
-    test: "blö",
+    //inCart: false, 
 
     activeProductId: 0
 
@@ -48,8 +46,8 @@ export const mutations={
            console.log("amountObject: " + amountObject.id + ", " + amountObject.amount)
        }
 
-       state.inCart=true
-       console.log("cartState:" + state.inCart)
+       /* state.inCart=true
+       console.log("cartState:" + state.inCart) */
    },
 
    ADD_PRODUCT_AMOUNT(amount){
@@ -102,23 +100,13 @@ export const mutations={
        console.log("product amount: " + product.amount)
    },
 
-   TEST(state, newValue){
-       state.test=newValue
-       console.log(state.test)
-   }
 }
 
 export const actions={
     setAmount({commit, state}, newValue){
         commit("SET_AMOUNT", newValue)
-        //return getters.getProductById(state.activeProduct)
         return state.addedProductIds
     }, 
-
-    setTest({commit, state}, payload){
-        commit('TEST', payload)
-        return state.test
-    },
 
     setActiveProduct({commit, state}, product){
         commit('SET_ACTIVE_PRODUCT', product)
@@ -145,16 +133,12 @@ export const getters={
         return state.addedProductIds.length
     },
 
-    getInCart: state=>{
+  /*   getInCart: state=>{
         return state.inCart
-    },
+    }, */
 
     getProductById: state => id =>{
         return state.addedProductIds.find((addedProductIds=>addedProductIds.id===id))
-    },
-
-    getTest: state=> {
-        return state.test
     },
 
     getActiveProductId: state =>{

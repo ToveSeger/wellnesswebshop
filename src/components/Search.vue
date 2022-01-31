@@ -33,12 +33,13 @@
 <style scoped>
     .container{
         margin-top:7em;
-        /* background-color: #EAF4F7;  */
         width:40em;
         height:3.5em;
-        position:fixed;
-        margin-left:33vw;
-        top:0em;
+      /*   position:fixed; */
+        /* margin-left:33vw; */
+        margin-left:auto;
+        margin-right:auto;
+        /* top:0em; */
         z-index:9999;
     }
 

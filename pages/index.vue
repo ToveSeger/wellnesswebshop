@@ -1,13 +1,13 @@
 <template>
-  <div class="index-bg"> 
+  <div> 
       <div>       
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
           <ul v-else class="grid">
-            <div v-for="product in outletProducts.slice(0,3)" :key="product.id" class="card" >         
-                    <ProductCard :product="product"/>              
+            <div v-for="product in outletProducts.slice(0,5)" :key="product.id" class="card" >         
+                    <ProductCardSlim :product="product"/>              
             </div>
-            <NuxtLink type="button" to="/outlet" class="btn btn-light">Show me everything in the outlet!</NuxtLink>
+            <NuxtLink type="button" to="/outlet" class="btn btn-light">Take me to the outlet!</NuxtLink>
           </ul>
     </div>  
   </div>
@@ -16,13 +16,12 @@
 <script>
 
 import Search from "../src/components/Search.vue"
-import ProductCard from "../src/components/ProductCard.vue";
 import GetLargeImage from "../src/components/GetLargeImage.vue";
+import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 
 
   export default {
-    components: {Search, ProductCard, GetLargeImage },
-
+  
      //props:['product'],
          data:()=> ({
 
@@ -37,43 +36,57 @@ import GetLargeImage from "../src/components/GetLargeImage.vue";
             console.log(err)
         }
     },
-      components: { ProductCard }
+       components: {Search, ProductCardSlim, GetLargeImage }
 }
 </script>
 
 <style scoped>
 
-.index-bg{
-  background-image: url("../src/assets/img/buddha_orderConfirmation.jpg");
-  height: 80vh;
-  background-repeat: no-repeat;
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-}
-
 .grid{
-  width:73vw;
+  margin-top:2em;
+  margin-bottom:10em;
+  margin-left:auto;
+  margin-right: auto;
+  width:70vw;
   display:grid;
-  grid-template-columns: 50% 50%;
-  margin-left:21vw;
+  grid-template-columns: 33% 33% 33%;
+  gap:1em;
 }
 
 .btn-light{
   color: #177585;
-  height:5em;
-  width:25em;
-  margin:auto;
+  max-height:4em;
+  max-width:19em;  
+  margin-top:6em; 
+  margin-left:1.5em;
   font-weight: bold;
-  font-size:1.2em;
-  border: 0.5em solid  #177585;
-  padding:1em;
+  font-size:clamp(0.8rem, 0.8rem + 0.3vw, 1.5rem);
+  border: 0.4em solid  #177585;
+  padding-top:0.8em;
 }
 
-
+.card{
+  max-width:25em;
+}
 
 .search{
   margin-left:10em;
+}
+
+@media all and (max-width: 1050px){
+    .grid{
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+
+@media all and (max-width: 750px){
+    .grid{
+    grid-template-columns: 100%;
+    width:80vw;
+  }
+
+
 }
 </style>
