@@ -128,7 +128,7 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
            
         },
 
-        //Collects information and looks for which products to track
+        //Collects information to be able to create instance in product tracking table
         productTracking(order){
             const productsAndAmounts=this.$store.getters.getAddedProductIds 
             productsAndAmounts.forEach(product => {

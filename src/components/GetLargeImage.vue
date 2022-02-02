@@ -35,16 +35,16 @@
 
 <style scoped>
  .image{
-    height: 24em;
-    width:20em;
+    height: 22em;
+    width:35em;
     display: flex;
     justify-content: center;
-    padding:2em;
 }
 
 img{
-    height:20em;
     border:0.1em solid rgb(233, 231, 231);
+    max-width: 100%;
+    max-height: 100%;
 }
 
 

@@ -19,6 +19,6 @@ import Search from "../src/components/Search.vue"
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>   

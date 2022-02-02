@@ -32,22 +32,37 @@
                     </svg>
                 </button>
               </div>
-            <div v-for="product in allProducts" :key="product.id" class="card" >         
-                    <ProductCard :product="product"/>              
-            </div>
+               <div v-if="mobileOrTablet">
+                    <div v-for="product in allProducts" :key="product.id" class="cardComponent" >         
+                        <ProductCard_mobile :product="product"/>     
+                    </div>         
+              </div>    
+              <div v-else>
+                <div v-for="product in allProducts" :key="product.id" class="card" >         
+                        <ProductCard :product="product"/>              
+                </div>
+              </div>
         </ul>
     </div>
 </template>
 
 <script>
 import ProductCard from "../src/components/ProductCard.vue";
+import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
     export default {     
 
-    //props:['product'],
          data:()=> ({
              allProducts:[],
              categoryId: 2,
+             mobileOrTablet: 0
     }), 
+
+    mounted() {  
+        this.mobileOrTablet = window.innerWidth<1100    
+        window.onresize = () => {
+        this.mobileOrTablet = window.innerWidth <1100
+        }
+    },
 
     async fetch() {
         try{
@@ -76,7 +91,7 @@ import ProductCard from "../src/components/ProductCard.vue";
     },
 
 
-    components: { ProductCard }
+    components: { ProductCard, ProductCard_mobile }
 }
 
 
@@ -107,5 +122,22 @@ import ProductCard from "../src/components/ProductCard.vue";
      .btn-light:hover .tooltiptext {
         visibility:visible;
     }
+
+    @media all and (max-width: 1250px){ 
+    .flex{
+        width:90vw;
+    }
+}
+@media all and (max-width: 1100px){
+    .card{
+    height:25em;
+
+    }
+
+    .flex{
+        width:90vw;
+    }
+    
+}
 
 </style>

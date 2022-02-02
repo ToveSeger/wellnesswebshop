@@ -1,7 +1,7 @@
 <template>
     <div class="cartContainer">
             <div class="itemContainer">
-                <div class="imgContainer">
+                <div v-if="!smallScreen" class="imgContainer">
                     <GetImage :product=item />
                 </div>
                     <div class="articleDetails">
@@ -18,8 +18,20 @@
 <script>
 import {mapMutations, mapGetters} from "vuex"
 import GetImage from "./GetImage.vue";
+
     export default {
     props: ["item"],
+
+      data:()=> ({
+             smallScreen: 0 
+    }), 
+
+    mounted() {  
+        this.smallScreen = window.innerWidth<766  
+        window.onresize = () => {
+        this.smallScreen = window.innerWidth <766
+        }
+    },
 
      computed:{
         ...mapGetters(['getProductById']),
@@ -43,11 +55,12 @@ import GetImage from "./GetImage.vue";
        margin:auto;
        padding:2em;
        border: 0.1em solid #84CBD5;
-       height:15em;
+       height:16em;
        width:50em;
        display:flex;
        flex-direction: row;
        gap:6.5em;
+       width:100%;
    }
 
    .btn-danger{
