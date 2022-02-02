@@ -6,11 +6,16 @@
          <div>        
             <div v-if="this.product" class="flex">
             <div class="card">           
-                    <div class="productImg">
+                    <div v-if="smallScreen" class="productImg">
+                        <GetImage
+                        :product="product"
+                        />
+                    </div>  
+                     <div v-else class="productImg">
                         <GetLargeImage
                         :product="product"
                         />
-                    </div>   
+                    </div>  
                <div class="productInformation">
                     <h1>{{product.name}}</h1>
                     <div v-if="product.on_sale==true" class="sale">
@@ -59,6 +64,7 @@
 
 <script>
 import GetLargeImage from "../../src/components/GetLargeImage.vue"
+import GetImage from "../../src/components/GetImage.vue"
 import ProductCard from "../../src/components/ProductCard.vue"
 import {mapMutations, mapActions, mapGetters} from "vuex"
     export default {    
@@ -67,8 +73,10 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
             counter: 1,
             addedProducts: [],
             inCart: false,
-            activeProduct: 0
+            activeProduct: 0,
+            smallScreen: 0
         }), 
+
         async fetch() {
             this.product = await this.$axios.$get(`http://localhost:3000/api/product/${this.$route.params.details}`)     
         },
@@ -83,17 +91,15 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
           
              ...mapGetters(['getProductById','getProductAmountById']),
         },
-
-   /*   beforeMount(){
-        this.count = this.getProductAmountById(this.activeProduct)   
-    }, */
-     
                                  
     mounted(){
         this.addedProducts = this.$store.getters.getAddedProductIds      
         this.activeProduct =  this.$route.params.details  
         this.setActiveProduct(parseInt(this.activeProduct))
-      
+        this.smallScreen = window.innerWidth<766  
+        window.onresize = () => {
+        this.smallScreen = window.innerWidth <766
+        }
 
          this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
 
@@ -123,7 +129,7 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
         ...mapActions(['setAmount', 'setActiveProduct' ])
     },
  
-    components: { ProductCard, GetLargeImage }
+    components: { ProductCard, GetLargeImage, GetImage }
 }
     
 
@@ -133,30 +139,30 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
 <style  scoped>
     .flex{
         margin:auto;
-        width:80vw;
+        width:90vw;
         height:80vh;
         margin-top:2em;
         margin-bottom:10em;
     }
 
     .card{
-        max-width:80%;
+        max-width:100%;
         max-height:100%;
         margin:auto;
         display: flex;
         flex-direction: row;
-      
     }
 
 
     .productImg{
-        margin-top:2em;
-        margin-left:4em;
+        max-width:50%;
+        margin-top:4em;
+        margin-left:2em;
     }
 
     .productInformation{
         padding:5em;
-        width:60%;
+        width:50%;
     }
 
     .productInformation p{
@@ -185,6 +191,15 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
        width:100%;
        max-height: 100%;
    }
+
+   @media all and (max-width: 450px){
+  
+    .card{
+      max-height:130vh;
+      
+   }
+  }
+
 
 }
 

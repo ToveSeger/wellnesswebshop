@@ -66,11 +66,6 @@ import GetImage from "./GetImage.vue";
         color:red;
     }
 
-@media all and (max-width: 1100px){
-   .btn{
-      
-   }
-}
 
    
 </style>

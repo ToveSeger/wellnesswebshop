@@ -36,8 +36,6 @@
 
 <style scoped>
  .image{
-    /* max-height: 10em;
-    max-width: 15em; */
     max-width: 100%;
     max-height: 100%;
 }

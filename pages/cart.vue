@@ -3,7 +3,6 @@
         <div class="innerContainer">
             <h1>My Shopping Cart</h1>
             <div class="topSection">
-            <NuxtLink to="/" class="nav-link"><h4>Back to store</h4></NuxtLink> 
             </div>
         <Cart
         v-for="item in itemsInCart"
@@ -64,6 +63,8 @@ import Cart from '../src/components/Cart.vue';
     position:relative;
     height: fit-content;
     border: 0.5em solid #177585;
+    height:100vh;
+    width:80vw;
     margin-top:10em;
     margin-bottom:10em;
 }
@@ -71,30 +72,35 @@ import Cart from '../src/components/Cart.vue';
     margin-top:1em;
     width:70em;
     margin-bottom:10em;
+    width:100%
 }
 
 h1{
+    font-size:clamp(1.2rem, 1.8rem + 0.4vw, 2.5rem);
     font-family: 'Signika', sans-serif;
     color: #177585;
     text-decoration:underline;
     width:10em;
-    margin:auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .emptyCart{
+    font-size:clamp(1rem, 1.4rem + 0.3vw, 2rem);
     font-family: 'Signika', sans-serif;
     color: #177585;
-    width:30em;
+    width:17em;
     margin:auto;
     position: relative;
+    top:2em;
     bottom:8em;
+    max-width:100%;
 }
 
 .cartTotal{
     font-family: 'Signika', sans-serif;
     margin:auto;
     position: relative;
-    margin:auto;
     width:10em;
     bottom:8em;
 }
@@ -104,12 +110,7 @@ h1{
     top:0.5em;  
 }
 
-.nav-link{
-    font-family: 'Signika', sans-serif;
-    font-weight: bold;
-    color:black;
-    margin-left:50em;
-}
+
 
 .btn-dark{
     position:absolute;
