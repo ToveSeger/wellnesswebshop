@@ -115,14 +115,6 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
             }
         }
 
-       /*  this.counter=()=>{
-            if(this.inCart){
-                return getProductAmountById(this.activeProduct)
-            }
-        } */
-        
-
-
     },
 
     methods:{            
@@ -142,19 +134,20 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
     .flex{
         margin:auto;
         width:80vw;
-        height:60vh;
-        margin-top:13em;
+        height:80vh;
+        margin-top:2em;
+        margin-bottom:10em;
     }
 
     .card{
-        width:80em;
-        height:30em;
-        margin:2em;
+        max-width:80%;
+        max-height:100%;
         margin:auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+      
     }
+
 
     .productImg{
         margin-top:2em;
@@ -163,9 +156,13 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
 
     .productInformation{
         padding:5em;
-        width:50%;
+        width:60%;
     }
 
+    .productInformation p{
+        max-width: 100%;
+        max-height: 100%;
+    }
     .sale{
         color:red;
     }
@@ -173,4 +170,22 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
     .stock{
         margin-bottom:1em;
     }
+
+    @media all and (max-width: 1050px){
+        .flex{
+            height:110vh;
+        }
+   .card{
+       flex-direction: column;
+       gap:0em;
+      
+   }
+
+   .productInformation{
+       width:100%;
+       max-height: 100%;
+   }
+
+}
+
 </style>

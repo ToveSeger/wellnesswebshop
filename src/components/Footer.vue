@@ -49,7 +49,6 @@
          margin-left: auto;
          margin-right:auto;
          width:15em;
-         border:solid;
      }
 
 
