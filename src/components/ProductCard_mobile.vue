@@ -1,13 +1,15 @@
 <template>
     <div>
-        <div class="container">
+        <div class="card">
+            <div class="innerContainer">
+            <h1>{{product.name}}</h1>
             <div class="productImg">
                 <GetImage
                 :product="product"
                 />
             </div> 
+            <div class="flex">
             <div class="productInformation">
-                        <h1>{{product.name}}</h1>
                         <p>{{"Stock:" + " " + product.stock}}</p>
                          <div v-if="product.on_sale==true" class="sale">
                         <h3>Sale!</h3> 
@@ -24,6 +26,9 @@
              <NuxtLink :to="`/productdetails/${product.id}`" type="button" class="btn btn-info">
                    Read more
              </NuxtLink>  
+            </div>
+
+            </div>
         </div>
     </div>
 </template>
@@ -40,25 +45,38 @@ import GetImage from "./GetImage.vue";
 
 <style scoped>
 
-    .container{
+    .card{
         display:flex;
-        justify-content: space-between;
+        
+        max-height:50em;
     }
 
+    .innerContainer{
+        padding:1em;
+        margin-left:auto;
+        margin-right:auto;
+        max-width:100%;
+    }
+    
     .productImg{
-     margin-top:4em;
+    margin:1em;
     }
-
 
     .productInformation{
         width:30em;
         padding:1.2em;
-      
+        max-width:100%;
+    }
+
+      .productInformation p{
+       max-width:100%;
+  
     }
 
     .btn{
         height:2.5em;
-        margin-top:8em;
+        width:15em;
+        margin-top:0.5em;
         text-align:center;
     }
 
@@ -66,10 +84,9 @@ import GetImage from "./GetImage.vue";
         color:red;
     }
 
-@media all and (max-width: 1100px){
-   .btn{
-      
-   }
+.flex{
+    display:flex;
+    flex-direction: column;
 }
 
    
