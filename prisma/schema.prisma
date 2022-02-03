@@ -5,6 +5,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+//url= main database, shadowDatabaseUrl= needed to temporarily create a database during migrate dev
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
