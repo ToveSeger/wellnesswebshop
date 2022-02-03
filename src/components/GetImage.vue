@@ -1,6 +1,6 @@
 <template>
-<div class="image">
- <img :src="imageFromApi.image" alt="">
+<div class="image">  
+        <img :src="imageFromApi.image" alt="">
 </div>
 </template>
 
@@ -10,17 +10,18 @@
         props:['product'],
         
            data:()=> ({
-             prodImg:{}
+             prodImg:{},
         }), 
 
         computed:{
-            imageFromApi(){
-                return{
-                   image: this.prodImg.name && require((`../assets/img/${this.product.category_id}/${this.prodImg.name || this.prodImg.alt_text}`))
-                }
-            }
+            imageFromApi(){          
+            return{                       
+                image: this.prodImg.name && require((`../assets/img/${this.product.category_id}/${this.prodImg.name || this.prodImg.alt_text}`))                     
+            }                 
         },
-
+    
+        },
+        
         async fetch() {
             try{
                 this.prodImg = await this.$axios.$get(`http://localhost:3000/api/image/${this.product.img_id}`)     
@@ -28,9 +29,7 @@
                 console.log(err)
             }
         },   
-    
     }
-
 
 </script>
 
