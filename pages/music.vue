@@ -53,7 +53,7 @@ import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
 
          data:()=> ({
              allProducts:[],
-             categoryId: 4,
+             categoryId: 14,
              mobileOrTablet: 0
     }), 
 

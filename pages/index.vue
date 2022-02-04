@@ -1,6 +1,6 @@
 <template>
   <div> 
-      <div>       
+      <div class="container">       
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
           <ul v-else class="grid">
@@ -42,6 +42,9 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 
 <style scoped>
 
+.container{
+  height:100vh;
+}
 .grid{
   margin-top:2em;
   margin-bottom:10em;

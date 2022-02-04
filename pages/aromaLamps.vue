@@ -54,7 +54,7 @@ import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
   //  props:['product'],
          data:()=> ({
              allProducts:[],
-             categoryId: 6,
+             categoryId: 16,
              mobileOrTablet: 0  
     }), 
 

@@ -21,13 +21,13 @@
         height: 7em;
         width: 100vw;
         background-color: #EAF4F7;
-        position:absolute;
+        position:fixed;
         bottom:0;
         padding:2em;
     }
 
 .flex{
-    width:30em;
+    width:40em;
     display: flex;
     font-weight: 900;
     font-family: 'Source Sans Pro', sans-serif;
