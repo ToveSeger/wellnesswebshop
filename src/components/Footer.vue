@@ -1,3 +1,4 @@
+//Technical Documentation: 7.3
 <template>
     <div class="footer-bg">
         <div class="flex">

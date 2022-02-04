@@ -1,3 +1,4 @@
+//Technical Documentation: 2.1
 <template>
     <div>
         <p v-if="$fetchState.pending">Loading....</p>
@@ -74,12 +75,12 @@ import ProductCard from "../../src/components/ProductCard.vue"
 import {mapMutations, mapActions, mapGetters} from "vuex"
     export default {    
     data:()=> ({
-            product:[],    
+            product:{},    
             counter: 1,
             addedProducts: [],
             inCart: false,
             activeProduct: 0,
-            smallScreen: 0
+            smallScreen: false
         }), 
 
         async fetch() {
@@ -87,12 +88,6 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
         },
 
         computed:{
-
-             getCounterValue(){
-                return{
-                    counter:this.getProductAmountById(this.activeProduct)
-                }
-            },  
           
              ...mapGetters(['getProductById','getProductAmountById']),
         },

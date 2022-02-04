@@ -1,3 +1,4 @@
+//Technical Documentation: 7.5
 <template>
 <div class="image">
  <img :src="imageFromApi.image" alt="">

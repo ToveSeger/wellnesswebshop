@@ -1,3 +1,4 @@
+//Technical Documentation: 7.4
 <template>
 <div class="image">  
         <img :src="imageFromApi.image" alt="">
@@ -21,7 +22,7 @@
         },
     
         },
-        
+
         async fetch() {
             try{
                 this.prodImg = await this.$axios.$get(`http://localhost:3000/api/image/${this.product.img_id}`)     

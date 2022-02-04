@@ -1,15 +1,10 @@
+//Technical Documentation: 8.1
 export const state=()=>({
-    itemsInCart: [{
-       
-
+    itemsInCart: [{     
     }],
 
     addedProductIds: [{}],
-
-    //inCart: false, 
-
     activeProductId: 0
-
 })
 
 export const mutations={

@@ -1,3 +1,4 @@
+//Technical Documentation: 7.2
 <template>
     <div class="cartContainer">
             <div class="itemContainer">

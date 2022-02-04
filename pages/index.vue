@@ -21,11 +21,7 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 
 
   export default {
-  
-     //props:['product'],
          data:()=> ({
-
-             productId: 55,
              outletProducts:[]
     }), 
 

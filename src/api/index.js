@@ -1,3 +1,4 @@
+//Technical Documentation: 6.1
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
 
@@ -93,11 +94,6 @@ app.get('/image/:id', async(req, res) =>{
   res.json(image)
 })
 
-//Gets all images - doesnt work
-/* app.get('/image/all', async(req, res) =>{
-  const images = await prisma.image.findMany()
-  res.json(images)
-}) */
 
 // CREATE 
 
@@ -193,20 +189,6 @@ app.put('/updateproductstock/:productId', async(req, res) =>{
   res.json(result)
 })
 
-
-//Updates an order
-/* app.put('/updateorder/:orderId', async(req, res) =>{
-  const {orderId} = req.params
-  const result = await prisma.order.update({
-  where:{
-    id:parseInt(orderId)
-  },
-      data:{
-          products: req.body.products
-      },
-  })
-  res.json(result)
-}) */
 
 //SORT
 

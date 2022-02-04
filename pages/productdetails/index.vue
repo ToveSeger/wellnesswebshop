@@ -1,17 +1,7 @@
+//Technical Documentation: 2.2
 <template>
     <div>
-        <h1>all prods</h1>
-        {{"prod" + productId}}
+        <h1>Did you look for a specific product?</h1>
+        <h1>Something went wrong, please try again!</h1>
     </div>
 </template>
-
-<script>
-    export default {
-        props:['productId']
-        
-    }
-</script>
-
-<style lang="scss" scoped>
-
-</style>

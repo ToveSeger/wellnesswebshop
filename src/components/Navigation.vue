@@ -1,9 +1,10 @@
+ <!--Technical Documentation: 7.7-->
 <template>
     <div class="nav-bg">
             <div class="flex">
                 <NuxtLink to="/"><img class="logo" src="../../src/assets/img/logotype_small.png" alt="wellnesswebshop logo"> 
                 </NuxtLink> 
-                    <div class="mobileMenu">
+                    <div class="mobileMenu">  <!--shows if screen size is >1050px -->
                         <button>|||</button>
                         <div class="mobileMenuDropDown">            
                         <MobileNavigation/>
@@ -40,13 +41,6 @@ import Search from './Search.vue'
 import MobileNavigation from './MobileNavigation.vue'
 
   export default {     
-
-       /* data:()=>{
-           return{
-               mobile:window.innerWidth<=1050
-           }
-       }, */
-    
     
   components: { Cart, Search, MobileNavigation },
 

@@ -1,3 +1,4 @@
+//Technical Documentation: 7.1
 <template>
     <div class="top-bg">
     <NuxtLink to="/"><img class="logo" src="../../src/assets/img/logotype_small.png" alt="wellnesswebshop logo"> </NuxtLink>   
