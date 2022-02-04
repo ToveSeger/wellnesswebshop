@@ -4,22 +4,23 @@
             <h1>My Shopping Cart</h1>
             <div class="topSection">
             </div>
-        <Cart
-        v-for="item in itemsInCart"
-        :key="item.id"
-        :item="item"/>
-        </div>
-        <div class="cartTotal">
-        <h5>{{"Total sum: " + "$"+cartSum}}</h5>
-        </div>
-          <button type="button" class="btn btn-dark" @click="EMPTY_CART()">Empty cart</button>
-            <div v-if="itemsInCart.length>0">
-          <NuxtLink to="/checkout" type="button" class="btn btn-info">Checkout</NuxtLink>
+            <div v-if="itemsInCart.length>0" class="cartItemDisplay">
+                <Cart
+                v-for="item in itemsInCart"
+                :key="item.id"
+                :item="item"/>
+                <button type="button" class="btn btn-dark" @click="EMPTY_CART()">
+                    Empty cart
+                </button>
+                <NuxtLink to="/checkout" type="button" class="btn btn-info">Checkout</NuxtLink>   
+                </div>
+                <div v-else class="emptyCart">
+                    <h3>You have no items in your cart yet</h3>
             </div>
-            <div v-else class="emptyCart">
-                <h3>You have no items in your cart yet</h3>
-            </div>
-          
+              </div>
+                <div v-if="itemsInCart.length>0" class="cartTotal">
+                    <h5>{{"Total sum: " + "$"+cartSum}}</h5>
+                  </div>
     </div>
 </template>
 
@@ -63,7 +64,7 @@ import Cart from '../src/components/Cart.vue';
     position:relative;
     height: fit-content;
     border: 0.5em solid #177585;
-    height:100vh;
+    height:fit-content;
     width:80vw;
     margin-top:10em;
     margin-bottom:10em;

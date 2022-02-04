@@ -41,12 +41,10 @@
             </div>
           
             <button type="submit" class="btn btn-info">Confirm order</button>
-                <!-- <button @click="placeOrder(customer.id)">place order</button> -->
             </form>
             </div>
             </div>
             <div v-else class="orderConfirmation">
-                <!-- <p>Thanks for your order  {{firstName}}!</p> -->
                 <OrderConfirmation
                 :customer="customer"
                 :order="order"

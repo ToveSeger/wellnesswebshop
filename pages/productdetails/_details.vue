@@ -33,16 +33,21 @@
                     </p> 
                      <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
                      <div v-if="inCart">
-                         <button @click="()=>{
+                         <button class="amountButton" @click="()=>{
                              if(counter>0)
                                setAmount(counter - 1)
                                counter -= 1
                              }">-</button> 
                          <input type="number" :value="getProductAmountById(product.id)"> 
-                         <button  @click="()=>{
+                         <button class="amountButton" @click="()=>{
                               setAmount(counter + 1)
                               counter += 1 
                              }">+</button>
+                    </div>
+                    <div v-else-if="product.stock==0">
+                         <button class="btn btn-info" id="outOfStock">
+                        <h5>Add to cart</h5></button>
+                        <p>out of stock</p>
                     </div> 
                     <div v-else> 
                         <button class="btn btn-info" @click="()=>{                       
@@ -172,6 +177,21 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
     .sale{
         color:red;
     }
+
+    .amountButton{
+       width:1.5em;
+       border-radius:50%;
+       border:none;
+       background-color: #EAF4F7;
+    }
+
+    #outOfStock{
+        background-color:grey;
+        border:#fff;
+        text-decoration: line-through;
+    }
+
+   
 
     .stock{
         margin-bottom:1em;

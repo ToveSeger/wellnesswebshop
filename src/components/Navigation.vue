@@ -64,11 +64,6 @@ import MobileNavigation from './MobileNavigation.vue'
         z-index:9999; 
     }
 
-    .logo{
-        height: 7em;
-        margin-left:0.5em;     
-    }
-
     .flex{
         display:flex;
         font-size:clamp(0.5rem, 0.5rem + 0.5vw, 1rem);
@@ -77,7 +72,7 @@ import MobileNavigation from './MobileNavigation.vue'
      .bi-cart3{
          width:3em;
          height:3em;
-         color:black;
+         color:rgb(56, 55, 55);
      }
 
      .bi-cart3:hover{

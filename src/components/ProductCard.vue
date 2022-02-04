@@ -43,6 +43,7 @@ import GetImage from "./GetImage.vue";
     .container{
         display:flex;
         justify-content: space-between;
+        max-height:100%;
     }
 
     .productImg{
@@ -53,7 +54,7 @@ import GetImage from "./GetImage.vue";
     .productInformation{
         width:30em;
         padding:1.2em;
-      
+        max-height: 100%;
     }
 
     .btn{

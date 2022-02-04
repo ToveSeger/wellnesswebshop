@@ -44,10 +44,10 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 
 .container{
   height:100vh;
+  margin-bottom:10em;
 }
 .grid{
   margin-top:2em;
-  margin-bottom:10em;
   margin-left:auto;
   margin-right: auto;
   width:70vw;
