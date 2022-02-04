@@ -67,7 +67,7 @@ import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
 
     async fetch() {
         try{
-            this.allProducts = await this.$axios.$get(`/api/productbycategory/${this.categoryId}`)     
+            this.allProducts = await this.$axios.$get(`https://SG-wellnesswebshop-5650-mysql-master.servers.mongodirector.com/api/productbycategory/${this.categoryId}`)     
             }catch(err){
             console.log(err);
         }
