@@ -76,7 +76,7 @@ import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
  methods:{
          async sortProductsByPrice(requestedOrder) {
         try{
-            this.allProducts = await this.$axios.$get(`http://localhost:3000/api/insence/${requestedOrder}`)     
+            this.allProducts = await this.$axios.$get(`https://SG-wellnesswebshop-5650-mysql-master.servers.mongodirector.com/api/insence/${requestedOrder}`)     
         }catch(err){
             console.log(err)
         }
