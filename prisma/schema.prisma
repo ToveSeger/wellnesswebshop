@@ -5,11 +5,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-//url= main database, shadowDatabaseUrl= needed to temporarily create a database during migrate dev
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-  //shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Product{
@@ -44,8 +43,7 @@ model Order{
   id Int @id @default(autoincrement())
   customer Customer @relation( fields: [customer_id], references: [id])
   customer_id Int 
-  products Product[] //@relation( fields: [product_id], references: [id])
-  //product_id Int
+  products Product[] 
   order_sum Decimal
 }
 

@@ -21,6 +21,7 @@
         height: 7em;
         width: 100vw;
         background-color: #EAF4F7;
+        position:absolute;
         bottom:0;
         padding:2em;
     }
