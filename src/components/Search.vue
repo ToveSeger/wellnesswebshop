@@ -1,8 +1,9 @@
+//Technical Documentation: 7.9.5
 <template>
-    <div class="container">
-        <div class="innerContainer">
-        <input v-model="query" type="text" class="form-control" placeholder="Search product">
-        <NuxtLink :to="`/results/${query}`" type="button" class="btn btn-info" >
+    <div>
+        <div class="searchContainer">
+        <input v-model="query" type="text" class="form-control" placeholder="Search product" @keyup="search">
+        <NuxtLink :to="`/results/${query}`" type="button" class="btn btn-info">
             Search
         </NuxtLink> 
         </div>
@@ -17,24 +18,26 @@
 
         query: null,
        }),  
+
+       methods:{
+           search(e){
+                if (e.key=== 'Enter' && this.query)
+                this.$router.push(`/results/${this.query}`)
+                console.log(e)                
+           }
+       }
     
     }
+
 </script>
 
 <style scoped>
-    .container{
-        margin-top:7em;
-        /* background-color: #EAF4F7;  */
-        width:40em;
-        height:3.5em;
-        position:fixed;
-        margin-left:33vw;
-        top:0em;
-        z-index:9999;
-    }
+   
 
-    .innerContainer{
-        width:25em;
+    .searchContainer{
+        margin-top:7em;
+        height:3.5em;
+        width:30vw;
         display:flex;
         gap:1em;
         margin-left:auto;
@@ -42,7 +45,21 @@
         padding:0.5em;
     }
     
+    @media all and (max-width: 1050px){
+    .searchContainer{
+     width:50vw;
+  }
 
+}
+
+@media all and (max-width: 750px){
+     .searchContainer{
+     width:80vw;
+  }
+
+
+}
+ 
 
   
 </style>

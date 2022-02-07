@@ -1,3 +1,4 @@
+//Technical Documentation: 7.3
 <template>
     <div class="footer-bg">
         <div class="flex">
@@ -23,20 +24,36 @@
         background-color: #EAF4F7;
         position:fixed;
         bottom:0;
+        padding:2em;
     }
 
 .flex{
-    width:30em;
+    width:28em;
     display: flex;
     font-weight: 900;
     font-family: 'Source Sans Pro', sans-serif;
     margin-left: auto;
     margin-right: auto;
-    margin-top:2em;
     }
 
     .nav-link{
         color:#177585;      
     }
+
+    @media all and (max-width: 750px){
+
+         .footer-bg{
+             height: 8em;   
+             padding:1em;
+        }
+     .flex{
+         flex-direction: column;
+         margin-left: auto;
+         margin-right:auto;
+         width:15em;
+     }
+
+
+}
 
 </style>

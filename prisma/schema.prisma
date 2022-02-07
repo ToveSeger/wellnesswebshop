@@ -1,9 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Technical Documentation: 5.1
 
 generator client {
   provider = "prisma-client-js"
 }
+
 
 datasource db {
   provider = "mysql"
@@ -19,7 +19,8 @@ model Product{
   on_sale Boolean
   img Image @relation(fields: [img_id], references: [id])
   img_id Int 
-  order Order[] 
+  order Order[] @relation(fields: [order_id], references: [id])
+  order_id Int?
   price Decimal 
 }
 
@@ -31,6 +32,7 @@ model Image{
    product Product[]
 }
 
+
 model Category{
    id Int @id @default(autoincrement())
    name String @db.VarChar(50) @unique
@@ -39,11 +41,9 @@ model Category{
 
 model Order{
   id Int @id @default(autoincrement())
-  customer Customer[] @relation( fields: [customer_id], references: [id])
+  customer Customer @relation( fields: [customer_id], references: [id])
   customer_id Int 
-  products Product[] @relation( fields: [product_id], references: [id])
-  product_id Int
-  product_cost Decimal
+  products Product[] 
   order_sum Decimal
 }
 
@@ -51,9 +51,17 @@ model Customer{
   id Int @id @default(autoincrement())
   first_name String 
   last_name String
-  phone Int @db.TinyInt
-  email String @db.VarChar(255) @unique
-  road String @db.VarChar(50) @unique
-  zip_code Int @db.TinyInt
+  phone Int
+  email String @db.VarChar(255)
+  road String @db.VarChar(100)
+  zip_code Int 
+  city String
   order Order[]
+}
+
+model ProductTracking{
+   id Int @id @default(autoincrement())
+   product_id Int
+   order_id Int
+   amount Int
 }

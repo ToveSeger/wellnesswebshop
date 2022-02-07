@@ -1,3 +1,4 @@
+//Technical Documentation: 7.8
 <template>
     <div>
          <p v-if="$fetchState.pending">Loading....</p>

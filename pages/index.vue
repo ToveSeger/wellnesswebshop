@@ -1,58 +1,92 @@
+//Technical Documentation: 3.5
 <template>
-  <div class="index-bg"> 
-    <div class="flex">
-        <SpecialOffer :product="productOffer"/>
-    </div>
+  <div> 
+      <div class="container">       
+        <p v-if="$fetchState.pending">Loading....</p>
+        <p v-else-if="$fetchState.error">Error while fetching products</p>   
+          <ul v-else class="grid">
+            <div v-for="product in outletProducts.slice(0,5)" :key="product.id" class="card" >         
+                    <ProductCardSlim :product="product"/>              
+            </div>
+            <NuxtLink type="button" to="/outlet" class="btn btn-light">Take me to the outlet!</NuxtLink>
+          </ul>
+    </div>  
   </div>
 </template>
 
 <script>
 
-import SpecialOffer from "../src/components/SpecialOffer.vue"
 import Search from "../src/components/Search.vue"
-import ProductCard from "../src/components/ProductCard.vue";
 import GetLargeImage from "../src/components/GetLargeImage.vue";
+import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 
 
   export default {
-    components: { SpecialOffer, Search, ProductCard, GetLargeImage },
-
-     props:['product'],
          data:()=> ({
-             productOffer:[],
-             productId: 55,
+             outletProducts:[]
     }), 
 
-    async fetch() {
+      async fetch() {
         try{
-            this.productOffer = await this.$axios.$get(`http://localhost:3000/api/product/${this.productId}`)     
-            }catch(err){
-            console.log(err);
+            this.outletProducts = await this.$axios.$get(`http://localhost:3000/api/outlet`)     
+        }catch(err){
+            console.log(err)
         }
     },
+       components: {Search, ProductCardSlim, GetLargeImage }
 }
 </script>
 
 <style scoped>
-.index-bg{
-  background-image: url("../src/assets/img/buddhaBeige.jpg");
-  height: 100vh;
-  background-position: center;
-  position:fixed;
-  top:7;
-  left:0;
-  right:0;
-  background-size: cover;
+
+.container{
+  height:100vh;
+  margin-bottom:10em;
+  width:95vw;
+  margin-left:auto;
+  margin-right: auto;
+}
+.grid{
+  margin-top:2em;
+  display:grid;
+  grid-template-columns: 33% 33% 33%;
+  gap:1em;
 }
 
-.flex{
-  display:flex;
-  justify-content: center;
-  margin-top:15em;
+.btn-light{
+  color: #177585;
+  max-height:4em;
+  max-width:19em;  
+  margin-top:6em; 
+  margin-left:1.5em;
+  font-weight: bold;
+  font-size:clamp(0.8rem, 0.8rem + 0.3vw, 1.5rem);
+  border: 0.4em solid  #177585;
+  padding-top:0.8em;
 }
 
+.card{
+  max-width:25em;
+}
 
 .search{
   margin-left:10em;
+}
+
+@media all and (max-width: 1050px){
+    .grid{
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+
+@media all and (max-width: 750px){
+    .grid{
+    grid-template-columns: 100%;
+    width:80vw;
+  }
+
+
 }
 </style>

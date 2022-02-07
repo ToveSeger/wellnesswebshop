@@ -1,3 +1,4 @@
+//Technical Documentation: 2.3
 <template>
     <div class="container">
         <p v-if="$fetchState.pending">Loading....</p>
@@ -31,5 +32,6 @@ import ProductCard from "../../src/components/ProductCard.vue"
 
 .container{
     margin-top:10em;
+    margin-bottom:10em;
 }
 </style>
