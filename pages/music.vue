@@ -102,7 +102,7 @@ import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
         margin:auto;
         width:70vw;
         margin-bottom:10em;
-        margin-top:13em;
+        margin-top:5em;
     }
 
     .card{

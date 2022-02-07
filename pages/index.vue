@@ -2,11 +2,6 @@
 <template>
   <body> 
       <div class="container">  
-        <div class="banner">
-          <NuxtLink to="/productdetails/56">
-          <img src="../src/assets/img/TheSecret_banner.png" alt="">
-          </NuxtLink>
-          </div>     
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
           <ul v-else class="grid">
@@ -53,11 +48,7 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
   margin-right: auto;
 }
 
-.banner img{
-  max-width:90%;
-  border: 0.5em solid #177585;
-  margin-left:5em;
-}
+
 .grid{
   margin-top:2em;
   display:grid;
@@ -86,6 +77,7 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 }
 
 @media all and (max-width: 1050px){
+
     .grid{
     grid-template-columns: 50% 50%;
   }
@@ -99,11 +91,6 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
     width:80vw;
   }
 
-  .banner img{
-  max-width:95%;
-  border: 0.5em solid #177585;
-  margin-left:2em;
-  }
 }
 
 </style>

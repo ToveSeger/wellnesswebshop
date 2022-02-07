@@ -52,7 +52,6 @@ import ProductCard from "../src/components/ProductCard.vue";
 import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
     export default {     
 
-  //  props:['product'],
          data:()=> ({
              allProducts:[],
              categoryId: 16,
@@ -105,7 +104,7 @@ methods:{
         margin:auto;
         width:70vw;
         margin-bottom:10em;
-        margin-top:13em;
+        margin-top:5em;
     }
 
     .card{

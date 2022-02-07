@@ -106,7 +106,7 @@ export default {
         margin:auto;
         width:70vw;
         margin-bottom:10em;
-        margin-top:13em;
+        margin-top:5em;
     }
 
     .card{
