@@ -28,7 +28,7 @@
     }
 
 .flex{
-    width:30em;
+    width:40em;
     display: flex;
     font-weight: 900;
     font-family: 'Source Sans Pro', sans-serif;
