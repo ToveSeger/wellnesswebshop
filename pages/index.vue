@@ -1,3 +1,4 @@
+//Technical Documentation: 3.5
 <template>
   <div> 
       <div class="container">       
@@ -41,12 +42,12 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 .container{
   height:100vh;
   margin-bottom:10em;
+  width:95vw;
+  margin-left:auto;
+  margin-right: auto;
 }
 .grid{
   margin-top:2em;
-  margin-left:auto;
-  margin-right: auto;
-  width:70vw;
   display:grid;
   grid-template-columns: 33% 33% 33%;
   gap:1em;

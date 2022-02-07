@@ -64,6 +64,7 @@ import MobileNavigation from './MobileNavigation.vue'
     }
 
      .bi-cart3{
+         margin-right:2em;
          width:3em;
          height:3em;
          color:rgb(56, 55, 55);

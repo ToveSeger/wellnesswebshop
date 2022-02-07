@@ -47,6 +47,7 @@ import Search from './Search.vue'
       z-index:9999;
   }
      .bi-cart3{
+         margin-right:2em;
          width:3em;
          height:3em;
          color:black;

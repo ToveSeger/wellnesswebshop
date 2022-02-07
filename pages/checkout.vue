@@ -32,15 +32,15 @@
             <small class="form-text text-muted">Your email stays with us</small>
             <label>Phone: </label>
             <input type="tel" class="form-control" v-model="phone" required>
+            <NuxtLink  target="_blank" class="linkToTerms" to="/termsandconditions"> Read the terms</NuxtLink> 
             <div class="checkboxContainer">
                 <div class="checkbox">
                     <input type="checkbox" class="form-check-input" value="" id="flexCheckDefault" required>
                 </div>
                 <div class="checkboxLabel">
-                    <label>I accept the terms</label>
+                   <label>I accept the terms</label>
                 </div>
             </div>
-          
             <button type="submit" class="btn btn-info">Confirm order</button>
             </form>
             </div>
@@ -238,10 +238,17 @@ input{
     margin-bottom:1.5em;
 }
 
+.linkToTerms{
+    margin-left:2.5em;
+    margin-top:1em;
+    width:8em;
+}
+
+
 .btn-info{
     width:10em;
     position:absolute;
-    left:7.5em;
+    left:4.5em;
     bottom:0;
 }
 

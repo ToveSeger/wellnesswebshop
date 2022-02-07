@@ -1,4 +1,4 @@
-//Technical Documentation: 2.1
+// Technical Documentation: 2.1
 <template>
     <div>
         <p v-if="$fetchState.pending">Loading....</p>
@@ -102,19 +102,14 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
         }
 
          this.inCart= inCartEvaluator(this.$route.params.details, this.addedProducts)
-
             function inCartEvaluator(productId, data){   
             var found = 0
             if(data.length > 0){
               
                 for(var i=0;i<data.length ;i++){ 
                         if(data[i].id==productId){
-                         console.log("I WAS FOUND ")
                          found=1
-                        }
-                        else {
-                            console.log("I WAS NOT FOUND")    
-                        } 
+                        }               
                 }
                     if (found>0)return true
                     else return false
