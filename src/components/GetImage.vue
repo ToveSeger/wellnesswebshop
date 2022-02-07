@@ -1,6 +1,7 @@
+//Technical Documentation: 7.4
 <template>
-<div class="image">
- <img :src="imageFromApi.image" alt="">
+<div class="image">  
+        <img :src="imageFromApi.image" alt="">
 </div>
 </template>
 
@@ -10,15 +11,16 @@
         props:['product'],
         
            data:()=> ({
-             prodImg:[]
+             prodImg:{},
         }), 
 
         computed:{
-            imageFromApi(){
-                return{
-                   image: this.prodImg.name && require((`../assets/img/${this.product.category_id}/${this.prodImg.name || this.prodImg.alt_text}`))
-                }
-            }
+            imageFromApi(){          
+            return{                       
+                image: this.prodImg.name && require((`../assets/img/${this.product.category_id}/${this.prodImg.name || this.prodImg.alt_text}`))                     
+            }                 
+        },
+    
         },
 
         async fetch() {
@@ -28,16 +30,14 @@
                 console.log(err)
             }
         },   
-    
     }
-
 
 </script>
 
 <style scoped>
  .image{
-    height: 10em;
-    width: 15em;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 img{

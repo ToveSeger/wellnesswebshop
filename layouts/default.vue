@@ -1,3 +1,4 @@
+// Technical Documentation: 1.1 
 <template>
     <div>   
         <Navigation/>
@@ -19,6 +20,6 @@ import Search from "../src/components/Search.vue"
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>   

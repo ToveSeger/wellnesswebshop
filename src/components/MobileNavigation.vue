@@ -1,16 +1,8 @@
- <!--Technical Documentation: 7.7-->
+//Technical Documentation: 7.6
 <template>
-    <div class="nav-bg">
+    <div>
             <div class="flex">
-                <NuxtLink to="/"><img class="logo" src="../../src/assets/img/logotype_small.png" alt="wellnesswebshop logo"> 
-                </NuxtLink> 
-                    <div class="mobileMenu">  <!--shows if screen size is >1050px -->
-                        <button>|||</button>
-                        <div class="mobileMenuDropDown">            
-                        <MobileNavigation/>
-                        </div>
-                    </div>
-                <div class="links">
+                <div class="flexLinks">
                 <NuxtLink to="/outlet" class="nav-link">Outlet</NuxtLink> 
                 <div class="divider"> | </div>
                 <NuxtLink to="/insence" class="nav-link">Insence</NuxtLink> 
@@ -38,45 +30,37 @@
 <script>
 import Cart from './Cart.vue'
 import Search from './Search.vue'
-import MobileNavigation from './MobileNavigation.vue'
 
   export default {     
     
-  components: { Cart, Search, MobileNavigation },
+    
+  components: { Cart, Search },
 
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
-    .nav-bg{
-        height: 7em;
-        width: 100vw;
-        background-color: #EAF4F7;
-        position:fixed;
-        top:0;
-        z-index:9999; 
-    }
-
-    .flex{
-        display:flex;
-        font-size:clamp(0.5rem, 0.5rem + 0.5vw, 1rem);
-    }
-
+  
+  .flex{
+      width:15em;
+      z-index:9999;
+  }
      .bi-cart3{
          margin-right:2em;
          width:3em;
          height:3em;
-         color:rgb(56, 55, 55);
+         color:black;
      }
 
      .bi-cart3:hover{
          color:#177585;
      }
 
-    .links{
+    .flexLinks{
         width:90vw;
         display:flex;
+        flex-direction: column;
         margin-top:2.5em;
         margin-left: 2.5em;
         justify-content: space-evenly;
@@ -91,53 +75,13 @@ import MobileNavigation from './MobileNavigation.vue'
     .divider{
         color:#fff;
         font-size: x-large;
-    }
-
-    .mobileMenu{
-        width:6em;
-        position:fixed;
-        right:0;
-        display:none;  
-    }
-    .mobileMenuDropDown{
-        position:absolute;
-        background-color:#EAF4F7;
-        margin-left:2em;
-        padding: 0.25rem 0.75rem;
-        display:none; 
-        z-index: 9999;   
-        position:fixed;
-        right:1em;     
-    }
-
-     @media all and (max-width: 1050px){
-    .links{
-        display:none;
-    }
-
-    .mobileMenu{
-        display:flex;
-    }
-   
-
-  .mobileMenu:focus-within .mobileMenuDropDown, 
-  .mobileMenu:focus-within:hover .mobileMenuDropDown{
-      display:flex;
-      flex-direction: column;
-  }
-
-    .mobileMenu button{
-        font-size:clamp(1rem, 2rem + 0.8vw, 3rem);
-        font-family: 'Source Sans Pro', sans-serif;
-        color:#177585;  
-        background-color:#EAF4F7;
-        border:none;
         transform: rotate(90deg); 
     }
 
+    @media all and (max-width: 1050px){
   
 
-} 
+}
 
   
     

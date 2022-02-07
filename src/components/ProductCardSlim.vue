@@ -1,4 +1,4 @@
-//Technical Documentation: 7.9.3
+//Technical Documentation: 7.9.4
 <template>
     <div>
         <div class="container">
@@ -8,19 +8,13 @@
                 />
             </div> 
             <div class="productInformation">
-                        <h1>{{product.name}}</h1>
-                        <p>{{"Stock:" + " " + product.stock}}</p>
-                         <div v-if="product.on_sale==true" class="sale">
-                        <h3>Sale!</h3> 
-                        <h3>{{"$" + product.price}}</h3> 
+                        {{product.name}}
+                        <div v-if="product.on_sale==true" class="sale">
+                        <h4>{{"$" + product.price}}</h4> 
                         </div>
                         <div v-else>
                         <h3>{{"$" + product.price}}</h3>   
                         </div>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                        Blanditiis assumenda dolorem ullam? Dolore alias cum earum nesciunt. 
-                        Perferendis voluptatibus doloribus necessitatibus sed a ut, 
-                        facere consectetur ratione, eos unde ex!</p>
             </div>
              <NuxtLink :to="`/productdetails/${product.id}`" type="button" class="btn btn-info">
                    Read more
@@ -42,25 +36,25 @@ import GetImage from "./GetImage.vue";
 <style scoped>
 
     .container{
-        display:flex;
-        justify-content: space-between;
-        max-height:100%;
+       width:15em;
+       margin:auto;
     }
 
     .productImg{
-     margin-top:4em;
+     margin:1em;
     }
 
 
     .productInformation{
-        width:30em;
+        width:15em;
+        height:5em;
         padding:1.2em;
-        max-height: 100%;
     }
 
     .btn{
         height:2.5em;
-        margin-top:8em;
+        width:12em;
+        margin:1em;
         text-align:center;
     }
 
@@ -68,6 +62,11 @@ import GetImage from "./GetImage.vue";
         color:red;
     }
 
+@media all and (max-width: 390px){
+    .btn{
+        width:8em;
+    }
+}
 
    
 </style>

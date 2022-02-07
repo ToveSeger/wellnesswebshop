@@ -1,7 +1,9 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: true, //was false
+  ssr: true, 
 
+  //Needed for deployment to Netlify
+  target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'wellnesswebshop',
@@ -34,7 +36,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-   
+    { src: '~/plugins/persistedState.client.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,6 +51,7 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios', 
+    'cookie-universal-nuxt',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
