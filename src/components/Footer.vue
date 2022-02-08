@@ -28,7 +28,7 @@
     }
 
 .flex{
-    width:40em;
+    width:28em;
     text-align: center;
     display: flex;
     font-weight: 900;
