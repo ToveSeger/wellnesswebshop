@@ -1,71 +1,69 @@
 // Technical Documentation: 2.1
 <template>
-    <div>
+    <body>
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
-        <div v-else>
-         <div>        
-            <div v-if="this.product" class="flex">
-            <div class="card">           
-                    <div v-if="smallScreen" class="productImg">
-                        <GetImage
-                        :product="product"
-                        />
-                    </div>  
-                     <div v-else class="productImg">
-                        <GetLargeImage
-                        :product="product"
-                        />
-                    </div>  
-               <div class="productInformation">
-                    <h1>{{product.name}}</h1>
-                    <div v-if="product.on_sale==true" class="sale">
-                        <h3>Sale!</h3> 
-                        <h3>{{"$" + product.price}}</h3> 
+        <main v-else>
+            <main v-if="this.product" class="flex">
+                <article class="card">           
+                            <figure v-if="smallScreen" class="productImg">
+                                <GetImage
+                                :product="product"
+                                />
+                            </figure>  
+                            <figure v-else class="productImg">
+                                <GetLargeImage
+                                :product="product"
+                                />
+                            </figure>  
+                    <div class="productInformation">
+                        <h1>{{product.name}}</h1>
+                        <div v-if="product.on_sale==true" class="sale">
+                            <h3>Sale!</h3> 
+                            <h3>{{"$" + product.price}}</h3> 
+                        </div>
+                        <div v-else>
+                        <h3>{{"$" + product.price}}</h3>   
+                        <p>Article id: {{product.id}}</p>  
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Excepturi repellendus porro aperiam placeat optio illum explicabo?
+                            Assumenda unde voluptatem alias fuga tenetur qui sunt nesciunt enim, 
+                            neque, deserunt incidunt reiciendis.
+                        </p> 
+                        <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
+                        <div v-if="inCart">
+                            <button class="amountButton" @click="()=>{
+                                if(counter>0)
+                                setAmount(counter - 1)
+                                counter -= 1
+                                }">-</button> 
+                            <input type="number" :value="getProductAmountById(product.id)"> 
+                            <button class="amountButton" @click="()=>{
+                                setAmount(counter + 1)
+                                counter += 1 
+                                }">+</button>
+                        </div>
+                        <div v-else-if="product.stock==0">
+                            <button class="btn btn-info" id="outOfStock">
+                            <h5>Add to cart</h5></button>
+                            <p>out of stock</p>
+                        </div> 
+                        <div v-else> 
+                            <button class="btn btn-info" @click="()=>{                       
+                                ADD_PRODUCT_TO_CART(product)  
+                                inCart=true
+                                }">
+                            <h5>Add to cart</h5></button>
+                        </div>  
                     </div>
-                    <div v-else>
-                    <h3>{{"$" + product.price}}</h3>   
-                    <p>Article id: {{product.id}}</p>  
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Excepturi repellendus porro aperiam placeat optio illum explicabo?
-                        Assumenda unde voluptatem alias fuga tenetur qui sunt nesciunt enim, 
-                        neque, deserunt incidunt reiciendis.
-                    </p> 
-                     <div class="stock">{{"Stock:" + " " + product.stock}}</div> 
-                     <div v-if="inCart">
-                         <button class="amountButton" @click="()=>{
-                             if(counter>0)
-                               setAmount(counter - 1)
-                               counter -= 1
-                             }">-</button> 
-                         <input type="number" :value="getProductAmountById(product.id)"> 
-                         <button class="amountButton" @click="()=>{
-                              setAmount(counter + 1)
-                              counter += 1 
-                             }">+</button>
-                    </div>
-                    <div v-else-if="product.stock==0">
-                         <button class="btn btn-info" id="outOfStock">
-                        <h5>Add to cart</h5></button>
-                        <p>out of stock</p>
-                    </div> 
-                    <div v-else> 
-                        <button class="btn btn-info" @click="()=>{                       
-                            ADD_PRODUCT_TO_CART(product)  
-                            inCart=true
-                            }">
-                        <h5>Add to cart</h5></button>
-                  </div>  
-                </div>
-            </div>
-       </div>
+                </article>
+            </main>
         <div v-else>
         <PageNotFound/>
         </div> 
-    </div> 
-        </div>
-    </div>
+    </main>  
+    </body>
 </template>
 
 <script>

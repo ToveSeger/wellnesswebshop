@@ -1,8 +1,8 @@
 //Technical Documentation: 3.4
 <template>
-    <div class="container">
+    <body class="container">
         <h1>Terms & Conditions</h1>
-        <div class="innerContainer">
+        <article class="innerContainer">
             <p> §1. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Iste omnis error nam, asperiores dolorum a aspernatur
             molestias esse et magnam, minus temporibus eum perferendis
@@ -27,8 +27,8 @@
             Iste omnis error nam, asperiores dolorum a aspernatur
             molestias esse et magnam, minus temporibus eum perferendis
             necessitatibus vero quisquam voluptate ratione. Odio.</p>
-        </div>
-    </div>
+        </article>
+    </body>
 </template>
 
 </script>
@@ -39,17 +39,27 @@
     font-weight: bold;
 }
 .container{
-    width:80em;
+    position:relative;
+    height: fit-content;
+    border: 0.5em solid #177585;
     height:fit-content;
+    width:80vw;
     margin-top:2em;
     margin-bottom:10em;
-    background-repeat:no-repeat;
-    padding:4em;
-    border: 1em solid #177585;
+    padding:2em;
     font-family: 'Signika', sans-serif;
 }
 
+.innerContainer{
+    margin-top:1em;
+    width:70em;
+    margin-bottom:10em;
+    width:100%
+}
+
+
 .container h1{
+    font-size:clamp(1.2rem, 1.8rem + 0.4vw, 2.5rem);
     margin-bottom: 1em;
     text-decoration: underline;
   

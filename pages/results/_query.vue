@@ -1,6 +1,6 @@
 //Technical Documentation: 2.3
 <template>
-    <div class="container">
+    <body class="container">
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
         <ul v-else>
@@ -11,7 +11,7 @@
                 :product="product"
             />
         </ul>
-    </div>
+    </body>
 </template>
 
 <script>

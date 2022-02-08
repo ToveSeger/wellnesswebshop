@@ -58,13 +58,17 @@ import MobileNavigation from './MobileNavigation.vue'
         z-index:9999; 
     }
 
+    img{
+        margin-left: 1em;
+    }
+
     .flex{
         display:flex;
         font-size:clamp(0.5rem, 0.5rem + 0.5vw, 1rem);
+        margin-right:4em;
     }
 
      .bi-cart3{
-         margin-right:2em;
          width:3em;
          height:3em;
          color:rgb(56, 55, 55);

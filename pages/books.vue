@@ -1,9 +1,9 @@
 //Technical Documentation: 3.1
 <template>
-   <div>       
+   <body>       
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
-        <ul v-else class="flex" >
+        <main v-else class="flex" >
             <div class="sorting">
                 <button class="btn btn-light" @click="sortProductsByPrice('asc')">
                     <span class="tooltiptext">Sort products by price in ascending order</span>
@@ -33,18 +33,18 @@
                     </svg>
                 </button>
               </div>
-               <div v-if="mobileOrTablet">
+               <article v-if="mobileOrTablet">
                     <div v-for="product in allProducts" :key="product.id" class="cardComponent" >         
                         <ProductCard_mobile :product="product"/>     
                     </div>         
-              </div>
-              <div v-else>
+              </article>
+              <article v-else>
                 <div v-for="product in allProducts" :key="product.id" class="card" >         
                         <ProductCard :product="product"/>              
                 </div>
-              </div>
-        </ul>
-    </div>
+              </article>
+        </main>
+    </body>
 </template>
 
 <script>
@@ -103,7 +103,7 @@ import ProductCard_mobile from "../src/components/ProductCard_mobile.vue";
     margin:auto;
     width:70vw;
     margin-bottom:10em;
-    margin-top:13em;
+    margin-top:5em;
 }
 
 .card{
