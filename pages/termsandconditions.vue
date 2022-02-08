@@ -2,7 +2,6 @@
 <template>
     <body class="container">
         <h1>Terms & Conditions</h1>
-        <article class="innerContainer">
             <p> §1. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Iste omnis error nam, asperiores dolorum a aspernatur
             molestias esse et magnam, minus temporibus eum perferendis
@@ -27,7 +26,6 @@
             Iste omnis error nam, asperiores dolorum a aspernatur
             molestias esse et magnam, minus temporibus eum perferendis
             necessitatibus vero quisquam voluptate ratione. Odio.</p>
-        </article>
     </body>
 </template>
 
@@ -49,14 +47,6 @@
     padding:2em;
     font-family: 'Signika', sans-serif;
 }
-
-.innerContainer{
-    margin-top:1em;
-    width:70em;
-    margin-bottom:10em;
-    width:100%
-}
-
 
 .container h1{
     font-size:clamp(1.2rem, 1.8rem + 0.4vw, 2.5rem);
