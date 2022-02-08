@@ -1,15 +1,15 @@
 //Technical Documentation: 3.4
 <template>
-    <div class="container">
+    <body class="container">
         <h1>Say hello!</h1>
-        <div class="innerContainer">
+        <article class="innerContainer">
         <p> hi@wellnesswebshop.com</p>
         <p class="bold">Address:</p>
         <p>Wellnesswebshop HQ</p>
         <p>Test avenue 123</p>
         <p>1234 Test Town</p>
-        </div>
-    </div>
+        </article>
+    </body>
 </template>
 
 </script>

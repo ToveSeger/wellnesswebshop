@@ -1,8 +1,8 @@
 //Technical Documentation: 3.4
 <template>
-    <div class="container">
+    <body class="container">
         <h1>Terms & Conditions</h1>
-        <div class="innerContainer">
+        <article class="innerContainer">
             <p> §1. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Iste omnis error nam, asperiores dolorum a aspernatur
             molestias esse et magnam, minus temporibus eum perferendis
@@ -27,8 +27,8 @@
             Iste omnis error nam, asperiores dolorum a aspernatur
             molestias esse et magnam, minus temporibus eum perferendis
             necessitatibus vero quisquam voluptate ratione. Odio.</p>
-        </div>
-    </div>
+        </article>
+    </body>
 </template>
 
 </script>

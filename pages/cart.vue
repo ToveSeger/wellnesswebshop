@@ -1,11 +1,9 @@
 //Technical Documentation: 3.2
 <template>
-    <div class="container">
-        <div class="innerContainer">
+    <body class="container">
+        <main class="innerContainer">
             <h1>My Shopping Cart</h1>
-            <div class="topSection">
-            </div>
-            <div v-if="itemsInCart.length>0" class="cartItemDisplay">
+            <article v-if="itemsInCart.length>0" class="cartItemDisplay">
                 <Cart
                 v-for="item in itemsInCart"
                 :key="item.id"
@@ -14,15 +12,15 @@
                     Empty cart
                 </button>
                 <NuxtLink to="/checkout" type="button" class="btn btn-info">Checkout</NuxtLink>   
-                </div>
-                <div v-else class="emptyCart">
-                    <h3>You have no items in your cart yet</h3>
+            </article>
+            <div v-else class="emptyCart">
+                <h3>You have no items in your cart yet</h3>
             </div>
-              </div>
-                <div v-if="itemsInCart.length>0" class="cartTotal">
-                    <h5>{{"Total sum: " + "$"+cartSum}}</h5>
-                  </div>
-    </div>
+        </main>
+        <div v-if="itemsInCart.length>0" class="cartTotal">
+            <h5>{{"Total sum: " + "$"+cartSum}}</h5>
+        </div>
+    </body>
 </template>
 
 <script>
@@ -106,13 +104,6 @@ h1{
     width:10em;
     bottom:8em;
 }
-.topSection{
-    position:absolute;
-    right:0.5em;
-    top:0.5em;  
-}
-
-
 
 .btn-dark{
     position:absolute;

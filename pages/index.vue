@@ -1,16 +1,18 @@
 //Technical Documentation: 3.5
 <template>
   <body> 
-      <div class="container">  
+      <main class="container">  
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
           <ul v-else class="grid">
-            <div v-for="product in outletProducts.slice(0,5)" :key="product.id" class="card" >         
+            <article v-for="product in outletProducts.slice(0,5)" :key="product.id" class="card" >         
                     <ProductCardSlim :product="product"/>              
-            </div>
-            <NuxtLink type="button" to="/outlet" class="btn btn-light">Take me to the outlet!</NuxtLink>
+            </article>
+            <NuxtLink type="button" to="/outlet" class="btn btn-light">
+            Take me to the outlet!
+            </NuxtLink>
           </ul>
-    </div>  
+    </main>  
   </body>
 </template>
 
