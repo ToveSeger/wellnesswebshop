@@ -224,7 +224,7 @@ app.get('/books/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 3
+      category_id: 13
     },
     orderBy:{
       price: requestedOrder
@@ -237,7 +237,7 @@ app.get('/books&sortbyname/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 3
+      category_id: 13
     },
     orderBy:{
       name: requestedOrder
@@ -251,7 +251,7 @@ app.get('/movies/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 7
+      category_id: 17
     },
     orderBy:{
       price: requestedOrder
@@ -264,7 +264,7 @@ app.get('/movies&sortbyname/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 7
+      category_id: 17
     },
     orderBy:{
       name: requestedOrder
@@ -278,7 +278,7 @@ app.get('/yogaandmeditation/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 2
+      category_id: 12
     },
     orderBy:{
       price: requestedOrder
@@ -291,7 +291,7 @@ app.get('/yogaandmeditation&sortbyname/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 2
+      category_id: 12
     },
     orderBy:{
       name: requestedOrder
@@ -305,7 +305,7 @@ app.get('/music/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 4
+      category_id: 14
     },
     orderBy:{
       price: requestedOrder
@@ -318,7 +318,7 @@ app.get('/music&sortbyname/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 4
+      category_id: 14
     },
     orderBy:{
       name: requestedOrder
@@ -332,7 +332,7 @@ app.get('/aromalamps/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 6
+      category_id: 16
     },
     orderBy:{
       price: requestedOrder
@@ -345,7 +345,7 @@ app.get('/aromalamps&sortbyname/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 6
+      category_id: 16
     },
     orderBy:{
       name: requestedOrder
@@ -359,7 +359,7 @@ app.get('/insence/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 1
+      category_id: 11
     },
     orderBy:{
       price: requestedOrder
@@ -372,7 +372,7 @@ app.get('/insence&sortbyname/:requestedOrder', async(req, res) =>{
   const {requestedOrder} = req.params
   const products = await prisma.product.findMany({
     where: {
-      category_id: 1
+      category_id: 11
     },
     orderBy:{
       name: requestedOrder

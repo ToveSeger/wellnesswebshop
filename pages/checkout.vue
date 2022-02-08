@@ -183,7 +183,7 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
     margin-bottom:10em;
 }
 .innerContainer{
-    margin-top:12em;
+    margin-top:2em;
     position:relative;
 }
 

@@ -1,5 +1,4 @@
-<template>
-    <body>       
+<template>  
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
           <main v-else class="flex" >
@@ -37,13 +36,12 @@
                         <ProductCard_mobile :product="product"/>     
                     </div>         
               </article>
-            <article v-else>
+              <article v-else>
                 <div v-for="product in allProducts" :key="product.id" class="card" >         
                         <ProductCard :product="product"/>              
                 </div>
             </article>
           </main>
-    </body>
 </template>
 
 <script>

@@ -1,6 +1,5 @@
 //Technical Documentation: 7.9
 <template>
-    <div>
         <div class="card">
             <h1>Order Confirmation</h1>
             <div class="orderDetails">
@@ -19,7 +18,6 @@
             <p>You'll hear from us when you order is ready to be shipped!</p>
             </div>
         </div>
-    </div>
 </template>
 
 <script>

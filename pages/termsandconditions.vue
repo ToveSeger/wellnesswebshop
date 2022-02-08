@@ -1,6 +1,6 @@
 //Technical Documentation: 3.4
 <template>
-    <body class="container">
+    <main class="container">
         <h1>Terms & Conditions</h1>
             <p> §1. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Iste omnis error nam, asperiores dolorum a aspernatur
@@ -26,7 +26,7 @@
             Iste omnis error nam, asperiores dolorum a aspernatur
             molestias esse et magnam, minus temporibus eum perferendis
             necessitatibus vero quisquam voluptate ratione. Odio.</p>
-    </body>
+    </main>
 </template>
 
 </script>

@@ -1,13 +1,12 @@
 //Technical Documentation: 7.9.3
 <template>
-    <div>
-        <div class="container">
+        <main class="container">
             <div class="productImg">
                 <GetImage
                 :product="product"
                 />
             </div> 
-            <div class="productInformation">
+            <article class="productInformation">
                         <h1>{{product.name}}</h1>
                         <p>{{"Stock:" + " " + product.stock}}</p>
                          <div v-if="product.on_sale==true" class="sale">
@@ -21,12 +20,11 @@
                         Blanditiis assumenda dolorem ullam? Dolore alias cum earum nesciunt. 
                         Perferendis voluptatibus doloribus necessitatibus sed a ut, 
                         facere consectetur ratione, eos unde ex!</p>
-            </div>
+            </article>
              <NuxtLink :to="`/productdetails/${product.id}`" type="button" class="btn btn-info">
                    Read more
              </NuxtLink>  
-        </div>
-    </div>
+        </main>
 </template>
 
 <script>

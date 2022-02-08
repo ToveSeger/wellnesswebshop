@@ -1,12 +1,11 @@
 //Technical Documentation: 7.9.4
 <template>
-    <div>
-        <div class="container">
-            <div class="productImg">
+        <main class="container">
+            <figure class="productImg">
                 <GetImage
                 :product="product"
                 />
-            </div> 
+            </figure> 
             <div class="productInformation">
                         {{product.name}}
                         <div v-if="product.on_sale==true" class="sale">
@@ -19,8 +18,7 @@
              <NuxtLink :to="`/productdetails/${product.id}`" type="button" class="btn btn-info">
                    Read more
              </NuxtLink>  
-        </div>
-    </div>
+        </main>
 </template>
 
 <script>
