@@ -100,7 +100,7 @@ import MobileNavigation from './MobileNavigation.vue'
     .mobileMenu{
         width:6em;
         position:fixed;
-        right:0;
+        right:6em;
         display:none;  
     }
     .mobileMenuDropDown{
