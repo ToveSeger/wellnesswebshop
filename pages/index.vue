@@ -1,17 +1,19 @@
 //Technical Documentation: 3.5
 <template>
-  <div> 
-      <div class="container">       
+  <body> 
+      <main class="container">  
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
           <ul v-else class="grid">
-            <div v-for="product in outletProducts.slice(0,5)" :key="product.id" class="card" >         
+            <article v-for="product in outletProducts.slice(0,5)" :key="product.id" class="card" >         
                     <ProductCardSlim :product="product"/>              
-            </div>
-            <NuxtLink type="button" to="/outlet" class="btn btn-light">Take me to the outlet!</NuxtLink>
+            </article>
+            <NuxtLink type="button" to="/outlet" class="btn btn-light">
+            Take me to the outlet!
+            </NuxtLink>
           </ul>
-    </div>  
-  </div>
+    </main>  
+  </body>
 </template>
 
 <script>
@@ -40,12 +42,15 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 <style scoped>
 
 .container{
+  margin-top:2em;
   height:100vh;
   margin-bottom:10em;
   width:95vw;
   margin-left:auto;
   margin-right: auto;
 }
+
+
 .grid{
   margin-top:2em;
   display:grid;
@@ -74,6 +79,7 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
 }
 
 @media all and (max-width: 1050px){
+
     .grid{
     grid-template-columns: 50% 50%;
   }
@@ -87,6 +93,6 @@ import ProductCardSlim from "../src/components/ProductCardSlim.vue";
     width:80vw;
   }
 
-
 }
+
 </style>

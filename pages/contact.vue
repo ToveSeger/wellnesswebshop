@@ -1,15 +1,15 @@
 //Technical Documentation: 3.4
 <template>
-    <div class="container">
+    <body class="container">
         <h1>Say hello!</h1>
-        <div class="innerContainer">
+        <article class="innerContainer">
         <p> hi@wellnesswebshop.com</p>
         <p class="bold">Address:</p>
         <p>Wellnesswebshop HQ</p>
         <p>Test avenue 123</p>
         <p>1234 Test Town</p>
-        </div>
-    </div>
+        </article>
+    </body>
 </template>
 
 </script>
@@ -19,17 +19,20 @@
 .bold{
     font-weight: bold;
 }
+
 .container{
-    width:80em;
-    height:50em;
+    background-image: url("../src/assets/img/hello.jpg");
+    padding:4em;
+    background-repeat:no-repeat;
+    position:relative;
+    border: 0.5em solid #177585;
+    background-position: top;
+    height:80vh;
+    width:80vw;
     margin-top:2em;
     margin-bottom:10em;
-    background-image: url("../src/assets/img/hello.jpg");
-    background-repeat:no-repeat;
-    padding:4em;
-    border: 1em solid #177585;
+    padding:2em;
     font-family: 'Signika', sans-serif;
-     
 }
 .container h1{
     margin-bottom: 1em;

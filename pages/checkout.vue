@@ -1,57 +1,59 @@
 //Technical Documentation: 3.3
 <template>
-    <div class="container">
-        <div v-if="!pressed">
-        <div class="innerContainer">
-                <div>
-                    <h2>Your Products</h2>
-                     <Cart
-                    v-for="item in itemsInCart"
-                    :key="item.id"
-                    :item="item"/>              
-                </div>
-                <div class="cartTotal">
-                  <h5>{{"Total sum: " + cartSum}}</h5>
-                </div>
-        </div>
-        <div class="shippingInformation">
-        <h2>Shipping information</h2>
-        <form @submit.prevent="submitForm">
-            <label>First name: </label>
-            <input type="text" class="form-control" v-model="firstName" required>
-            <label>Last name: </label>
-            <input type="text" class="form-control" v-model="lastName" required>
-            <label>Street & house number: </label>
-            <input type="text" class="form-control" v-model="road" required>
-            <label>Zip code: </label>
-            <input type="text" pattern="[0-9]*" class="form-control" v-model="zipCode" required>
-             <label>City: </label>
-            <input type="text"  class="form-control" v-model="city" required>
-            <label>Email: </label>
-            <input type="email" class="form-control" v-model="email" required>
-            <small class="form-text text-muted">Your email stays with us</small>
-            <label>Phone: </label>
-            <input type="tel" class="form-control" v-model="phone" required>
-            <NuxtLink  target="_blank" class="linkToTerms" to="/termsandconditions"> Read the terms</NuxtLink> 
-            <div class="checkboxContainer">
-                <div class="checkbox">
-                    <input type="checkbox" class="form-check-input" value="" id="flexCheckDefault" required>
-                </div>
-                <div class="checkboxLabel">
-                   <label>I accept the terms</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-info">Confirm order</button>
-            </form>
-            </div>
-            </div>
-            <div v-else class="orderConfirmation">
+    <body class="container">
+        <main v-if="!pressed">
+            <article class="innerContainer">
+                    <div>
+                        <h2>Your Products</h2>
+                        <Cart
+                        v-for="item in itemsInCart"
+                        :key="item.id"
+                        :item="item"/>              
+                    </div>
+                    <div class="cartTotal">
+                    <h5>{{"Total sum: " + cartSum}}</h5>
+                    </div>
+            </article>
+            <article class="shippingInformation">
+                <h2>Shipping information</h2>
+                    <form @submit.prevent="submitForm">
+                    <label>First name: </label>
+                    <input type="text" class="form-control" v-model="firstName" required>
+                    <label>Last name: </label>
+                    <input type="text" class="form-control" v-model="lastName" required>
+                    <label>Street & house number: </label>
+                    <input type="text" class="form-control" v-model="road" required>
+                    <label>Zip code: </label>
+                    <input type="text" pattern="[0-9]*" class="form-control" v-model="zipCode" required>
+                    <label>City: </label>
+                    <input type="text"  class="form-control" v-model="city" required>
+                    <label>Email: </label>
+                    <input type="email" class="form-control" v-model="email" required>
+                    <small class="form-text text-muted">Your email stays with us</small>
+                    <label>Phone: </label>
+                    <input type="tel" class="form-control" v-model="phone" required>
+                    <NuxtLink  target="_blank" class="linkToTerms" to="/termsandconditions"> 
+                    Read the terms
+                    </NuxtLink> 
+                    <div class="checkboxContainer">
+                        <div class="checkbox">
+                            <input type="checkbox" class="form-check-input" value="" id="flexCheckDefault" required>
+                        </div>
+                        <div class="checkboxLabel">
+                        <label>I accept the terms</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info">Confirm order</button>
+                    </form>
+            </article>
+        </main>
+            <article v-else class="orderConfirmation">
                 <OrderConfirmation
                 :customer="customer"
                 :order="order"
                 />
-            </div>
-    </div>
+            </article>
+    </body>
 </template>
 
 <script>
