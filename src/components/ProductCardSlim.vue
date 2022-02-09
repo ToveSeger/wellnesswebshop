@@ -34,25 +34,26 @@ import GetImage from "./GetImage.vue";
 <style scoped>
 
     .container{
+       font-family: 'Roboto Condensed', sans-serif;
        width:15em;
        margin:auto;
     }
 
     .productImg{
-     margin:1em;
+     margin:0.5em;
     }
 
 
     .productInformation{
-        width:15em;
+        width:12em;
         height:5em;
-        padding:1.2em;
+        padding:0.5em;
     }
 
     .btn{
         height:2.5em;
         width:12em;
-        margin:1em;
+        margin:0.5em;
         text-align:center;
     }
 

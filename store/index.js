@@ -5,6 +5,7 @@ export const state=()=>({
 
     addedProductIds: [{}],
     activeProductId: 0
+
 })
 
 export const mutations={
@@ -92,6 +93,8 @@ export const actions={
         return state.activeProductId
     }
 
+ 
+
 }
 
 
@@ -143,12 +146,10 @@ export const getters={
           });
 
             return parseFloat(sum).toFixed(2)
-        
+              
+    },
 
 
-    }
-
-    
 
     
 

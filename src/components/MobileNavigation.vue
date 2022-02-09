@@ -77,13 +77,5 @@ import Search from './Search.vue'
         font-size: x-large;
         transform: rotate(90deg); 
     }
-
-    @media all and (max-width: 1050px){
-  
-
-}
-
-  
     
-
 </style>
