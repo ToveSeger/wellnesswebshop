@@ -23,11 +23,11 @@
         z-index:9999;
         display:flex;
         justify-content: space-between;
+        font-family: 'Roboto Condensed', sans-serif;
     }
 
     .btn{
     font-size:clamp(0.4rem, 0.7rem + 0.2vw, 1.5rem);
-    font-family: 'Signika', sans-serif;
     font-weight: bold;
     color:#fff;
     height: 3em;

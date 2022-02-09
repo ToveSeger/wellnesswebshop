@@ -35,6 +35,7 @@
    background-repeat: no-repeat;  
    background-position: top;
    position:relative;
+   font-family: 'Roboto Condensed', sans-serif;
 }
 
 .orderDetails{
@@ -46,14 +47,12 @@
 h1{
     padding-top:1em;
     color:#177585;  
-    font-family: 'Signika', sans-serif;
     text-decoration: underline;
     text-align: center;
 }
 
 h3{
     color:#177585;  
-    font-family: 'Signika', sans-serif;
     text-decoration: underline;
 }
 

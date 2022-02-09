@@ -40,6 +40,7 @@ import GetImage from "./GetImage.vue";
 <style scoped>
 
     .container{
+        font-family: 'Roboto Condensed', sans-serif;
         display:flex;
         justify-content: space-between;
         max-height:100%;

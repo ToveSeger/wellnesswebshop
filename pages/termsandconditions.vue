@@ -45,7 +45,7 @@
     margin-top:2em;
     margin-bottom:10em;
     padding:2em;
-    font-family: 'Signika', sans-serif;
+   font-family: 'Roboto Condensed', sans-serif;
 }
 
 .container h1{

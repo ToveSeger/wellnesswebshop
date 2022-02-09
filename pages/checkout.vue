@@ -11,10 +11,10 @@
                         :item="item"/>              
                     </div>
                     <div class="cartTotal">
-                    <h5>{{"Total sum: " + this.$store.getters.getCartSum}}</h5>
+                    <h5>{{"Total sum: " + getCartSum}}</h5>
                     </div>
             </article>
-            <article class="shippingInformation">
+            <article v-if="getCartSum!=0" class="shippingInformation">
                 <h2>Shipping information</h2>
                     <form @submit.prevent="submitForm">
                     <label>First name: </label>
@@ -59,7 +59,7 @@
 <script>
 import Cart from "../src/components/Cart.vue";
 import OrderConfirmation from "../src/components/OrderConfirmation.vue";
-import { mapState, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
     export default {
     
         data:()=>{
@@ -79,9 +79,8 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
         },
         
         computed: {
-            ...mapState([
-                "itemsInCart"
-        ])
+            ...mapGetters(["getCartSum"]),
+            ...mapState(["itemsInCart"])
     },
 
     methods:{
@@ -166,6 +165,7 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
 
 .container{
     margin-bottom:10em;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 .innerContainer{
     margin-top:2em;
@@ -173,7 +173,6 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
 }
 
 h2{
-    font-family: 'Signika', sans-serif;
     color: #177585;
     text-decoration:underline;
     width:10em;
@@ -181,7 +180,6 @@ h2{
 }
 
 .cartTotal{
-    font-family: 'Signika', sans-serif;
     margin:auto;
     position: absolute;
     margin:auto;
