@@ -11,7 +11,11 @@
                         <p>Price: ${{item.price}}</p>
                         <p>Amount: {{getProductById(item.id).amount}}</p>
                     </div>
-                <button @click="REMOVE_PRODUCT_FROM_CART(item)" type="button" class="btn btn-danger">Remove item</button>        
+                <button @click="()=>{
+                    REMOVE_PRODUCT_FROM_CART(item)
+                    }" 
+                type="button" class="btn btn-danger">Remove item
+                </button>        
             </div>
     </div>
 </template>
@@ -38,7 +42,7 @@ import GetImage from "./GetImage.vue";
         ...mapGetters(['getProductById']),
     }, 
 
-      methods:{             
+      methods:{        
         ...mapMutations(['REMOVE_PRODUCT_FROM_CART']),   
         },
 
