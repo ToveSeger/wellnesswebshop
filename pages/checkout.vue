@@ -11,7 +11,7 @@
                         :item="item"/>              
                     </div>
                     <div class="cartTotal">
-                    <h5>{{"Total sum: " + cartSum}}</h5>
+                    <h5>{{"Total sum: " + this.$store.getters.getCartSum}}</h5>
                     </div>
             </article>
             <article class="shippingInformation">
@@ -73,8 +73,7 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
                 city: " ",
                 pressed: false,
                 customer: {},
-                order: {},
-                cartSum: 0
+                order: {}
             }
 
         },
@@ -85,14 +84,11 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
         ])
     },
 
-    mounted(){
-        this.cartSum = this.$store.getters.getCartSum
-    },
-
     methods:{
+
         //Triggers when "comfirm order" is pressed
         async  submitForm(){
-//creates a new instance in customer table
+        //creates a new instance in customer table
         const customer = await this.$axios.$post('http://localhost:3000/api/postcustomer',{
                     first_name: this.firstName,
                     last_name: this.lastName,
@@ -102,8 +98,6 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
                     zip_code: parseInt(this.zipCode),
                     city: this.city
             })   
-
-             console.log("customer: " + customer)
             this.customer=customer
        
         this.placeOrder(customer.id)     
@@ -112,16 +106,11 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
 
   //creates a new instance in order table   
     async placeOrder(customerId){
-        console.log("customer id sent: " + customerId)
-        console.log(this.itemsInCart)
-        console.log(this.cartSum)
          const order = await this.$axios.$post('http://localhost:3000/api/postorder',{
             customer_id: customerId,
             products: this.itemsInCart,
-            order_sum: this.cartSum
+            order_sum: this.$store.getters.getCartSum
             }) 
-
-            console.log("order id: " + order.id)
             this.order=order
             this.pressed=true  
             
@@ -144,14 +133,11 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
                    order_id: order.id,
                    amount: product.amount
                }) 
-
-               console.log("ORDER INSTANCE:" + instance)
             this.stockCorrection()
         },
 
         //Looks for which products stock correction is to be done at
          stockCorrection(){
-            console.log(this.$store.getters.getAddedProductIds)
             const productsAndAmounts=this.$store.getters.getAddedProductIds 
             productsAndAmounts.forEach(product => {
                 this.correctStock(product)
@@ -162,7 +148,6 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
         //Carries out the stock correction
         async correctStock(product){
            var updatedAmount= (this.$store.getters.getItemsInCartById(product.id).stock) - product.amount
-           console.log("updated amount: " + updatedAmount)
             const updatedProduct = await this.$axios.$put(`http://localhost:3000/api/updateproductstock/${product.id}`,{
               
                    stock: updatedAmount

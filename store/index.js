@@ -25,29 +25,19 @@ export const mutations={
                     keepGoing = false
                 }
             }
-
-            console.log("evaluated to: " + isAdded)
                 if (!isAdded){
                     state.itemsInCart.push(product)
                     state.addedProductIds.push(amountObject)
-                    console.log("this product has ben added to cart among other products")
                 }
        }
        else{
-          
-           console.log("first one in cart")
            state.itemsInCart.push(product)
            state.addedProductIds.push(amountObject)
-           console.log("amountObject: " + amountObject.id + ", " + amountObject.amount)
        }
-
-       /* state.inCart=true
-       console.log("cartState:" + state.inCart) */
    },
 
    ADD_PRODUCT_AMOUNT(amount){
         state.addedProductIds.push(amount)
-        console.log(amount)
    }, 
 
    REMOVE_PRODUCT_FROM_CART(state, product){
@@ -68,7 +58,6 @@ export const mutations={
             break;
         }
     }
-
        
    },
 
@@ -86,13 +75,8 @@ export const mutations={
    },
 
    SET_AMOUNT:(state, newValue)=>{      
-       console.log("active prod: " + state.activeProductId)
-       console.log(state.addedProductIds)
        var product = state.addedProductIds.find((addedProductIds=>addedProductIds.id===state.activeProductId))
-       console.log("FOUND PRODUCT: " + product)
        product.amount=newValue
-       console.log("product id: " + product)
-       console.log("product amount: " + product.amount)
    },
 
 }
@@ -127,10 +111,6 @@ export const getters={
     getLengthOfAddedProductIds: state=>{
         return state.addedProductIds.length
     },
-
-  /*   getInCart: state=>{
-        return state.inCart
-    }, */
 
     getProductById: state => id =>{
         return state.addedProductIds.find((addedProductIds=>addedProductIds.id===id))

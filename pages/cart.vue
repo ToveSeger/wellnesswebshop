@@ -18,7 +18,7 @@
             </div>
         </main>
         <div v-if="itemsInCart.length>0" class="cartTotal">
-            <h5>{{"Total sum: " + "$"+cartSum}}</h5>
+            <h5 >{{"Total sum: " + "$"+ this.$store.getters.getCartSum}}</h5>
         </div>
     </body>
 </template>
@@ -40,16 +40,11 @@ import Cart from '../src/components/Cart.vue';
     },
 
      data:()=>({
-         cartSum: 0,
          cartItems: [{}],
-         addedProductIds: [{}]
+         addedProductIds: [{}],
      }),
  
-    mounted(){
-       this.cartSum = this.$store.getters.getCartSum
-    },
- 
-     methods:{             
+     methods:{                
         ...mapMutations(['EMPTY_CART']),  
         },
 
