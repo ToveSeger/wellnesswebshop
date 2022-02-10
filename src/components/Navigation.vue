@@ -25,11 +25,15 @@
                 <div class="divider"> | </div>
                 <NuxtLink to="/aromalamps" class="nav-link">Aroma Lamps</NuxtLink>                  
                  <div class="divider"> | </div>
-                <NuxtLink to="/cart"> <img class="cart"/>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                </svg>
-                </NuxtLink>
+                <button v-if="!cartPressed" class="cartButton" @click="()=>{cartPressed=true}">
+                <img class="cart" src="../../src/assets/img/cart_rounded.jpg" alt="cart"> 
+                </button>
+                <button v-else class="closeCart" @click="()=>{cartPressed=false}">
+                    <p>Close cart</p>
+                </button> 
+                <div v-if="cartPressed">     
+                    <CartDropDown/>
+                </div>
                 </div>              
             </div>                        
     </div>
@@ -39,16 +43,23 @@
 import Cart from './Cart.vue'
 import Search from './Search.vue'
 import MobileNavigation from './MobileNavigation.vue'
+import CartDropDown from './CartDropDown.vue'
 
   export default {     
+
+      data:()=>{
+          return{
+              cartPressed: false
+          }
+      }, 
     
-  components: { Cart, Search, MobileNavigation },
+  components: { Cart, Search, MobileNavigation, CartDropDown },
 
 }
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
     .nav-bg{
         height: 7em;
         width: 100vw;
@@ -68,15 +79,27 @@ import MobileNavigation from './MobileNavigation.vue'
         margin-right:4em;
     }
 
-     .bi-cart3{
-         width:3em;
-         height:3em;
-         color:rgb(56, 55, 55);
+     .cart{
+         width:4em;
+         border-radius: 50%;
      }
 
-     .bi-cart3:hover{
-         color:#177585;
+     .cartButton{
+         position:relative;
+         border:none;
+         background-color: #EAF4F7;
+         height:fit-content;
+         width:fit-content;
      }
+
+
+    .closeCart{
+        font-size:clamp(0.5rem, 0.5rem + 0.5vw, 1rem);
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight:700;
+        background-color: #EAF4F7;
+        border:none;
+    }
 
     .links{
         width:90vw;
@@ -84,7 +107,8 @@ import MobileNavigation from './MobileNavigation.vue'
         margin-top:2.5em;
         margin-left: 2.5em;
         justify-content: space-evenly;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
+       
     }
 
     .nav-link{

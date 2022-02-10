@@ -1,5 +1,4 @@
-<template>
-    <body>       
+<template>   
         <p v-if="$fetchState.pending">Loading....</p>
         <p v-else-if="$fetchState.error">Error while fetching products</p>   
           <main v-else class="flex" >
@@ -43,7 +42,6 @@
                 </div>
               </article>
          </main>
-    </body>
 </template>
 
 <script>

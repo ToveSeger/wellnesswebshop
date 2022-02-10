@@ -31,7 +31,8 @@ import ProductCard from "../../src/components/ProductCard.vue"
 <style  scoped>
 
 .container{
-    margin-top:10em;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-top:2em;
     margin-bottom:10em;
 }
 </style>

@@ -18,7 +18,7 @@
             </div>
         </main>
         <div v-if="itemsInCart.length>0" class="cartTotal">
-            <h5>{{"Total sum: " + "$"+cartSum}}</h5>
+            <h5 >{{"Total sum: " + "$"+ getCartSum}}</h5>
         </div>
     </body>
 </template>
@@ -36,20 +36,15 @@ import Cart from '../src/components/Cart.vue';
 
         ...mapState(["itemsInCart"]),
         
-        ...mapGetters(["getItemsInCart"]),
+        ...mapGetters(["getItemsInCart", "getCartSum"]),
     },
 
      data:()=>({
-         cartSum: 0,
          cartItems: [{}],
-         addedProductIds: [{}]
+         addedProductIds: [{}],
      }),
  
-    mounted(){
-       this.cartSum = this.$store.getters.getCartSum
-    },
- 
-     methods:{             
+     methods:{                
         ...mapMutations(['EMPTY_CART']),  
         },
 
@@ -60,6 +55,7 @@ import Cart from '../src/components/Cart.vue';
 <style scoped>
 
 .container{
+    font-family: 'Roboto Condensed', sans-serif;
     position:relative;
     height: fit-content;
     border: 0.5em solid #177585;
@@ -77,7 +73,6 @@ import Cart from '../src/components/Cart.vue';
 
 h1{
     font-size:clamp(1.2rem, 1.8rem + 0.4vw, 2.5rem);
-    font-family: 'Signika', sans-serif;
     color: #177585;
     text-decoration:underline;
     width:10em;
@@ -87,7 +82,6 @@ h1{
 
 .emptyCart{
     font-size:clamp(1rem, 1.4rem + 0.3vw, 2rem);
-    font-family: 'Signika', sans-serif;
     color: #177585;
     width:17em;
     margin:auto;
@@ -98,7 +92,6 @@ h1{
 }
 
 .cartTotal{
-    font-family: 'Signika', sans-serif;
     margin:auto;
     position: relative;
     width:10em;

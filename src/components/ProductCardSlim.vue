@@ -1,12 +1,11 @@
 //Technical Documentation: 7.9.4
 <template>
-    <div>
-        <div class="container">
-            <div class="productImg">
+        <main class="container">
+            <figure class="productImg">
                 <GetImage
                 :product="product"
                 />
-            </div> 
+            </figure> 
             <div class="productInformation">
                         {{product.name}}
                         <div v-if="product.on_sale==true" class="sale">
@@ -19,8 +18,7 @@
              <NuxtLink :to="`/productdetails/${product.id}`" type="button" class="btn btn-info">
                    Read more
              </NuxtLink>  
-        </div>
-    </div>
+        </main>
 </template>
 
 <script>
@@ -36,25 +34,26 @@ import GetImage from "./GetImage.vue";
 <style scoped>
 
     .container{
+       font-family: 'Roboto Condensed', sans-serif;
        width:15em;
        margin:auto;
     }
 
     .productImg{
-     margin:1em;
+     margin:0.5em;
     }
 
 
     .productInformation{
-        width:15em;
+        width:12em;
         height:5em;
-        padding:1.2em;
+        padding:0.5em;
     }
 
     .btn{
         height:2.5em;
         width:12em;
-        margin:1em;
+        margin:0.5em;
         text-align:center;
     }
 
