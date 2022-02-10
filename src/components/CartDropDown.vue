@@ -1,3 +1,4 @@
+//Technical Documentation 7.9.6
 <template>
     <main class="container">
         <h4>My cart</h4>
