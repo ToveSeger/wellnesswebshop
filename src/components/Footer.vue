@@ -28,13 +28,14 @@
     }
 
 .flex{
-    width:40em;
+    width:28em;
     text-align: center;
     display: flex;
-    font-weight: 900;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-family: 'Roboto Condensed', sans-serif;
     margin-left: auto;
     margin-right: auto;
+    font-size:clamp(0.5rem, 0.8rem + 0.5vw, 1.2rem);
     }
 
     .nav-link{

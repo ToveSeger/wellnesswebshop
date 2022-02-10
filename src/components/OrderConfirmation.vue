@@ -1,6 +1,5 @@
 //Technical Documentation: 7.9
 <template>
-    <div>
         <div class="card">
             <h1>Order Confirmation</h1>
             <div class="orderDetails">
@@ -19,7 +18,6 @@
             <p>You'll hear from us when you order is ready to be shipped!</p>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -37,6 +35,7 @@
    background-repeat: no-repeat;  
    background-position: top;
    position:relative;
+   font-family: 'Roboto Condensed', sans-serif;
 }
 
 .orderDetails{
@@ -48,14 +47,12 @@
 h1{
     padding-top:1em;
     color:#177585;  
-    font-family: 'Signika', sans-serif;
     text-decoration: underline;
     text-align: center;
 }
 
 h3{
     color:#177585;  
-    font-family: 'Signika', sans-serif;
     text-decoration: underline;
 }
 

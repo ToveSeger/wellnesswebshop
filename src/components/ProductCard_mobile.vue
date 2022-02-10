@@ -47,8 +47,8 @@ import GetImage from "./GetImage.vue";
 <style scoped>
 
     .card{
+        font-family: 'Roboto Condensed', sans-serif;
         display:flex;
-        
         max-height:50em;
     }
 

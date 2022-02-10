@@ -131,6 +131,7 @@ import {mapMutations, mapActions, mapGetters} from "vuex"
 
 <style  scoped>
     .flex{
+        font-family: 'Roboto Condensed', sans-serif;
         margin:auto;
         width:90vw;
         height:80vh;
