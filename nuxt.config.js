@@ -21,11 +21,6 @@ export default {
     ]
   },
 
- /*  //server middleware
-   serverMiddleware: [
-    '~/api/index.js'
-  ],  */
-
   serverMiddleware: {
     '/api': '~/src/api'
   },
