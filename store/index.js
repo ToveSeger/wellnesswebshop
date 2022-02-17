@@ -1,9 +1,7 @@
 //Technical Documentation: 8.1
 export const state=()=>({
-    itemsInCart: [{     
-    }],
-
-    addedProductIds: [{}],
+    itemsInCart: [],
+    addedProductIds: [],
     activeProductId: 0
 
 })
