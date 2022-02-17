@@ -6,7 +6,7 @@ The purpose of this project was to create a web shop with Vue.js and Nuxt.js as 
 A version without database connection is hosted on: https://zen-knuth-25465f.netlify.app/
 
 **Screenshot of category page**
-![Screenshot](../assets/img/screenshot_readMe.png)
+![Screenshot](/assets/img/screenshot_readMe.png)
 
 **Tool Box**
 - Vue.js
